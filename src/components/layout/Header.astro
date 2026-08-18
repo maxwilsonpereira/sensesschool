@@ -1,0 +1,288 @@
+---
+import ButtonLink from '../ui/ButtonLink.astro';
+import type { PageContent } from '../../i18n/content';
+import { school } from '../../i18n/content';
+
+interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+---
+
+<header class="site-header" data-header>
+  <div class="site-header__inner">
+    <a class="brand" href={page.path} aria-label={`${school.name} — home`}>
+      <img
+        src="/images/brand/senses-logo.webp"
+        alt="Senses"
+        width="225"
+        height="90"
+      />
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      data-menu-toggle
+    >
+      <span data-menu-label>{page.nav.menu}</span>
+      <span class="menu-toggle__lines" aria-hidden="true"><i></i><i></i></span>
+    </button>
+
+    <nav class="primary-nav" id="primary-navigation" aria-label="Primary" data-nav>
+      <ul>
+        {page.nav.items.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+      <div class="primary-nav__actions">
+        <a
+          class="language"
+          href={page.alternatePath}
+          hreflang={page.lang === 'pt-BR' ? 'en' : 'pt-BR'}
+          lang={page.lang === 'pt-BR' ? 'en' : 'pt-BR'}
+        >
+          {page.nav.language}
+        </a>
+        <ButtonLink href={school.whatsappHref} variant="solid" external>
+          {page.nav.visit}
+        </ButtonLink>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const header = document.querySelector('[data-header]');
+    if (!header) return;
+    const toggle = header.querySelector('[data-menu-toggle]');
+    const nav = header.querySelector('[data-nav]');
+    const label = header.querySelector('[data-menu-label]');
+    const openLabel = toggle?.textContent?.trim() || 'Menu';
+    const closeLabel = document.documentElement.lang === 'pt-BR' ? 'Fechar' : 'Close';
+
+    const setOpen = (open) => {
+      header.toggleAttribute('data-open', open);
+      toggle?.setAttribute('aria-expanded', String(open));
+      if (label) label.textContent = open ? closeLabel : openLabel;
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    toggle?.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    nav?.addEventListener('click', (event) => {
+      if (event.target instanceof HTMLAnchorElement) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+  })();
+</script>
+
+<style>
+  .site-header {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    left: 0;
+    color: var(--ink);
+  }
+
+  .site-header__inner {
+    display: grid;
+    width: var(--container);
+    min-height: 6.5rem;
+    align-items: center;
+    margin-inline: auto;
+    grid-template-columns: auto 1fr;
+  }
+
+  .brand {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 8rem;
+    height: 3.6rem;
+    align-items: center;
+  }
+
+  .brand img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+
+  .primary-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(1rem, 2vw, 2.5rem);
+  }
+
+  .primary-nav ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 1.7vw, 2rem);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .primary-nav li a,
+  .language {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.035em;
+    text-decoration: none;
+  }
+
+  .primary-nav li a {
+    position: relative;
+  }
+
+  .primary-nav li a::after {
+    position: absolute;
+    right: 0;
+    bottom: -0.35rem;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    content: '';
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--duration) var(--ease-out);
+  }
+
+  .primary-nav li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .primary-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+  }
+
+  .language {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+    text-underline-offset: 0.35rem;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  @media (max-width: 70rem) {
+    .site-header__inner {
+      min-height: 5.25rem;
+    }
+
+    .brand {
+      width: 7rem;
+      height: 3rem;
+    }
+
+    .menu-toggle {
+      position: relative;
+      z-index: 3;
+      display: inline-flex;
+      cursor: pointer;
+      min-width: 5.6rem;
+      min-height: 2.8rem;
+      align-items: center;
+      justify-content: center;
+      justify-self: end;
+      gap: 0.7rem;
+      padding: 0.55rem 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 100vmax;
+      background: color-mix(in srgb, var(--paper) 80%, transparent);
+      color: var(--ink);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .menu-toggle__lines {
+      display: grid;
+      width: 0.9rem;
+      gap: 0.25rem;
+    }
+
+    .menu-toggle__lines i {
+      display: block;
+      height: 1px;
+      background: currentColor;
+      transition: transform var(--duration) var(--ease-out);
+    }
+
+    [data-open] .menu-toggle__lines i:first-child {
+      transform: translateY(2.5px) rotate(45deg);
+    }
+
+    [data-open] .menu-toggle__lines i:last-child {
+      transform: translateY(-2.5px) rotate(-45deg);
+    }
+
+    .primary-nav {
+      position: fixed;
+      z-index: 1;
+      inset: 0;
+      display: grid;
+      visibility: hidden;
+      align-content: center;
+      justify-content: stretch;
+      grid-template-columns: minmax(0, 1fr);
+      padding: 7rem 1.5rem 2rem;
+      background: var(--paper);
+      opacity: 0;
+      transition:
+        opacity var(--duration) var(--ease-out),
+        visibility var(--duration) var(--ease-out);
+    }
+
+    [data-open] .primary-nav {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .primary-nav ul {
+      display: grid;
+      width: 100%;
+      gap: 0;
+    }
+
+    .primary-nav li a {
+      display: block;
+      padding-block: 0.7rem;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+
+    .primary-nav__actions {
+      align-items: stretch;
+      margin-top: 2rem;
+      flex-direction: column;
+    }
+
+    .language {
+      min-height: 2.75rem;
+      align-content: center;
+      text-align: center;
+    }
+  }
+</style>

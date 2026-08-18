@@ -1,0 +1,212 @@
+---
+import { Image } from 'astro:assets';
+import type { PageContent } from '../../i18n/content';
+import preparedEnvironment from '../../assets/school/prepared-environment.jpg';
+
+interface Props { page: PageContent }
+const { page } = Astro.props;
+---
+
+<section class="philosophy section" id="philosophy">
+  <div class="container philosophy__intro">
+    <p class="eyebrow">{page.intro.eyebrow}</p>
+    <div class="philosophy__headline">
+      <h2>{page.intro.title}</h2>
+      <p>{page.intro.lead}</p>
+    </div>
+  </div>
+
+  <div class="container philosophy__feature">
+    <figure>
+      <Image
+        src={preparedEnvironment}
+        width={960}
+        alt={page.lang === 'pt-BR'
+          ? 'Sala Montessori da Senses com móveis e materiais ao alcance das crianças'
+          : 'Senses Montessori classroom with furniture and materials within children’s reach'}
+        widths={[480, 720, 960]}
+        sizes="(max-width: 768px) 100vw, 62vw"
+        quality={74}
+      />
+      <figcaption>{page.intro.detail}</figcaption>
+    </figure>
+    <span class="philosophy__index" aria-hidden="true">01</span>
+  </div>
+
+  <div class="method container">
+    <div class="method__heading">
+      <p class="eyebrow">{page.method.eyebrow}</p>
+      <h2>{page.method.title}</h2>
+      <p>{page.method.body}</p>
+    </div>
+    <ol class="method__list">
+      {page.method.principles.map((principle) => (
+        <li>
+          <span>{principle.number}</span>
+          <div>
+            <h3>{principle.title}</h3>
+            <p>{principle.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .philosophy {
+    background: var(--paper);
+  }
+
+  .philosophy__intro {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 0.8fr 2fr;
+  }
+
+  .philosophy__headline {
+    display: grid;
+    align-items: end;
+    gap: 2rem;
+    grid-template-columns: 1.35fr 0.8fr;
+  }
+
+  .philosophy__headline h2 {
+    max-width: 12ch;
+  }
+
+  .philosophy__headline p,
+  .method__heading > p:last-child,
+  .method__list p {
+    color: var(--ink-soft);
+  }
+
+  .philosophy__feature {
+    position: relative;
+    display: grid;
+    align-items: end;
+    margin-top: clamp(4rem, 8vw, 7rem);
+    grid-template-columns: 1.5fr 0.5fr;
+  }
+
+  figure {
+    display: grid;
+    gap: 1rem;
+  }
+
+  figure :global(img) {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
+    object-fit: cover;
+  }
+
+  figcaption {
+    max-width: 47rem;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    line-height: 1.3;
+  }
+
+  .philosophy__index {
+    justify-self: end;
+    color: color-mix(in srgb, var(--ink) 20%, transparent);
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 13vw, 12rem);
+    line-height: 0.75;
+  }
+
+  .method {
+    display: grid;
+    gap: clamp(3rem, 8vw, 8rem);
+    padding-top: var(--space-section);
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+
+  .method__heading {
+    position: sticky;
+    top: 8rem;
+    align-self: start;
+  }
+
+  .method__heading h2 {
+    max-width: 10ch;
+    margin-block: 1.2rem 1.5rem;
+  }
+
+  .method__heading > p:last-child {
+    max-width: 28rem;
+  }
+
+  .method__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .method__list li {
+    display: grid;
+    gap: 1.5rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--line);
+    grid-template-columns: 3rem 1fr;
+  }
+
+  .method__list li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .method__list > li > span {
+    color: var(--clay);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .method__list h3 {
+    margin-bottom: 0.7rem;
+    font-size: var(--step-2);
+  }
+
+  .method__list p {
+    max-width: 38rem;
+  }
+
+  @media (max-width: 58rem) {
+    .philosophy__intro,
+    .philosophy__headline,
+    .method {
+      grid-template-columns: 1fr;
+    }
+
+    .philosophy__intro {
+      gap: 1.5rem;
+    }
+
+    .philosophy__headline {
+      gap: 1.5rem;
+    }
+
+    .philosophy__headline p {
+      max-width: 38rem;
+    }
+
+    .method__heading {
+      position: static;
+    }
+  }
+
+  @media (max-width: 38rem) {
+    .philosophy__feature {
+      display: block;
+    }
+
+    .philosophy__index {
+      display: none;
+    }
+
+    figure :global(img) {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

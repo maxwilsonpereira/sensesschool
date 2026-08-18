@@ -1,0 +1,80 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import type { PageContent } from '../i18n/content';
+import { school } from '../i18n/content';
+import '../styles/global.css';
+
+interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+const site = Astro.site ?? new URL('https://sensesschool.com.br');
+const canonical = new URL(page.path, site);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Preschool',
+  '@id': 'https://sensesschool.com.br/#school',
+  name: school.name,
+  url: canonical.href,
+  description: page.meta.description,
+  logo: new URL('/images/brand/senses-logo.webp', site).href,
+  email: school.email,
+  telephone: '+55-11-2614-0201',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: school.street,
+    addressLocality: school.city,
+    addressRegion: school.region,
+    addressCountry: school.country,
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'São Paulo',
+  },
+  knowsAbout: [
+    'Montessori education',
+    'Early childhood education',
+    'Bilingual education',
+    'Prepared environment',
+  ],
+};
+---
+
+<!doctype html>
+<html lang={page.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f4f0e8" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{page.meta.title}</title>
+    <meta name="description" content={page.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="pt-BR" href={new URL('/', site)} />
+    <link rel="alternate" hreflang="en" href={new URL('/en/', site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', site)} />
+    <link rel="icon" href="/images/brand/senses-logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={school.name} />
+    <meta property="og:title" content={page.meta.title} />
+    <meta property="og:description" content={page.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og.png', site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={page.hero.title} />
+    <meta property="og:locale" content={page.lang === 'pt-BR' ? 'pt_BR' : 'en_US'} />
+    <meta property="og:locale:alternate" content={page.lang === 'pt-BR' ? 'en_US' : 'pt_BR'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={new URL('/og.png', site)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{page.skip}</a>
+    <Header page={page} />
+    <main id="main-content"><slot /></main>
+    <Footer page={page} />
+  </body>
+</html>

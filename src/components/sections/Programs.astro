@@ -1,0 +1,194 @@
+---
+import { Image } from 'astro:assets';
+import ButtonLink from '../ui/ButtonLink.astro';
+import type { PageContent } from '../../i18n/content';
+import nursery from '../../assets/school/nursery.jpg';
+import toddler from '../../assets/school/toddler-classroom.jpg';
+import prepared from '../../assets/school/prepared-environment.jpg';
+
+interface Props { page: PageContent }
+const { page } = Astro.props;
+const images = { nursery, toddler, prepared } as const;
+---
+
+<section class="programs section" id="programs">
+  <div class="container programs__heading">
+    <div>
+      <p class="eyebrow">{page.programs.eyebrow}</p>
+      <h2>{page.programs.title}</h2>
+    </div>
+    <p>{page.programs.intro}</p>
+  </div>
+
+  <div class="container program-grid">
+    {page.programs.cards.map((program, index) => (
+      <article class="program-card">
+        <div class="program-card__image">
+          <Image
+            src={images[program.image]}
+            width={720}
+            alt={page.lang === 'pt-BR'
+              ? `Ambiente do programa ${program.title} na Senses`
+              : `${program.title} environment at Senses`}
+            widths={[480, 720, 960]}
+            sizes="(max-width: 760px) 100vw, 33vw"
+            quality={80}
+          />
+          <span aria-hidden="true">0{index + 1}</span>
+        </div>
+        <div class="program-card__content">
+          <p>{program.age}</p>
+          <h3>{program.title}</h3>
+          <p>{program.body}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="container programs__cta">
+    <ButtonLink href={page.lang === 'pt-BR' ? '/programas/' : '/en/programs/'} variant="light">
+      {page.programs.cta}
+    </ButtonLink>
+  </div>
+</section>
+
+<style>
+  .programs {
+    background: var(--forest);
+    color: var(--paper);
+  }
+
+  .programs :global(.eyebrow) {
+    color: var(--moss);
+  }
+
+  .programs__heading {
+    display: grid;
+    align-items: end;
+    gap: 2rem;
+    grid-template-columns: 1.4fr 0.6fr;
+  }
+
+  .programs__heading h2 {
+    max-width: 12ch;
+    margin-top: 1.2rem;
+  }
+
+  .programs__heading > p {
+    color: color-mix(in srgb, var(--paper) 72%, transparent);
+  }
+
+  .program-grid {
+    display: grid;
+    gap: 1.1rem;
+    margin-top: clamp(3rem, 7vw, 6rem);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .program-card {
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--white) 4%, transparent);
+  }
+
+  .program-card:nth-child(2) {
+    transform: translateY(2.5rem);
+  }
+
+  .program-card__image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .program-card__image :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 4.6;
+    object-fit: cover;
+    filter: saturate(0.78) contrast(0.96);
+    transition: transform 800ms var(--ease-out);
+  }
+
+  .program-card:hover .program-card__image :global(img) {
+    transform: scale(1.025);
+  }
+
+  .program-card__image span {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.8rem;
+    display: grid;
+    width: 2.6rem;
+    height: 2.6rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .program-card__content {
+    padding: 1.5rem;
+  }
+
+  .program-card__content > p:first-child {
+    color: var(--moss);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .program-card h3 {
+    margin-block: 0.85rem 1rem;
+  }
+
+  .program-card__content > p:last-child {
+    color: color-mix(in srgb, var(--paper) 70%, transparent);
+  }
+
+  .programs__cta {
+    margin-top: 5.5rem;
+    text-align: center;
+  }
+
+  @media (max-width: 52rem) {
+    .programs__heading {
+      align-items: start;
+      grid-template-columns: 1fr;
+    }
+
+    .programs__heading > p {
+      max-width: 38rem;
+    }
+
+    .program-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .program-card {
+      display: grid;
+      grid-template-columns: minmax(12rem, 0.9fr) 1.1fr;
+    }
+
+    .program-card:nth-child(2) {
+      transform: none;
+    }
+
+    .program-card__image :global(img) {
+      height: 100%;
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .program-card {
+      display: block;
+    }
+
+    .program-card__image :global(img) {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

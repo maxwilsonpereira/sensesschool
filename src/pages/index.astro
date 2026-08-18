@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomePage from '../components/sections/HomePage.astro';
+import { getContent } from '../i18n/content';
+
+const page = getContent('pt');
+---
+
+<BaseLayout page={page}>
+  <HomePage page={page} />
+</BaseLayout>

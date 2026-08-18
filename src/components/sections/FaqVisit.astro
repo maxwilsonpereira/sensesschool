@@ -1,0 +1,209 @@
+---
+import ButtonLink from '../ui/ButtonLink.astro';
+import type { PageContent } from '../../i18n/content';
+import { school } from '../../i18n/content';
+
+interface Props { page: PageContent }
+const { page } = Astro.props;
+---
+
+<section class="faq section" id="questions">
+  <div class="container faq__grid">
+    <div class="faq__heading">
+      <p class="eyebrow">{page.faq.eyebrow}</p>
+      <h2>{page.faq.title}</h2>
+      <ButtonLink href={page.lang === 'pt-BR' ? '/educacao/#duvidas' : '/en/education/#questions'} variant="text">
+        {page.faq.cta}
+      </ButtonLink>
+    </div>
+    <div class="faq__items">
+      {page.faq.items.map((item, index) => (
+        <details open={index === 0}>
+          <summary>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <strong>{item.question}</strong>
+            <i aria-hidden="true"></i>
+          </summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="visit section" id="visit">
+  <div class="container visit__inner">
+    <p class="eyebrow">{page.visit.eyebrow}</p>
+    <h2>{page.visit.title}</h2>
+    <p>{page.visit.body}</p>
+    <div class="visit__actions">
+      <ButtonLink href={school.whatsappHref} variant="light" external>{page.visit.cta}</ButtonLink>
+      <ButtonLink href={`mailto:${school.email}`} variant="outline">{page.visit.contact}</ButtonLink>
+    </div>
+    <div class="visit__address">
+      <span>{school.street}</span>
+      <span>{school.neighborhood} · {school.city}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: var(--paper);
+  }
+
+  .faq__grid {
+    display: grid;
+    gap: clamp(3rem, 8vw, 8rem);
+    grid-template-columns: 0.75fr 1.25fr;
+  }
+
+  .faq__heading h2 {
+    margin-block: 1.2rem 1rem;
+  }
+
+  details {
+    border-top: 1px solid var(--line);
+  }
+
+  details:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  summary {
+    display: grid;
+    min-height: 6rem;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    grid-template-columns: 2rem 1fr 1.5rem;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary span {
+    color: var(--clay);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  summary strong {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  summary i,
+  summary i::after {
+    display: block;
+    width: 1.15rem;
+    height: 1px;
+    background: currentColor;
+    content: '';
+    transition: transform var(--duration) var(--ease-out);
+  }
+
+  summary i::after {
+    transform: rotate(90deg);
+  }
+
+  details[open] summary i::after {
+    transform: rotate(0);
+  }
+
+  details > p {
+    max-width: 42rem;
+    padding: 0 2rem 2rem 3rem;
+    color: var(--ink-soft);
+  }
+
+  .visit {
+    background: var(--leaf);
+    color: #08241f;
+  }
+
+  .visit :global(.eyebrow),
+  .visit :global(.button-link--outline) {
+    border-color: #08241f;
+    color: #08241f;
+  }
+
+  .visit__inner {
+    display: grid;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .visit__inner > h2 {
+    max-width: 15ch;
+    margin-block: 1.5rem;
+    font-size: clamp(2.7rem, 7vw, 6rem);
+  }
+
+  .visit__inner > p {
+    max-width: 43rem;
+    font-size: var(--step-1);
+  }
+
+  .visit__actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .visit__address {
+    display: flex;
+    gap: 1rem;
+    margin-top: 4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .visit__address span + span::before {
+    margin-right: 1rem;
+    content: '·';
+  }
+
+  @media (max-width: 54rem) {
+    .faq__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faq__heading {
+      max-width: 34rem;
+    }
+  }
+
+  @media (max-width: 34rem) {
+    summary {
+      min-height: 5rem;
+      grid-template-columns: 1fr 1.5rem;
+    }
+
+    summary span {
+      display: none;
+    }
+
+    details > p {
+      padding-left: 0;
+    }
+
+    .visit__address {
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .visit__address span + span::before {
+      content: none;
+    }
+  }
+</style>

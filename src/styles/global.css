@@ -1,0 +1,225 @@
+@layer reset, tokens, base, utilities;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  p,
+  figure,
+  blockquote {
+    margin: 0;
+  }
+
+  img,
+  picture,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+@layer tokens {
+  :root {
+    --paper: #f4f0e8;
+    --paper-deep: #e9e1d3;
+    --ink: #173a33;
+    --ink-soft: #4d625c;
+    --forest: #173a33;
+    --forest-light: #285b4d;
+    --leaf: #7c9a75;
+    --moss: #acb693;
+    --clay: #96503c;
+    --sun: #e9c874;
+    --wood: #ba7a46;
+    --white: #fffdf8;
+    --line: color-mix(in srgb, var(--ink) 16%, transparent);
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-sans: Inter, 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+    --step--1: clamp(0.78rem, 0.74rem + 0.16vw, 0.88rem);
+    --step-0: clamp(1rem, 0.94rem + 0.22vw, 1.13rem);
+    --step-1: clamp(1.22rem, 1.08rem + 0.58vw, 1.55rem);
+    --step-2: clamp(1.6rem, 1.3rem + 1.18vw, 2.3rem);
+    --step-3: clamp(2.15rem, 1.62rem + 2.1vw, 3.55rem);
+    --step-4: clamp(3.1rem, 2.1rem + 4.2vw, 6.75rem);
+    --space-1: 0.5rem;
+    --space-2: 0.75rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 2rem;
+    --space-6: 3rem;
+    --space-7: clamp(4rem, 9vw, 8rem);
+    --space-section: clamp(5.5rem, 12vw, 11rem);
+    --container: min(100% - 2rem, 82rem);
+    --container-narrow: min(100% - 2rem, 56rem);
+    --radius-sm: 0.45rem;
+    --radius: 1.1rem;
+    --radius-lg: clamp(1.5rem, 3vw, 3rem);
+    --shadow: 0 24px 80px rgba(25, 50, 41, 0.12);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration: 240ms;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    background: var(--paper);
+  }
+
+  body {
+    min-width: 20rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--sun);
+    color: var(--ink);
+  }
+
+  a {
+    color: inherit;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.2em;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--clay);
+    outline-offset: 4px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--step-4);
+    letter-spacing: -0.048em;
+  }
+
+  h2 {
+    font-size: var(--step-3);
+    letter-spacing: -0.035em;
+  }
+
+  h3 {
+    font-size: var(--step-2);
+    letter-spacing: -0.025em;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+@layer utilities {
+  .container {
+    width: var(--container);
+    margin-inline: auto;
+  }
+
+  .container--narrow {
+    width: var(--container-narrow);
+    margin-inline: auto;
+  }
+
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--forest-light);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    width: 1.9rem;
+    height: 1px;
+    background: currentColor;
+    content: '';
+  }
+
+  .skip-link {
+    position: fixed;
+    z-index: 1000;
+    top: 0.8rem;
+    left: 0.8rem;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--ink);
+    color: var(--white);
+    transform: translateY(-160%);
+    transition: transform var(--duration) var(--ease-out);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

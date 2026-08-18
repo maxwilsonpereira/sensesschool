@@ -1,0 +1,17 @@
+---
+import type { PageContent } from '../../i18n/content';
+import ScrollSequenceHero from './ScrollSequenceHero.astro';
+import Philosophy from './Philosophy.astro';
+import Programs from './Programs.astro';
+import BilingualCampus from './BilingualCampus.astro';
+import FaqVisit from './FaqVisit.astro';
+
+interface Props { page: PageContent }
+const { page } = Astro.props;
+---
+
+<ScrollSequenceHero page={page} />
+<Philosophy page={page} />
+<Programs page={page} />
+<BilingualCampus page={page} />
+<FaqVisit page={page} />
