@@ -5,4 +5,5 @@ dist/
 *.log
 
 # Internal project research and working notes
+_LOCAL_FILES_MAX
 _*.md
