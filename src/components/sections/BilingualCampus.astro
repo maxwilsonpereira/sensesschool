@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import ButtonLink from '../ui/ButtonLink.astro';
 import type { PageContent } from '../../i18n/content';
 import { withBase } from '../../utils/paths';
@@ -34,33 +34,39 @@ const { page } = Astro.props;
       </ButtonLink>
     </div>
     <figure class="campus__main-image">
-      <Image
+      <Picture
         src={historicHouse}
         width={960}
         alt={page.campus.imageAlt}
         widths={[480, 720, 960]}
         sizes="(max-width: 768px) 100vw, 52vw"
-        quality={74}
+        formats={['avif']}
+        fallbackFormat="webp"
+        quality="mid"
       />
     </figure>
     <figure class="campus__garden-image">
-      <Image
+      <Picture
         src={garden}
         width={960}
         alt={page.campus.gardenAlt}
         widths={[480, 720, 960]}
         sizes="(max-width: 768px) 60vw, 28vw"
-        quality={80}
+        formats={['avif']}
+        fallbackFormat="webp"
+        quality="mid"
       />
     </figure>
     <figure class="campus__detail-image" aria-hidden="true">
-      <Image
+      <Picture
         src={natureDetail}
         width={480}
         alt=""
         widths={[320, 480, 640]}
         sizes="20vw"
-        quality={78}
+        formats={['avif']}
+        fallbackFormat="webp"
+        quality="mid"
       />
     </figure>
   </div>
@@ -154,6 +160,11 @@ const { page } = Astro.props;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .campus figure :global(picture) {
+    width: 100%;
+    height: 100%;
   }
 
   .campus__main-image {

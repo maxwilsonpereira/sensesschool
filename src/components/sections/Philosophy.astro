@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import type { PageContent } from '../../i18n/content';
 import preparedEnvironment from '../../assets/school/prepared-environment.jpg';
 
@@ -18,7 +18,7 @@ const { page } = Astro.props;
 
   <div class="container philosophy__feature">
     <figure>
-      <Image
+      <Picture
         src={preparedEnvironment}
         width={960}
         alt={page.lang === 'pt-BR'
@@ -26,7 +26,9 @@ const { page } = Astro.props;
           : 'Senses Montessori classroom with furniture and materials within children’s reach'}
         widths={[480, 720, 960]}
         sizes="(max-width: 768px) 100vw, 62vw"
-        quality={74}
+        formats={['avif']}
+        fallbackFormat="webp"
+        quality="mid"
       />
       <figcaption>{page.intro.detail}</figcaption>
     </figure>

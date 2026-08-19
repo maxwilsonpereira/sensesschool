@@ -84,11 +84,37 @@ The site should feel like a thoughtfully prepared Montessori environment: calm, 
 - Preserve static, server-rendered content and direct crawlable links.
 - Do not add FAQ structured data unless current search guidance and page eligibility support it.
 
-## Images and the scroll-sequence hero
+## Images
+
+### General image optimization
 
 - Prefer authentic images already available in `src/assets/school/`.
-- Optimize every new image for its rendered size and use a modern format when appropriate.
-- Preserve explicit image dimensions to reduce layout shift.
+- Put photographs used by Astro components in `src/assets/`, import them, and let `astro:assets` generate the files served to visitors. Do not place ordinary content photographs in `public/` or link directly to their full-size source files.
+- Use Astro's `<Picture>` component for content photographs so modern browsers receive AVIF and other browsers receive WebP. The current pattern is `formats={['avif']}`, `fallbackFormat="webp"`, and `quality="mid"`. Raise quality only when visual inspection shows a real need.
+- Always provide useful `alt` text, an explicit `width`, responsive `widths`, and an accurate `sizes` expression. Choose generated widths from the image's actual rendered sizes; do not create large variants the layout cannot display.
+- A typical responsive photograph should follow this pattern, with widths and sizes adjusted to its component:
+
+```astro
+<Picture
+  src={photo}
+  width={960}
+  widths={[480, 720, 960]}
+  sizes="(max-width: 768px) 100vw, 52vw"
+  formats={['avif']}
+  fallbackFormat="webp"
+  quality="mid"
+  alt="Useful description"
+/>
+```
+
+- Optimize a photographic source once before adding it to the repository. Unless a layout demonstrably needs more resolution, limit the long edge to about 1920 px and save JPEG sources as progressive MozJPEG at approximately quality 82. Never upscale, and do not repeatedly recompress an already optimized file. Keep archival camera originals outside the repository.
+- Keep stable assets that require direct public URLs in `public/`. The social card is `public/og.jpg` at 1200 × 630, progressive MozJPEG quality 88; keep `scripts/optimize-social-card.mjs` aligned with its filename and format. Use PNG only when transparency or lossless raster output is required.
+- Preserve explicit image dimensions to reduce layout shift. When `<Picture>` adds a wrapper inside a fixed-height figure, ensure both `picture` and `img` fill the intended container.
+- Do not recompress assets that are already below their relevant budget merely to change them. The current WebP logo and placeholder hero frames are already optimized.
+- After adding or replacing images, run `npm run check` and `npm run build`, inspect the generated files in `dist/_astro/`, and verify both language routes. Confirm that AVIF is selected in a supporting browser, WebP remains available as fallback, no images are broken, and no horizontal overflow appears at the required breakpoints.
+
+### Scroll-sequence hero
+
 - The hero sequence is a reusable canvas component with a poster/no-JavaScript fallback, reversible scroll mapping, nearby-frame loading, and reduced-motion behavior.
 - Do not replace the native sequence engine with a heavy animation library for a single linear interaction.
 - Before replacing placeholder frames, follow the filename, dimension, framing, and compression contract in `docs/HERO-ANIMATION-ASSETS.md`.

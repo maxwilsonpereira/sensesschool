@@ -1,12 +1,12 @@
 import { copyFile, unlink } from 'node:fs/promises';
 import sharp from 'sharp';
 
-const input = 'public/og.png';
-const temporary = 'public/og.optimized.png';
+const input = 'public/og.jpg';
+const temporary = 'public/og.optimized.jpg';
 
 await sharp(input)
   .resize(1200, 630, { fit: 'cover', position: 'centre' })
-  .png({ compressionLevel: 9, palette: true, quality: 88 })
+  .jpeg({ quality: 88, progressive: true, mozjpeg: true, chromaSubsampling: '4:4:4' })
   .toFile(temporary);
 
 await copyFile(temporary, input);
