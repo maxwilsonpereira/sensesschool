@@ -11,71 +11,95 @@ const { page } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer">
-  <div class="container footer__grid">
-    <div class="footer__brand">
-      <img src={withBase('/images/brand/senses-logo.webp')} alt="Senses" width="225" height="90" />
-      <p>{page.footer.descriptor}</p>
-      <p>{page.footer.addressLabel}</p>
+<footer class="footer" id="site-footer">
+  <div class="container footer__content">
+    <div class="footer__grid">
+      <div class="footer__explore">
+        <h2>{page.footer.explore}</h2>
+        <ul>
+          {page.nav.items.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
+          <li><a href={withBase('/eventos/')}>{page.footer.events}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__brand">
+        <img
+          class="footer__logo"
+          src={withBase('/images/brand/senses-logo.webp')}
+          alt="Senses Montessori School"
+          width="225"
+          height="90"
+          loading="lazy"
+        />
+        <p>{page.footer.descriptor}</p>
+        <p>{page.footer.addressLabel}</p>
+      </div>
+
+      <div class="footer__contact">
+        <h2>{page.footer.contact}</h2>
+        <address>
+          <a href={`mailto:${school.email}`}>{school.email}</a>
+          <a href={school.phoneHref}>{school.phoneDisplay}</a>
+          <a href={school.whatsappHref} target="_blank" rel="noopener noreferrer">
+            {school.whatsappDisplay}
+          </a>
+          <span>{school.street}<br />{school.neighborhood}, {school.city} — {school.region}</span>
+          <a href={school.mapHref} target="_blank" rel="noopener noreferrer">{page.footer.map} ↗</a>
+        </address>
+      </div>
     </div>
 
-    <div>
-      <h2>{page.footer.explore}</h2>
-      <ul>
-        {page.nav.items.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
-        <li><a href={withBase('/eventos/')}>{page.footer.events}</a></li>
-      </ul>
+    <div class="footer__legal">
+      <span>© {year} Senses Montessori School. {page.footer.legal}</span>
+      <a href={school.whatsappHref}>{page.footer.admission}</a>
     </div>
-
-    <div>
-      <h2>{page.footer.contact}</h2>
-      <address>
-        <a href={`mailto:${school.email}`}>{school.email}</a>
-        <a href={school.phoneHref}>{school.phoneDisplay}</a>
-        <a href={school.whatsappHref} target="_blank" rel="noopener noreferrer">
-          {school.whatsappDisplay}
-        </a>
-        <span>{school.street}<br />{school.neighborhood}, {school.city} — {school.region}</span>
-        <a href={school.mapHref} target="_blank" rel="noopener noreferrer">{page.footer.map} ↗</a>
-      </address>
-    </div>
-  </div>
-  <div class="container footer__bottom">
-    <span>© {year} Senses Montessori School. {page.footer.legal}</span>
-    <a href={school.whatsappHref}>{page.footer.admission}</a>
   </div>
 </footer>
 
 <style>
   .footer {
-    padding-block: clamp(4rem, 8vw, 7rem) 2rem;
-    background: #102f29;
-    color: var(--paper);
+    padding-block: clamp(4rem, 8vw, 7rem) 1.25rem;
+    background: var(--brand-rose);
+    color: var(--brand-plum-deep);
   }
 
   .footer__grid {
     display: grid;
-    gap: clamp(3rem, 8vw, 8rem);
-    grid-template-columns: minmax(15rem, 1.5fr) 1fr 1.2fr;
+    align-items: start;
+    gap: clamp(2.5rem, 6vw, 7rem);
+    grid-template-areas: 'explore brand contact';
+    grid-template-columns: 1fr minmax(15rem, 1.25fr) 1.15fr;
   }
 
-  .footer__brand img {
-    width: 9rem;
-    height: 4rem;
-    margin-bottom: 1.5rem;
-    filter: grayscale(1) brightness(5);
-    object-fit: contain;
-    mix-blend-mode: screen;
+  .footer__explore {
+    grid-area: explore;
+  }
+
+  .footer__brand {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    grid-area: brand;
+  }
+
+  .footer__logo {
+    width: clamp(10.5rem, 14vw, 13rem);
+    height: auto;
+    margin-bottom: 0.8rem;
   }
 
   .footer__brand p {
     max-width: 20rem;
-    color: color-mix(in srgb, var(--paper) 72%, transparent);
+    color: var(--brand-plum-deep);
+  }
+
+  .footer__contact {
+    grid-area: contact;
   }
 
   .footer h2 {
     margin-bottom: 1.5rem;
-    color: var(--moss);
+    color: var(--brand-plum);
     font-family: var(--font-sans);
     font-size: 0.72rem;
     font-weight: 700;
@@ -99,43 +123,44 @@ const year = new Date().getFullYear();
   address {
     display: grid;
     gap: 0.75rem;
-    color: color-mix(in srgb, var(--paper) 80%, transparent);
+    color: var(--brand-plum-deep);
     font-style: normal;
   }
 
-  .footer__bottom {
+  .footer__legal {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     gap: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid color-mix(in srgb, var(--paper) 16%, transparent);
     margin-top: clamp(4rem, 8vw, 7rem);
-    color: color-mix(in srgb, var(--paper) 55%, transparent);
+    padding-top: 1.25rem;
+    border-top: 1px solid color-mix(in srgb, var(--brand-plum) 18%, transparent);
     font-size: 0.76rem;
   }
 
   @media (max-width: 48rem) {
     .footer__grid {
+      gap: 3rem 2rem;
+      grid-template-areas:
+        'brand brand'
+        'explore contact';
       grid-template-columns: 1fr 1fr;
-    }
-
-    .footer__brand {
-      grid-column: 1 / -1;
     }
   }
 
   @media (max-width: 30rem) {
     .footer__grid {
+      grid-template-areas:
+        'brand'
+        'explore'
+        'contact';
       grid-template-columns: 1fr;
     }
 
-    .footer__brand {
-      grid-column: auto;
-    }
-
-    .footer__bottom {
-      align-items: flex-start;
+    .footer__legal {
+      align-items: center;
       flex-direction: column;
+      text-align: center;
     }
   }
 </style>

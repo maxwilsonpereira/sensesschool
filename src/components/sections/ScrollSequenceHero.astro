@@ -93,6 +93,7 @@ const config: SequenceConfig = Astro.props.config ?? {
       const frameCount = Number(root.dataset.frameCount || 1);
       const initialFrame = Number(root.dataset.initialFrame || 0);
       const fit = root.dataset.fit === 'cover' ? 'cover' : 'contain';
+      const paperColor = getComputedStyle(root).getPropertyValue('--paper').trim() || '#f4f0e8';
       const frames = new Map();
       let requestedFrame = initialFrame;
       let displayedFrame = -1;
@@ -112,7 +113,7 @@ const config: SequenceConfig = Astro.props.config ?? {
         const x = (width - drawWidth) / 2;
         const y = (height - drawHeight) / 2;
 
-        context.fillStyle = '#f4f0e8';
+        context.fillStyle = paperColor;
         context.fillRect(0, 0, width, height);
         context.drawImage(image, x, y, drawWidth, drawHeight);
         displayedFrame = index;
@@ -225,14 +226,14 @@ const config: SequenceConfig = Astro.props.config ?? {
     min-height: 42rem;
     align-items: center;
     overflow: clip;
-    padding: 6.5rem max(1rem, calc((100% - 82rem) / 2));
+    padding: 7.75rem max(1rem, calc((100% - 82rem) / 2)) 5rem;
     grid-template-columns: minmax(17rem, 0.9fr) minmax(25rem, 1.1fr);
   }
 
   .scroll-hero__copy {
     position: relative;
     z-index: 3;
-    max-width: 39rem;
+    max-width: 35rem;
     padding-bottom: 2rem;
   }
 
@@ -265,7 +266,7 @@ const config: SequenceConfig = Astro.props.config ?? {
     height: calc(100svh - 7rem);
     min-height: 35rem;
     overflow: hidden;
-    border-radius: 48% 48% 2.5rem 2.5rem;
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow);
     background: var(--paper-deep);
   }
@@ -301,10 +302,10 @@ const config: SequenceConfig = Astro.props.config ?? {
     z-index: 0;
     right: 0;
     bottom: -0.23em;
-    color: color-mix(in srgb, var(--wood) 8%, transparent);
+    color: color-mix(in srgb, var(--brand-rose) 28%, transparent);
     font-family: var(--font-display);
     font-size: clamp(7rem, 22vw, 25rem);
-    letter-spacing: -0.08em;
+    letter-spacing: -0.04em;
     line-height: 0.7;
     user-select: none;
   }

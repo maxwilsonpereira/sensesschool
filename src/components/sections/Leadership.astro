@@ -1,0 +1,100 @@
+---
+import type { PageContent } from '../../i18n/content';
+
+interface Props { page: PageContent }
+const { page } = Astro.props;
+---
+
+<section class="leadership section" id="leadership" aria-labelledby="leadership-title">
+  <div class="container leadership__grid">
+    <div class="leadership__identity">
+      <p class="eyebrow">{page.leadership.eyebrow}</p>
+      <div>
+        <p class="leadership__name">{page.leadership.name}</p>
+        <p class="leadership__role">{page.leadership.role}</p>
+      </div>
+    </div>
+
+    <div class="leadership__copy">
+      <h2 id="leadership-title">{page.leadership.title}</h2>
+      <p>{page.leadership.body}</p>
+      <p class="leadership__note">{page.leadership.note}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .leadership {
+    background: var(--paper);
+  }
+
+  .leadership__grid {
+    display: grid;
+    gap: clamp(3rem, 8vw, 8rem);
+    grid-template-columns: 0.72fr 1.28fr;
+  }
+
+  .leadership__identity {
+    display: flex;
+    min-height: 20rem;
+    justify-content: space-between;
+    padding: 1.5rem 0 1.5rem clamp(1.5rem, 4vw, 3rem);
+    border-left: 1px solid var(--brand-rose);
+    flex-direction: column;
+  }
+
+  .leadership__name {
+    color: var(--brand-plum);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height: 1.05;
+  }
+
+  .leadership__role {
+    max-width: 18rem;
+    margin-top: 0.55rem;
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .leadership__copy h2 {
+    max-width: 12ch;
+  }
+
+  .leadership__copy > p {
+    max-width: 45rem;
+    color: var(--ink-soft);
+  }
+
+  .leadership__copy > h2 + p {
+    margin-top: 2rem;
+    font-size: var(--step-1);
+    line-height: 1.55;
+  }
+
+  .leadership__note {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 54rem) {
+    .leadership__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .leadership__identity {
+      min-height: 12rem;
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .leadership__identity {
+      min-height: 10rem;
+      padding-left: 1rem;
+    }
+  }
+</style>

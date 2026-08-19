@@ -36,7 +36,7 @@ export const content = {
     meta: {
       title: 'Escola Montessori Bilíngue no Brooklin | Senses',
       description:
-        'Escola e berçário Montessori bilíngue no Brooklin, São Paulo. Um ambiente preparado para autonomia, descoberta e desenvolvimento integral.',
+        'Escola e berçário Montessori bilíngue no Brooklin, São Paulo. Ambiente preparado, inglês vivido todos os dias e autonomia com responsabilidade.',
     },
     nav: {
       menu: 'Menu',
@@ -55,7 +55,7 @@ export const content = {
       eyebrow: 'Montessori bilíngue · Brooklin, São Paulo',
       title: 'Toda criança nasce cientista.',
       body:
-        'Na Senses, mãos pequenas encontram um mundo preparado para investigar, escolher e construir conhecimento com autonomia.',
+        'Na Senses, Montessori e uma experiência bilíngue vivida todos os dias criam as condições para investigar, escolher e construir conhecimento com autonomia.',
       primaryCta: 'Conheça a Senses',
       secondaryCta: 'Agende uma visita',
       scrollLabel: 'Role para montar',
@@ -68,20 +68,20 @@ export const content = {
       eyebrow: 'Educar para a liberdade',
       title: 'Aprender com as mãos. Crescer por inteiro.',
       lead:
-        'Somos uma escola e berçário bilíngue que pratica Montessori com respeito aos princípios de Maria Montessori. Cada escolha — do educador ao mobiliário — considera a criança como protagonista do próprio desenvolvimento.',
+        'Somos uma escola e berçário bilíngue que pratica Montessori com fidelidade aos princípios de Maria Montessori. Ciência do desenvolvimento, observação atenta e afeto orientam cada escolha — do adulto ao ambiente — para que a criança seja protagonista do próprio desenvolvimento.',
       detail:
-        'Aqui, liberdade não é ausência de estrutura. É a possibilidade de escolher com propósito dentro de um ambiente calmo, belo e cuidadosamente organizado.',
+        'Liberdade aqui não é ausência de limites. É poder escolher com propósito, perceber consequências, tentar de novo e conquistar por si — dentro de um ambiente calmo, belo e cuidadosamente organizado.',
     },
     method: {
       eyebrow: 'Montessori na prática',
       title: 'Um ambiente que diz: “você consegue”.',
       body:
-        'O espaço, os materiais e o adulto preparado trabalham juntos para que cada criança avance em seu próprio ritmo.',
+        'O espaço, os materiais e o adulto preparado trabalham juntos: a criança explora, percebe, ajusta e avança em seu próprio ritmo.',
       principles: [
         {
           number: '01',
-          title: 'Autonomia com propósito',
-          body: 'Materiais acessíveis e escolhas reais transformam curiosidade em concentração, coordenação e confiança.',
+          title: 'Liberdade com responsabilidade',
+          body: 'Escolhas reais, limites claros e materiais acessíveis transformam curiosidade em concentração, coordenação e confiança.',
         },
         {
           number: '02',
@@ -90,8 +90,8 @@ export const content = {
         },
         {
           number: '03',
-          title: 'Aprender fazendo',
-          body: 'Materiais concretos tornam linguagem, matemática, sentidos e vida prática experiências que podem ser tocadas e compreendidas.',
+          title: 'Tentar, ajustar, conquistar',
+          body: 'Materiais concretos permitem perceber o erro, ajustar o caminho e compreender linguagem, matemática, sentidos e vida prática por experiência própria.',
         },
         {
           number: '04',
@@ -104,7 +104,7 @@ export const content = {
       eyebrow: 'Percursos de desenvolvimento',
       title: 'Um ambiente que cresce junto com a criança.',
       intro:
-        'Três programas acompanham as transformações da primeira infância, sempre com cuidado individual e continuidade.',
+        'Três programas acompanham as transformações da primeira infância com cuidado individual, continuidade e respeito ao tempo de cada criança.',
       cards: [
         {
           title: 'Bebê Cientista',
@@ -131,8 +131,8 @@ export const content = {
       eyebrow: 'Bilinguismo vivido',
       title: 'English is part of the day — not a separate moment.',
       body:
-        'Desde o berçário, bebês têm contato com músicas e palavras em inglês. Depois da adaptação, as turmas Júnior e Sênior participam de uma experiência de imersão, conduzida por educadores fluentes.',
-      note: 'A linguagem nasce do contexto, da relação e da experiência cotidiana.',
+        'Desde o berçário, o inglês aparece em músicas, palavras, relações e descobertas. Depois da adaptação, as turmas Júnior e Sênior vivem uma experiência de imersão conduzida por educadores fluentes — integrada à rotina Montessori, nunca tratada como uma aula isolada.',
+      note: 'A criança não apenas estuda outro idioma: começa a usá-lo com contexto, vínculo e confiança.',
     },
     campus: {
       eyebrow: 'Nossa casa no Brooklin',
@@ -149,6 +149,16 @@ export const content = {
     quote: {
       text: 'Nosso trabalho é abrir horizontes e despertar o brilho que há em cada criança.',
       attribution: 'Manifesto Senses',
+    },
+    leadership: {
+      eyebrow: 'Uma visão que orienta a escola',
+      name: 'Mariana Ruske',
+      role: 'Fundadora e diretora da Senses',
+      title: 'Ciência e humanidade, na mesma direção.',
+      body:
+        'Engenheira, pedagoga e especialista em neurociência do comportamento, Mariana levou o pensamento científico para a educação: observar antes de intervir, compreender o desenvolvimento e criar condições para que cada criança pense, tente, ajuste e conquiste por si.',
+      note:
+        'Essa visão orienta o ambiente, a formação dos adultos e a parceria com cada família.',
     },
     faq: {
       eyebrow: 'Perguntas de famílias',
@@ -174,9 +184,9 @@ export const content = {
     },
     visit: {
       eyebrow: 'Venha sentir a Senses',
-      title: 'A escolha de uma escola começa com um encontro.',
+      title: 'Escolher uma escola começa por conhecê-la de perto.',
       body:
-        'Conheça os ambientes, converse com nossa equipe e descubra como a proposta Montessori ganha vida em cada detalhe.',
+        'Conheça os ambientes, converse com nossa equipe e descubra se a proposta Montessori bilíngue da Senses faz sentido para a sua família.',
       cta: 'Agende uma visita',
       contact: 'Fale com a escola',
     },
@@ -200,7 +210,7 @@ export const content = {
     meta: {
       title: 'Bilingual Montessori School in São Paulo | Senses',
       description:
-        'A bilingual Montessori school and nursery in Brooklin, São Paulo, with a prepared environment for independence, discovery and whole-child development.',
+        'A bilingual Montessori school and nursery in Brooklin, São Paulo, with a prepared environment, English woven into daily life and purposeful independence.',
     },
     nav: {
       menu: 'Menu',
@@ -219,7 +229,7 @@ export const content = {
       eyebrow: 'Bilingual Montessori · Brooklin, São Paulo',
       title: 'Every child is born a scientist.',
       body:
-        'At Senses, small hands meet a world prepared for investigating, choosing and building knowledge independently.',
+        'At Senses, Montessori and a bilingual experience lived every day create the conditions to investigate, choose and build knowledge independently.',
       primaryCta: 'Discover Senses',
       secondaryCta: 'Schedule a visit',
       scrollLabel: 'Scroll to assemble',
@@ -232,20 +242,20 @@ export const content = {
       eyebrow: 'Education for freedom',
       title: 'Learning through the hands. Growing as a whole.',
       lead:
-        'We are a bilingual school and nursery practicing Montessori in keeping with Maria Montessori’s principles. Every choice — from the educator to the furniture — sees the child as the protagonist of their own development.',
+        'We are a bilingual school and nursery practicing Montessori faithfully to Maria Montessori’s principles. Developmental science, close observation and affection guide every choice — from the adult to the environment — so children can lead their own development.',
       detail:
-        'Freedom here does not mean a lack of structure. It means purposeful choice within a calm, beautiful and carefully ordered environment.',
+        'Freedom here does not mean a lack of limits. It means choosing with purpose, noticing consequences, trying again and achieving for oneself — within a calm, beautiful and carefully ordered environment.',
     },
     method: {
       eyebrow: 'Montessori in practice',
       title: 'An environment that says: “you can do this”.',
       body:
-        'The space, materials and prepared adult work together so each child can move forward at their own pace.',
+        'The space, materials and prepared adult work together: the child explores, notices, adjusts and moves forward at their own pace.',
       principles: [
         {
           number: '01',
-          title: 'Purposeful independence',
-          body: 'Accessible materials and real choices turn curiosity into concentration, coordination and confidence.',
+          title: 'Freedom with responsibility',
+          body: 'Real choices, clear limits and accessible materials turn curiosity into concentration, coordination and confidence.',
         },
         {
           number: '02',
@@ -254,8 +264,8 @@ export const content = {
         },
         {
           number: '03',
-          title: 'Learning by doing',
-          body: 'Concrete materials make language, mathematics, sensorial work and practical life experiences tangible.',
+          title: 'Try, adjust, achieve',
+          body: 'Concrete materials let children notice an error, adjust their approach and understand language, mathematics, sensorial work and practical life through direct experience.',
         },
         {
           number: '04',
@@ -268,7 +278,7 @@ export const content = {
       eyebrow: 'Developmental journeys',
       title: 'An environment that grows with the child.',
       intro:
-        'Three programs accompany the transformations of early childhood with individual care and continuity.',
+        'Three programs accompany the transformations of early childhood with individual care, continuity and respect for each child’s timing.',
       cards: [
         {
           title: 'Baby Scientist',
@@ -295,8 +305,8 @@ export const content = {
       eyebrow: 'Bilingual by experience',
       title: 'English is part of the day — not a separate moment.',
       body:
-        'From nursery onward, babies hear songs and words in English. After settling in, Junior and Senior groups enter an immersive experience led by fluent educators.',
-      note: 'Language grows from context, relationships and everyday experience.',
+        'From nursery onward, English is woven into songs, words, relationships and discovery. After settling in, Junior and Senior groups enter an immersive experience led by fluent educators — integrated into Montessori life, never treated as a separate lesson.',
+      note: 'Children do not simply study another language: they begin to use it through context, connection and confidence.',
     },
     campus: {
       eyebrow: 'Our Brooklin home',
@@ -312,6 +322,16 @@ export const content = {
     quote: {
       text: 'Our work is to widen horizons and awaken the brightness within every child.',
       attribution: 'Senses Manifesto',
+    },
+    leadership: {
+      eyebrow: 'A vision that guides the school',
+      name: 'Mariana Ruske',
+      role: 'Founder and director of Senses',
+      title: 'Science and humanity, moving in the same direction.',
+      body:
+        'An engineer, educator and behavioral-neuroscience specialist, Mariana brought scientific thinking into education: observe before intervening, understand development and create the conditions for each child to think, try, adjust and achieve for themselves.',
+      note:
+        'This vision shapes the environment, the preparation of adults and the partnership with every family.',
     },
     faq: {
       eyebrow: 'Questions from families',
@@ -337,9 +357,9 @@ export const content = {
     },
     visit: {
       eyebrow: 'Come experience Senses',
-      title: 'Choosing a school begins with meeting it.',
+      title: 'Choosing a school begins by experiencing it firsthand.',
       body:
-        'Explore the environments, meet our team and see how Montessori comes to life in every detail.',
+        'Explore the environments, meet our team and discover whether Senses’ bilingual Montessori approach feels right for your family.',
       cta: 'Schedule a visit',
       contact: 'Contact the school',
     },

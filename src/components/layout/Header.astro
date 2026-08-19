@@ -95,12 +95,15 @@ const { page } = Astro.props;
     right: 0;
     left: 0;
     color: var(--ink);
+    border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
   }
 
   .site-header__inner {
     display: grid;
     width: var(--container);
-    min-height: 6.5rem;
+    min-height: 5.5rem;
     align-items: center;
     margin-inline: auto;
     grid-template-columns: auto 1fr;
@@ -110,8 +113,8 @@ const { page } = Astro.props;
     position: relative;
     z-index: 2;
     display: flex;
-    width: 8rem;
-    height: 3.6rem;
+    width: 7.25rem;
+    height: 3.2rem;
     align-items: center;
   }
 
@@ -207,7 +210,7 @@ const { page } = Astro.props;
       gap: 0.7rem;
       padding: 0.55rem 0.8rem;
       border: 1px solid var(--line);
-      border-radius: 100vmax;
+      border-radius: var(--radius-sm);
       background: color-mix(in srgb, var(--paper) 80%, transparent);
       color: var(--ink);
       font-size: 0.76rem;

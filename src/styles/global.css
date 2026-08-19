@@ -38,21 +38,25 @@
 
 @layer tokens {
   :root {
-    --paper: #f4f0e8;
-    --paper-deep: #e9e1d3;
-    --ink: #173a33;
-    --ink-soft: #4d625c;
-    --forest: #173a33;
-    --forest-light: #285b4d;
-    --leaf: #7c9a75;
-    --moss: #acb693;
-    --clay: #96503c;
-    --sun: #e9c874;
-    --wood: #ba7a46;
+    --brand-plum: #7c3e66;
+    --brand-plum-deep: #4e2442;
+    --brand-rose: #d2b0b1;
+    --brand-rose-soft: #eadbdc;
+    --paper: #fbf8f1;
+    --paper-deep: #f0e8dc;
+    --ink: #263b37;
+    --ink-soft: #566862;
+    --forest: #24473e;
+    --forest-deep: #17352e;
+    --forest-ink: #102c26;
+    --forest-light: #47735e;
+    --leaf: #9caf82;
+    --moss: #cad2af;
+    --wood: #b97957;
     --white: #fffdf8;
     --line: color-mix(in srgb, var(--ink) 16%, transparent);
-    --font-display: Georgia, 'Times New Roman', serif;
-    --font-sans: Inter, 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+    --font-display: Iowan Old Style, Palatino Linotype, Book Antiqua, Palatino, Georgia, serif;
+    --font-sans: Avenir Next, Avenir, Helvetica Neue, Arial, sans-serif;
     --step--1: clamp(0.78rem, 0.74rem + 0.16vw, 0.88rem);
     --step-0: clamp(1rem, 0.94rem + 0.22vw, 1.13rem);
     --step-1: clamp(1.22rem, 1.08rem + 0.58vw, 1.55rem);
@@ -70,9 +74,9 @@
     --container: min(100% - 2rem, 82rem);
     --container-narrow: min(100% - 2rem, 56rem);
     --radius-sm: 0.45rem;
-    --radius: 1.1rem;
-    --radius-lg: clamp(1.5rem, 3vw, 3rem);
-    --shadow: 0 24px 80px rgba(25, 50, 41, 0.12);
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --shadow: 0 24px 60px color-mix(in srgb, var(--forest) 15%, transparent);
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --duration: 240ms;
   }
@@ -96,9 +100,13 @@
   }
 
   ::selection {
-    background: var(--sun);
+    background: var(--brand-rose);
     color: var(--ink);
   }
+
+  ::-webkit-scrollbar { width: 0.75rem; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { border: 0.2rem solid var(--paper); border-radius: 1rem; background: var(--brand-rose); }
 
   a {
     color: inherit;
@@ -112,7 +120,7 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--clay);
+    outline: 3px solid var(--brand-plum);
     outline-offset: 4px;
   }
 
@@ -127,17 +135,17 @@
 
   h1 {
     font-size: var(--step-4);
-    letter-spacing: -0.048em;
+    letter-spacing: -0.038em;
   }
 
   h2 {
     font-size: var(--step-3);
-    letter-spacing: -0.035em;
+    letter-spacing: -0.03em;
   }
 
   h3 {
     font-size: var(--step-2);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
   }
 
   [id] {
@@ -164,7 +172,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.7rem;
-    color: var(--forest-light);
+    color: var(--brand-plum);
     font-size: var(--step--1);
     font-weight: 700;
     letter-spacing: 0.14em;
