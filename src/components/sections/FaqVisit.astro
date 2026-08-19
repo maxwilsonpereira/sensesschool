@@ -2,6 +2,7 @@
 import ButtonLink from '../ui/ButtonLink.astro';
 import type { PageContent } from '../../i18n/content';
 import { school } from '../../i18n/content';
+import { withBase } from '../../utils/paths';
 
 interface Props { page: PageContent }
 const { page } = Astro.props;
@@ -12,7 +13,7 @@ const { page } = Astro.props;
     <div class="faq__heading">
       <p class="eyebrow">{page.faq.eyebrow}</p>
       <h2>{page.faq.title}</h2>
-      <ButtonLink href={page.lang === 'pt-BR' ? '/educacao/#duvidas' : '/en/education/#questions'} variant="text">
+      <ButtonLink href={withBase(page.lang === 'pt-BR' ? '/educacao/#duvidas' : '/en/education/#questions')} variant="text">
         {page.faq.cta}
       </ButtonLink>
     </div>

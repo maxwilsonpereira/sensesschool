@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import ButtonLink from '../ui/ButtonLink.astro';
 import type { PageContent } from '../../i18n/content';
+import { withBase } from '../../utils/paths';
 import historicHouse from '../../assets/school/historic-house.jpg';
 import garden from '../../assets/school/garden.jpg';
 import natureDetail from '../../assets/school/nature-detail.jpg';
@@ -28,7 +29,7 @@ const { page } = Astro.props;
       <h2>{page.campus.title}</h2>
       <p>{page.campus.body}</p>
       <p>{page.campus.detail}</p>
-      <ButtonLink href={page.lang === 'pt-BR' ? '/nossa-casa/' : '/en/campus/'} variant="text">
+      <ButtonLink href={withBase(page.lang === 'pt-BR' ? '/nossa-casa/' : '/en/campus/')} variant="text">
         {page.campus.cta}
       </ButtonLink>
     </div>

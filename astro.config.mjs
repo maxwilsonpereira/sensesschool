@@ -2,7 +2,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://sensesschool.com.br',
+  site: 'https://maxwilsonpereira.github.io',
+  base: '/sensesschool',
   output: 'static',
   trailingSlash: 'always',
   i18n: {

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import ButtonLink from '../ui/ButtonLink.astro';
 import type { PageContent } from '../../i18n/content';
+import { withBase } from '../../utils/paths';
 import nursery from '../../assets/school/nursery.jpg';
 import toddler from '../../assets/school/toddler-classroom.jpg';
 import prepared from '../../assets/school/prepared-environment.jpg';
@@ -46,7 +47,7 @@ const images = { nursery, toddler, prepared } as const;
   </div>
 
   <div class="container programs__cta">
-    <ButtonLink href={page.lang === 'pt-BR' ? '/programas/' : '/en/programs/'} variant="light">
+    <ButtonLink href={withBase(page.lang === 'pt-BR' ? '/programas/' : '/en/programs/')} variant="light">
       {page.programs.cta}
     </ButtonLink>
   </div>

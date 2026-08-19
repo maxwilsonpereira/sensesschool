@@ -2,6 +2,7 @@
 import ButtonLink from '../ui/ButtonLink.astro';
 import type { PageContent } from '../../i18n/content';
 import { school } from '../../i18n/content';
+import { withBase } from '../../utils/paths';
 
 interface SequenceConfig {
   frameBase: string;
@@ -20,10 +21,10 @@ interface Props {
 
 const { page } = Astro.props;
 const config: SequenceConfig = Astro.props.config ?? {
-  frameBase: '/hero-sequence/placeholder/frame-',
+  frameBase: withBase('/hero-sequence/placeholder/frame-'),
   frameCount: 48,
   extension: 'webp',
-  poster: '/hero-sequence/placeholder/frame-048.webp',
+  poster: withBase('/hero-sequence/placeholder/frame-048.webp'),
   scrollHeightVh: 300,
   fit: 'contain',
   initialFrame: 0,

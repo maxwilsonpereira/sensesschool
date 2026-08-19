@@ -8,12 +8,12 @@ The campus is at R. Princesa Isabel, 445, Brooklin Paulista, São Paulo, in the 
 
 ## Primary pages
 
-- [Portuguese homepage](https://sensesschool.com.br/): overview, Montessori approach, programs, bilingual education, campus, FAQs, and contact.
-- [English homepage](https://sensesschool.com.br/en/): English overview of the school.
-- [Education and Montessori](https://sensesschool.com.br/educacao/): method, neuroscience, bilingualism, green area, and family questions.
-- [Programs](https://sensesschool.com.br/programas/): Bebê Cientista, Cientista Júnior, and Cientista Sênior.
-- [Campus](https://sensesschool.com.br/nossa-casa/): the historic house, prepared classrooms, and garden.
-- [Educational journal](https://sensesschool.com.br/blog/): articles for families about Montessori and childhood development.
+- [Portuguese homepage](https://maxwilsonpereira.github.io/sensesschool/): overview, Montessori approach, programs, bilingual education, campus, FAQs, and contact.
+- [English homepage](https://maxwilsonpereira.github.io/sensesschool/en/): English overview of the school.
+- [Education and Montessori](https://maxwilsonpereira.github.io/sensesschool/educacao/): method, neuroscience, bilingualism, green area, and family questions.
+- [Programs](https://maxwilsonpereira.github.io/sensesschool/programas/): Bebê Cientista, Cientista Júnior, and Cientista Sênior.
+- [Campus](https://maxwilsonpereira.github.io/sensesschool/nossa-casa/): the historic house, prepared classrooms, and garden.
+- [Educational journal](https://maxwilsonpereira.github.io/sensesschool/blog/): articles for families about Montessori and childhood development.
 
 ## Contact
 

@@ -1,6 +1,7 @@
 ---
 import type { PageContent } from '../../i18n/content';
 import { school } from '../../i18n/content';
+import { withBase } from '../../utils/paths';
 
 interface Props {
   page: PageContent;
@@ -13,7 +14,7 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <img src="/images/brand/senses-logo.webp" alt="Senses" width="225" height="90" />
+      <img src={withBase('/images/brand/senses-logo.webp')} alt="Senses" width="225" height="90" />
       <p>{page.footer.descriptor}</p>
       <p>{page.footer.addressLabel}</p>
     </div>
@@ -21,8 +22,8 @@ const year = new Date().getFullYear();
     <div>
       <h2>{page.footer.explore}</h2>
       <ul>
-        {page.nav.items.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
-        <li><a href="/eventos/">{page.footer.events}</a></li>
+        {page.nav.items.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
+        <li><a href={withBase('/eventos/')}>{page.footer.events}</a></li>
       </ul>
     </div>
 

@@ -4,4 +4,4 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
-Sitemap: https://sensesschool.com.br/sitemap-index.xml
+Sitemap: https://maxwilsonpereira.github.io/sensesschool/sitemap-index.xml

@@ -2,6 +2,7 @@
 import ButtonLink from '../ui/ButtonLink.astro';
 import type { PageContent } from '../../i18n/content';
 import { school } from '../../i18n/content';
+import { withBase } from '../../utils/paths';
 
 interface Props {
   page: PageContent;
@@ -12,9 +13,9 @@ const { page } = Astro.props;
 
 <header class="site-header" data-header>
   <div class="site-header__inner">
-    <a class="brand" href={page.path} aria-label={`${school.name} — home`}>
+    <a class="brand" href={withBase(page.path)} aria-label={`${school.name} — home`}>
       <img
-        src="/images/brand/senses-logo.webp"
+        src={withBase('/images/brand/senses-logo.webp')}
         alt="Senses"
         width="225"
         height="90"
@@ -35,13 +36,13 @@ const { page } = Astro.props;
     <nav class="primary-nav" id="primary-navigation" aria-label="Primary" data-nav>
       <ul>
         {page.nav.items.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
+          <li><a href={withBase(item.href)}>{item.label}</a></li>
         ))}
       </ul>
       <div class="primary-nav__actions">
         <a
           class="language"
-          href={page.alternatePath}
+          href={withBase(page.alternatePath)}
           hreflang={page.lang === 'pt-BR' ? 'en' : 'pt-BR'}
           lang={page.lang === 'pt-BR' ? 'en' : 'pt-BR'}
         >
