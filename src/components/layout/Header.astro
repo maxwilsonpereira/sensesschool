@@ -15,12 +15,22 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
 <header class="site-header" data-header>
   <div class="site-header__inner">
     <a class="brand" href={withBase(page.path)} aria-label={`${school.name} — home`}>
-      <img
-        src={withBase('/images/brand/senses-logo.webp')}
-        alt=""
-        width="225"
-        height="90"
-      />
+      <span class="brand__logos" aria-hidden="true">
+        <img
+          class="brand__logo brand__logo--full"
+          src={withBase('/images/brand/senses-logo-full.png')}
+          alt=""
+          width="300"
+          height="189"
+        />
+        <img
+          class="brand__logo brand__logo--compact"
+          src={withBase('/images/brand/senses-logo.webp')}
+          alt=""
+          width="225"
+          height="90"
+        />
+      </span>
     </a>
 
     <button
@@ -32,7 +42,8 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
     >
       <span data-menu-label>{page.nav.menu}</span>
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 8h16M4 16h16" />
+        <path d="M4 8h16" />
+        <path d="M4 16h16" />
       </svg>
     </button>
 
@@ -68,6 +79,20 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
     const label = header.querySelector('[data-menu-label]');
     const openLabel = label?.textContent?.trim() || 'Menu';
     const closeLabel = document.documentElement.lang === 'pt-BR' ? 'Fechar' : 'Close';
+    let compact = window.scrollY > 32;
+    let scrollFrame;
+
+    const syncCompact = () => {
+      const nextCompact = compact ? window.scrollY > 10 : window.scrollY > 32;
+      if (nextCompact !== compact) compact = nextCompact;
+      header.toggleAttribute('data-compact', compact);
+      scrollFrame = undefined;
+    };
+
+    const queueCompactSync = () => {
+      if (scrollFrame) return;
+      scrollFrame = window.requestAnimationFrame(syncCompact);
+    };
 
     const setOpen = (open) => {
       header.toggleAttribute('data-open', open);
@@ -88,6 +113,9 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
       if (event.key === 'Escape') setOpen(false);
     });
 
+    syncCompact();
+    window.addEventListener('scroll', queueCompactSync, { passive: true });
+
     window.addEventListener('resize', () => {
       if (window.innerWidth > 1024) setOpen(false);
     });
@@ -101,30 +129,79 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
     top: 0;
     border-bottom: 1px solid var(--line);
     background: var(--paper);
+    transition:
+      background-color 365ms var(--ease-out),
+      box-shadow 365ms var(--ease-out);
+  }
+
+  .site-header[data-compact] {
+    background-color: color-mix(in srgb, var(--paper) 97%, var(--paper-bright));
+    box-shadow: 0 0.7rem 2rem color-mix(in srgb, var(--plum-display) 8%, transparent);
   }
 
   .site-header__inner {
     display: grid;
     width: var(--container);
-    min-height: 6rem;
     align-items: center;
     margin-inline: auto;
     grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: 6rem;
+    transition: grid-template-rows 415ms var(--ease-out);
+  }
+
+  [data-compact] .site-header__inner {
+    grid-template-rows: 4.35rem;
   }
 
   .brand {
     position: relative;
     z-index: 3;
-    display: flex;
     width: clamp(8.4rem, 11vw, 10.5rem);
-    align-items: center;
+    height: 5.4rem;
   }
 
-  .brand img {
+  .brand__logos {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .brand__logo {
+    position: absolute;
+    top: 50%;
+    left: 0;
     width: 100%;
     height: auto;
     object-fit: contain;
     mix-blend-mode: multiply;
+    transform-origin: left center;
+    transition:
+      opacity 285ms ease-out,
+      clip-path 495ms var(--ease-out),
+      transform 495ms var(--ease-out);
+  }
+
+  .brand__logo--full {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+
+  .brand__logo--compact {
+    opacity: 0;
+    transform: translateY(-36%) scale(0.82);
+  }
+
+  [data-compact] .brand__logo--full {
+    clip-path: inset(0 0 62% 0);
+    opacity: 0;
+    transform: translateY(-66%) scale(0.92);
+  }
+
+  [data-compact] .brand__logo--compact {
+    opacity: 1;
+    transform: translateY(-50%) scale(0.84);
   }
 
   .primary-nav {
@@ -184,7 +261,15 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
 
   @media (max-width: 64rem) {
     .site-header__inner {
-      min-height: 5.4rem;
+      grid-template-rows: 5.4rem;
+    }
+
+    .brand {
+      height: 4.9rem;
+    }
+
+    [data-compact] .site-header__inner {
+      grid-template-rows: 4.25rem;
     }
 
     .menu-toggle {
@@ -205,6 +290,15 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
       cursor: pointer;
       font-size: 0.78rem;
       font-weight: 700;
+      transform-origin: right center;
+      transition:
+        border-color var(--duration) var(--ease-out),
+        background-color var(--duration) var(--ease-out),
+        transform 415ms var(--ease-out);
+    }
+
+    [data-compact] .menu-toggle {
+      transform: scale(0.96);
     }
 
     .menu-toggle svg {
@@ -213,6 +307,10 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
       stroke: currentColor;
       stroke-linecap: round;
       stroke-width: 1.7;
+    }
+
+    .menu-toggle svg path {
+      transition: transform 315ms var(--ease-out);
     }
 
     [data-open] .menu-toggle svg path:first-child {
@@ -238,13 +336,14 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
       background: var(--rose-soft);
       opacity: 0;
       transition:
-        opacity var(--duration) var(--ease-out),
-        visibility var(--duration) var(--ease-out);
+        opacity 315ms var(--ease-out),
+        visibility 0s linear 315ms;
     }
 
     [data-open] .primary-nav {
       visibility: visible;
       opacity: 1;
+      transition-delay: 0s;
     }
 
     .primary-nav ul {

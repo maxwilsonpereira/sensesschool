@@ -12,6 +12,7 @@ This file is the durable working agreement for AI coding agents modifying this r
 
 ## Sources of truth
 
+- Use `ROADMAP.md` to track delivery order, completed work, and the next approved page; it is a status tracker, not a source for school facts.
 - Use `docs/DISCOVERY-AUDIT.md` for the existing-site audit, verified school information, route strategy, and migration priorities.
 - Use `docs/HERO-ANIMATION-ASSETS.md` before changing or replacing the scroll-sequence animation.
 - Use `src/i18n/content.ts` as the source of truth for shared school data and localized homepage copy.

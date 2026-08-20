@@ -15,6 +15,7 @@ All content photography remains in `src/assets/school/` and should be rendered t
 | `toddler-classroom.jpg` | Bright child-scale classroom with low shelving and access to the garden. Suitable for the toddler/program environment. |
 | `nursery.jpg` | Infant/toddler movement environment with low equipment and open floor space. Suitable for the nursery/Bebê Cientista program. |
 | `public/images/brand/senses-logo.webp` | Exact preserved Senses wordmark for the header. Do not redraw, stylize, trace, or regenerate it. The PNG sibling remains an existing source/fallback, not a redesign input. |
+| `public/images/brand/senses-logo-full.png` | Exact preserved institutional lockup with the “Montessori School” descriptor, downloaded without pixel edits from the official school website for the expanded header state. Do not redraw, stylize, trace, or regenerate it. |
 
 Do not generate substitute children, educators, classrooms, campus scenes, portraits, logos, icons, or program imagery. Do not present the synthetic people visible in the approved comp as Senses photography.
 
@@ -25,6 +26,7 @@ Verified repository origin records travel with every pre-existing shipping raste
 - The six JPEGs in `src/assets/school/` carry JPEG comment metadata identifying them as authentic Senses photography retained from the audited live site, citing `PRODUCT.md` and `docs/DISCOVERY-AUDIT.md`. The repository records no photographer, capture date, or upstream source URL.
 - `public/images/brand/senses-logo.png` carries PNG text metadata identifying it as the preserved original wordmark, citing the brand commitments and homepage surface inventory. The repository records no designer, creation date, or upstream source URL.
 - `public/images/brand/senses-logo.webp` uses the permitted sibling `senses-logo.webp.json` provenance fallback because the Impeccable utility does not embed into WebP. It records the PNG source and the conversion parameters documented in `scripts/optimize-social-card.mjs`.
+- `public/images/brand/senses-logo-full.png` carries PNG text metadata recording the exact official source URL, retrieval date, original dimensions, and expanded-header use. Its decoded-frame hash was checked before and after metadata embedding and remained `62019db07672b1f00f75f4fc6d3e5811`.
 - `public/og.jpg` carries JPEG comment metadata identifying it as the pre-existing repository social card and cites the size/optimization contract in `AGENTS.md` and `scripts/optimize-social-card.mjs`. The repository records no image author, creation date, or upstream source URL.
 
 The Impeccable metadata mechanism inserts JPEG comments or PNG text chunks without decoding or recompressing pixels. Decoded-frame hashes were checked before and after embedding.

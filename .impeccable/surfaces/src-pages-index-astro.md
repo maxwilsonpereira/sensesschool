@@ -69,8 +69,10 @@ related_targets: ["src/pages/en/index.astro","src/components/sections/HomePage.a
 - Desktop preserves the approved two-zone hero without absolute layout dependencies.
 - At 64rem the navigation becomes a full-viewport overlay while the hero remains two-column; at 50rem the hero enters a single-column reading order.
 - Mobile shows thesis, lead, actions, then the image; annotations reduce to a compact three-word rail.
-- Motion thesis: the prepared atelier is gently uncovered. The hero has one staged 460-850ms entrance; selected evidence groups use one-time paper, collage, sequence, quote, or paired reveals and remain settled afterward.
+- Motion thesis: the prepared atelier is gently uncovered. The hero has one staged 600-1105ms entrance; selected evidence groups use one-time paper, collage, sequence, quote, or paired reveals and remain settled afterward. Authored motion and navigation changes run at the calmer cadence, while control feedback stays fast.
 - Motion uses native CSS plus a small `IntersectionObserver`, keeps content visible without scripting, and adds no dependency. Reduced motion skips the focal and reveal choreography while preserving immediate state feedback.
+- FAQ answers retain native disclosure semantics and add an interruption-safe measured-height paper reveal: 520ms opening, 400ms closing, with immediate native behavior under reduced motion or without JavaScript.
+- The sticky header uses one compact/expanded threshold with hysteresis: the expanded state shows the preserved institutional lockup with “Montessori School,” then a vertical crop and crossfade reveal the preserved compact wordmark as the paper surface reduces in height. It is a bounded state transition, not continuous scroll animation; reduced motion applies the state immediately.
 
 ## Unresolved decisions
 

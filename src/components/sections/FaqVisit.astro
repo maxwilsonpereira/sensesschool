@@ -18,12 +18,14 @@ const { page } = Astro.props;
     </div>
     <div class="faq__items">
       {page.faq.items.map((item, index) => (
-        <details open={index === 0}>
+        <details open={index === 0} data-faq-item>
           <summary>
             <strong>{item.question}</strong>
             <i aria-hidden="true"></i>
           </summary>
-          <p>{item.answer}</p>
+          <div class="faq__answer" data-faq-answer>
+            <p>{item.answer}</p>
+          </div>
         </details>
       ))}
     </div>
@@ -48,8 +50,93 @@ const { page } = Astro.props;
   </div>
 </section>
 
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const faqAnimations = new Map<HTMLDetailsElement, Animation>();
+  const faqStates = new Map<HTMLDetailsElement, 'opening' | 'closing'>();
+
+  document.querySelectorAll<HTMLDetailsElement>('[data-faq-item]').forEach((details) => {
+    const summary = details.querySelector('summary');
+    const answer = details.querySelector<HTMLElement>('[data-faq-answer]');
+    const answerContent = answer?.firstElementChild as HTMLElement | null;
+    if (!summary || !answer || !answerContent) return;
+
+    const measureAnswerHeight = () => {
+      const clone = answer.cloneNode(true) as HTMLElement;
+      Object.assign(clone.style, {
+        position: 'fixed',
+        top: '0',
+        left: '-10000px',
+        width: `${details.getBoundingClientRect().width}px`,
+        height: 'auto',
+        visibility: 'hidden',
+        pointerEvents: 'none',
+        opacity: '1',
+        clipPath: 'none',
+        overflow: 'visible',
+      });
+      document.body.append(clone);
+      const height = clone.scrollHeight;
+      clone.remove();
+      return height;
+    };
+
+    summary.addEventListener('click', (event) => {
+      if (reducedMotion.matches || typeof answer.animate !== 'function') return;
+      event.preventDefault();
+
+      const currentState = faqStates.get(details);
+      const opening = !details.open || currentState === 'closing';
+      const currentHeight = details.open ? answer.getBoundingClientRect().height : 0;
+      const currentOpacity = details.open
+        ? Number.parseFloat(getComputedStyle(answer).opacity)
+        : 0;
+
+      faqAnimations.get(details)?.cancel();
+      if (opening && !details.open) details.open = true;
+
+      // A width-matched copy avoids the transient zero-height state that some
+      // browsers expose while a native disclosure is being opened.
+      const targetHeight = opening ? measureAnswerHeight() : 0;
+      answer.style.willChange = 'height, opacity, clip-path';
+      const animation = answer.animate(
+        [
+          {
+            height: `${currentHeight}px`,
+            opacity: currentOpacity,
+            clipPath: opening ? 'inset(0 0 10% 0)' : 'inset(0)',
+          },
+          {
+            height: `${targetHeight}px`,
+            opacity: opening ? 1 : 0,
+            clipPath: opening ? 'inset(0)' : 'inset(0 0 10% 0)',
+          },
+        ],
+        {
+          duration: opening ? 520 : 400,
+          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          fill: 'both',
+        },
+      );
+
+      faqAnimations.set(details, animation);
+      faqStates.set(details, opening ? 'opening' : 'closing');
+
+      animation.onfinish = () => {
+        if (faqAnimations.get(details) !== animation) return;
+        if (!opening) details.open = false;
+        animation.cancel();
+        answer.style.removeProperty('will-change');
+        faqAnimations.delete(details);
+        faqStates.delete(details);
+      };
+    });
+  });
+</script>
+
 <style>
   .faq {
+    padding-top: 0;
     background: var(--paper-bright);
   }
 
@@ -116,7 +203,11 @@ const { page } = Astro.props;
     transform: rotate(0);
   }
 
-  details > p {
+  .faq__answer {
+    overflow: clip;
+  }
+
+  .faq__answer p {
     max-width: 46rem;
     padding: 0 3rem 2rem 0;
     color: var(--ink-soft);

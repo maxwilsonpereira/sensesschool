@@ -252,9 +252,9 @@
 @media (prefers-reduced-motion: no-preference) {
   [data-reveal] {
     transition:
-      opacity 680ms var(--ease-out),
-      transform 680ms var(--ease-out),
-      clip-path 760ms var(--ease-out);
+      opacity 885ms var(--ease-out),
+      transform 885ms var(--ease-out),
+      clip-path 990ms var(--ease-out);
   }
 
   html.motion-ready [data-reveal='paper']:not(.is-revealed) {
@@ -266,9 +266,9 @@
   [data-reveal='sequence'] > *,
   [data-reveal='collage'] > * {
     transition:
-      opacity 620ms var(--ease-out),
-      transform 620ms var(--ease-out),
-      clip-path 700ms var(--ease-out);
+      opacity 805ms var(--ease-out),
+      transform 805ms var(--ease-out),
+      clip-path 910ms var(--ease-out);
   }
 
   html.motion-ready [data-reveal='sequence']:not(.is-revealed) > *,
@@ -280,12 +280,12 @@
 
   [data-reveal='sequence'] > :nth-child(2),
   [data-reveal='collage'] > :nth-child(2) {
-    transition-delay: 80ms;
+    transition-delay: 105ms;
   }
 
   [data-reveal='sequence'] > :nth-child(3),
   [data-reveal='collage'] > :nth-child(3) {
-    transition-delay: 160ms;
+    transition-delay: 210ms;
   }
 
   html.motion-ready [data-reveal='quote']:not(.is-revealed) {
@@ -297,8 +297,8 @@
   [data-reveal='pair'] > *,
   [data-reveal='visit'] > * {
     transition:
-      opacity 640ms var(--ease-out),
-      transform 640ms var(--ease-out);
+      opacity 830ms var(--ease-out),
+      transform 830ms var(--ease-out);
   }
 
   html.motion-ready [data-reveal='pair']:not(.is-revealed) > *,
@@ -309,7 +309,7 @@
 
   [data-reveal='pair'] > :nth-child(2),
   [data-reveal='visit'] > :nth-child(2) {
-    transition-delay: 100ms;
+    transition-delay: 130ms;
   }
 }
 

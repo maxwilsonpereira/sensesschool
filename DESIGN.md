@@ -274,11 +274,11 @@ Programs are editorial articles separated by graphite rules, not floating cards.
 
 ### Navigation
 
-The desktop header is sticky, paper-backed, and separated by one graphite rule. Links use small bold sans type with a coral underline drawn on hover. At 64rem and below, the only top-right control is the menu/close toggle; the navigation becomes a full-width rose overlay with large Fraunces links, balanced side padding, Escape dismissal, synchronized `aria-expanded`, and body-scroll locking.
+The desktop header is sticky, paper-backed, and separated by one graphite rule. At the top it shows the preserved institutional lockup with “Montessori School” beneath the Senses name. After the visitor begins scrolling, it settles into a compact state: the header reduces its footprint and the full lockup gives way to the preserved wordmark through one controlled vertical crop and crossfade. A very soft plum-tinted offset clarifies that the surface now floats above the reading layer. The state change uses one threshold with hysteresis rather than continuous scroll mapping. Links use small bold sans type with a coral underline drawn on hover. At 64rem and below, the only top-right control is the menu/close toggle; the navigation becomes a full-width rose overlay with large Fraunces links, balanced side padding, Escape dismissal, synchronized `aria-expanded`, and body-scroll locking.
 
 ### FAQ Disclosures
 
-Use native `details` and `summary` elements. Questions are serif titles between graphite rules; the plus becomes a minus when open. The entire summary row is visibly clickable, keyboard operable, and at least 6rem high.
+The FAQ continues the leadership section's bright paper surface. It omits a second top section inset so the boundary uses one generous spacing interval rather than stacking two identical intervals. Use native `details` and `summary` elements. Questions are serif titles between graphite rules; the plus becomes a minus when open. Answers expand like a paper layer being uncovered, using measured height with a restrained fade and crop; closing is slightly faster, interrupted clicks continue from the current height, and reduced motion keeps the native immediate state change. The entire summary row is visibly clickable, keyboard operable, and at least 6rem high.
 
 ### Observation Annotations
 
@@ -290,9 +290,9 @@ Content photography must come from the authentic Senses repository inventory and
 
 ### Interaction & Motion
 
-Motion follows a **prepared atelier being gently uncovered**. The single authored focal entrance stages the hero thesis, coral underline, authentic photograph, and observation notes over 460-850ms with the system ease-out curve. Selected evidence groups use one-time, viewport-triggered paper, collage, sequence, quote, or paired reveals; they settle permanently after entry and are intentionally not applied to every section. Controls retain their faster 240ms feedback.
+Motion follows a **prepared atelier being gently uncovered**. The single authored focal entrance stages the hero thesis, coral underline, authentic photograph, and observation notes over 600-1105ms with the system ease-out curve. Selected evidence groups use one-time, viewport-triggered paper, collage, sequence, quote, or paired reveals; they settle permanently after entry and are intentionally not applied to every section. Authored entrances and navigation state changes use this deliberately slower cadence, while controls retain their faster 240ms feedback so interaction never feels delayed.
 
-The implementation uses CSS opacity, transforms, and bounded `clip-path` transitions plus one small `IntersectionObserver`; it adds no motion dependency. Content is visible by default when scripting is unavailable. There is no scroll-sequence, parallax, scroll-jacking, autoplay, loop, or motion-dependent meaning. Under `prefers-reduced-motion: reduce`, the focal and reveal rules do not run, smooth scrolling is removed, and interactive state changes remain effectively immediate.
+The implementation uses CSS opacity, transforms, and bounded `clip-path` transitions plus one small `IntersectionObserver`; it adds no motion dependency. The shared header uses a passive scroll listener and one animation-frame update only when crossing its compact/expanded thresholds. Content is visible by default when scripting is unavailable. There is no scroll-sequence, parallax, scroll-jacking, autoplay, loop, or motion-dependent meaning. Under `prefers-reduced-motion: reduce`, the focal and reveal rules do not run, smooth scrolling is removed, and interactive and header state changes remain effectively immediate.
 
 ## Do's and Don'ts
 
