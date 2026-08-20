@@ -3,77 +3,85 @@ import { Picture } from 'astro:assets';
 import ButtonLink from '../ui/ButtonLink.astro';
 import type { PageContent } from '../../i18n/content';
 import { withBase } from '../../utils/paths';
-import historicHouse from '../../assets/school/historic-house.jpg';
 import garden from '../../assets/school/garden.jpg';
 import natureDetail from '../../assets/school/nature-detail.jpg';
+import toddlerClassroom from '../../assets/school/toddler-classroom.jpg';
 
 interface Props { page: PageContent }
 const { page } = Astro.props;
 ---
 
-<section class="bilingual section">
-  <div class="container bilingual__inner">
-    <p class="eyebrow">{page.bilingual.eyebrow}</p>
-    <h2>{page.bilingual.title}</h2>
-    <div class="bilingual__body">
+<section class="bilingual section" aria-labelledby="bilingual-title">
+  <div class="container bilingual__grid">
+    <h2 id="bilingual-title">{page.bilingual.title}</h2>
+    <div class="bilingual__copy">
       <p>{page.bilingual.body}</p>
       <p>{page.bilingual.note}</p>
     </div>
+    <ul class="bilingual__rhythm" aria-label={page.bilingual.eyebrow}>
+      {page.hero.annotations.map((annotation) => <li>{annotation}</li>)}
+    </ul>
   </div>
 </section>
 
-<section class="campus section" id="campus">
+<section class="campus section" id="campus" aria-labelledby="campus-title">
   <div class="container campus__grid">
     <div class="campus__copy">
-      <p class="eyebrow">{page.campus.eyebrow}</p>
-      <h2>{page.campus.title}</h2>
+      <h2 id="campus-title">{page.campus.title}</h2>
       <p>{page.campus.body}</p>
       <p>{page.campus.detail}</p>
       <ButtonLink href={withBase(page.lang === 'pt-BR' ? '/nossa-casa/' : '/en/campus/')} variant="text">
         {page.campus.cta}
       </ButtonLink>
     </div>
-    <figure class="campus__main-image">
-      <Picture
-        src={historicHouse}
-        width={960}
-        alt={page.campus.imageAlt}
-        widths={[480, 720, 960]}
-        sizes="(max-width: 768px) 100vw, 52vw"
-        formats={['avif']}
-        fallbackFormat="webp"
-        quality="mid"
-      />
-    </figure>
-    <figure class="campus__garden-image">
-      <Picture
-        src={garden}
-        width={960}
-        alt={page.campus.gardenAlt}
-        widths={[480, 720, 960]}
-        sizes="(max-width: 768px) 60vw, 28vw"
-        formats={['avif']}
-        fallbackFormat="webp"
-        quality="mid"
-      />
-    </figure>
-    <figure class="campus__detail-image" aria-hidden="true">
-      <Picture
-        src={natureDetail}
-        width={480}
-        alt=""
-        widths={[320, 480, 640]}
-        sizes="20vw"
-        formats={['avif']}
-        fallbackFormat="webp"
-        quality="mid"
-      />
-    </figure>
+
+    <div class="campus__photos" data-reveal="collage">
+      <figure class="campus__main">
+        <Picture
+          src={garden}
+          width={1200}
+          widths={[540, 720, 960, 1200]}
+          sizes="(max-width: 800px) 100vw, 54vw"
+          formats={['avif']}
+          fallbackFormat="webp"
+          quality="mid"
+          alt={page.campus.gardenAlt}
+        />
+      </figure>
+      <figure>
+        <Picture
+          src={natureDetail}
+          width={720}
+          widths={[360, 540, 720]}
+          sizes="(max-width: 800px) 50vw, 27vw"
+          formats={['avif']}
+          fallbackFormat="webp"
+          quality="mid"
+          alt={page.lang === 'pt-BR'
+            ? 'Crianças trabalhando com materiais em uma sala da Senses'
+            : 'Children working with materials in a Senses classroom'}
+        />
+      </figure>
+      <figure>
+        <Picture
+          src={toddlerClassroom}
+          width={720}
+          widths={[360, 540, 720]}
+          sizes="(max-width: 800px) 50vw, 27vw"
+          formats={['avif']}
+          fallbackFormat="webp"
+          quality="mid"
+          alt={page.lang === 'pt-BR'
+            ? 'Sala da Senses iluminada, com mobiliário na escala das crianças'
+            : 'Light-filled Senses classroom with child-sized furniture'}
+        />
+      </figure>
+    </div>
   </div>
 </section>
 
-<section class="manifesto section">
-  <div class="container--narrow">
+<section class="manifesto section" aria-label={page.quote.attribution}>
+  <div class="container--narrow" data-reveal="quote">
     <blockquote>“{page.quote.text}”</blockquote>
     <cite>{page.quote.attribution}</cite>
   </div>
@@ -81,185 +89,192 @@ const { page } = Astro.props;
 
 <style>
   .bilingual {
-    background: var(--brand-plum);
+    position: relative;
+    overflow: hidden;
+    background: var(--plum);
     color: var(--white);
   }
 
-  .bilingual :global(.eyebrow) {
-    color: var(--white);
+  .bilingual::after {
+    position: absolute;
+    right: -8rem;
+    bottom: -10rem;
+    width: 24rem;
+    height: 24rem;
+    border: 1px solid color-mix(in srgb, var(--coral-soft) 40%, transparent);
+    border-radius: 50%;
+    content: '';
   }
 
-  .bilingual__inner {
+  .bilingual__grid {
+    position: relative;
+    z-index: 1;
     display: grid;
-    gap: clamp(2rem, 5vw, 5rem);
-    grid-template-columns: 0.55fr 1.35fr 0.9fr;
+    gap: clamp(2rem, 6vw, 6rem);
+    grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
   }
 
   .bilingual h2 {
     max-width: 12ch;
-  }
-
-  .bilingual__body {
-    display: grid;
-    align-content: end;
-    gap: 1.5rem;
     color: var(--white);
   }
 
-  .bilingual__body p:last-child {
-    padding-top: 1.3rem;
-    border-top: 1px solid color-mix(in srgb, var(--white) 25%, transparent);
+  .bilingual__copy {
+    display: grid;
+    align-content: end;
+    gap: 1.5rem;
+    color: color-mix(in srgb, var(--white) 86%, transparent);
+  }
+
+  .bilingual__copy p:last-child {
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--white) 30%, transparent);
+    color: var(--white);
     font-family: var(--font-display);
     font-size: var(--step-1);
     line-height: 1.35;
   }
 
+  .bilingual__rhythm {
+    display: flex;
+    padding: 0;
+    color: var(--coral-soft);
+    font-family: var(--font-note);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    grid-column: 1 / -1;
+    list-style: none;
+  }
+
+  .bilingual__rhythm li {
+    flex: 1;
+    padding-top: 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--white) 25%, transparent);
+  }
+
+  .bilingual__rhythm li + li {
+    padding-left: 1rem;
+    border-left: 1px solid color-mix(in srgb, var(--white) 25%, transparent);
+  }
+
   .campus {
-    background: var(--paper-deep);
+    background: color-mix(in srgb, var(--eucalyptus) 28%, var(--paper-bright));
   }
 
   .campus__grid {
-    position: relative;
     display: grid;
     align-items: start;
-    gap: 1.2rem;
-    grid-template-columns: 0.85fr 0.25fr 1.1fr;
-    grid-template-rows: auto auto;
-  }
-
-  .campus__copy {
-    position: sticky;
-    top: 7rem;
-    padding-right: clamp(1rem, 4vw, 4rem);
-    grid-row: 1 / 3;
+    gap: clamp(3rem, 7vw, 7rem);
+    grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
   }
 
   .campus__copy h2 {
     max-width: 11ch;
-    margin-block: 1.2rem 1.6rem;
   }
 
-  .campus__copy > p:not(.eyebrow) {
-    max-width: 34rem;
-    color: var(--ink-soft);
+  .campus__copy > p {
+    max-width: 36rem;
+    color: color-mix(in srgb, var(--ink) 78%, var(--eucalyptus-deep));
+  }
+
+  .campus__copy h2 + p {
+    margin-top: 1.8rem;
+    font-size: var(--step-1);
+    line-height: 1.5;
   }
 
   .campus__copy > p + p {
-    margin-top: 1rem;
+    margin-top: 1.2rem;
   }
 
   .campus__copy :global(.button-link) {
     margin-top: 1rem;
+    color: var(--plum-display);
   }
 
-  .campus figure {
-    overflow: hidden;
+  .campus__photos {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .campus figure :global(img) {
+  .campus__photos figure {
+    min-width: 0;
+  }
+
+  .campus__photos :global(picture),
+  .campus__photos :global(img) {
     width: 100%;
     height: 100%;
+  }
+
+  .campus__photos :global(img) {
+    aspect-ratio: 4 / 3;
     object-fit: cover;
   }
 
-  .campus figure :global(picture) {
-    width: 100%;
-    height: 100%;
+  .campus__main {
+    grid-column: 1 / -1;
   }
 
-  .campus__main-image {
-    height: clamp(28rem, 62vw, 50rem);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 var(--radius-lg);
-    grid-column: 2 / 4;
-  }
-
-  .campus__garden-image {
-    height: clamp(18rem, 35vw, 30rem);
-    border-radius: var(--radius-lg) 0 var(--radius-lg) var(--radius-lg);
-    grid-column: 2 / 4;
-    margin-left: 14%;
-  }
-
-  .campus__detail-image {
-    position: absolute;
-    z-index: 2;
-    top: 32%;
-    left: 38%;
-    width: clamp(9rem, 17vw, 16rem);
-    aspect-ratio: 4 / 5;
-    border: 0.55rem solid var(--paper-deep);
-    border-radius: 100vmax 100vmax var(--radius) var(--radius);
+  .campus__main :global(img) {
+    aspect-ratio: 16 / 9;
+    object-position: center 42%;
   }
 
   .manifesto {
-    background: var(--brand-rose);
+    background: var(--coral-soft);
     text-align: center;
   }
 
   .manifesto blockquote {
+    color: var(--plum-display);
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5vw, 4.8rem);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
     letter-spacing: -0.035em;
-    line-height: 1.05;
+    line-height: 1.03;
     text-wrap: balance;
   }
 
   .manifesto cite {
     display: block;
     margin-top: 2rem;
-    font-size: 0.74rem;
+    color: var(--plum);
+    font-size: 0.78rem;
     font-style: normal;
     font-weight: 700;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
   @media (max-width: 58rem) {
-    .bilingual__inner {
+    .bilingual__grid,
+    .campus__grid {
       grid-template-columns: 1fr;
     }
 
-    .bilingual__body {
-      max-width: 40rem;
-    }
-
-    .campus__grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
+    .bilingual__copy,
     .campus__copy {
-      position: static;
-      grid-column: 1 / -1;
-      grid-row: auto;
-      margin-bottom: 2rem;
-    }
-
-    .campus__main-image {
-      grid-column: 1 / -1;
-    }
-
-    .campus__garden-image {
-      grid-column: 1 / -1;
-    }
-
-    .campus__detail-image {
-      top: 48%;
-      left: 4%;
+      max-width: 46rem;
     }
   }
 
   @media (max-width: 36rem) {
-    .campus__main-image {
-      height: 30rem;
+    .bilingual__rhythm {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    .campus__garden-image {
-      height: 20rem;
-      margin-left: 0;
+    .campus__photos {
+      grid-template-columns: 1fr;
     }
 
-    .campus__detail-image {
-      display: none;
+    .campus__main {
+      grid-column: auto;
+    }
+
+    .campus__photos :global(img),
+    .campus__main :global(img) {
+      aspect-ratio: 4 / 3;
     }
   }
 </style>

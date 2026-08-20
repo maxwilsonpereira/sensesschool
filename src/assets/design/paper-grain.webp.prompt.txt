@@ -1,0 +1,19 @@
+Generator: OpenAI built-in imagegen
+Mode: generation
+Generated source: PNG, 1254 x 1254
+Delivered derivative: paper-grain.webp, 1254 x 1254, converted with FFmpeg/libwebp at quality 88
+
+Exact generation prompt:
+
+Use case: stylized-concept
+Asset type: seamless website background material for the Senses Montessori School homepage
+Primary request: create a subtle, seamless warm cream paper-fibre texture that can repeat invisibly in both directions across a large web page.
+Scene/backdrop: full-frame warm cream paper surface, no surrounding scene.
+Subject: fine natural cotton and cellulose paper fibres with sparse tiny flecks and barely perceptible handmade-paper variation.
+Style/medium: photorealistic high-resolution flatbed scan of refined uncoated archival paper; calm, tactile, premium, natural.
+Composition/framing: square 1:1 tile, orthographic top-down, edge-to-edge material only; opposite edges must match perfectly for seamless horizontal and vertical tiling; texture density must be uniform across the entire tile.
+Lighting/mood: flat diffuse neutral illumination with no directional light, shadows, vignette, hotspots, or depth falloff.
+Color palette: warm cream centered on #FAF5E9 with an extremely narrow low-contrast tonal range; fibres may be only subtly warmer or cooler.
+Materials/textures: very fine paper grain and restrained natural fibres, visible only on close inspection and subordinate to text and photography.
+Constraints: minimum 1024 x 1024; seamless and tileable; no text, no marks, no symbols, no logo, no watermark; no border; no corners; no focal point; no transparent areas.
+Avoid: visible seams, repeating motifs, stains, wrinkles, torn edges, holes, notebook lines, grid lines, pencil marks, ink marks, brush strokes, large fibres, dark speckles, heavy noise, strong contrast, gradients, directional lighting, yellow cast, gray cast, pink cast, objects, people, classrooms, school photos, icons, logos, lettering, watermark.

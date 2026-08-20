@@ -6,13 +6,11 @@ const { page } = Astro.props;
 ---
 
 <section class="leadership section" id="leadership" aria-labelledby="leadership-title">
-  <div class="container leadership__grid">
+  <div class="container leadership__grid" data-reveal="pair">
     <div class="leadership__identity">
-      <p class="eyebrow">{page.leadership.eyebrow}</p>
-      <div>
-        <p class="leadership__name">{page.leadership.name}</p>
-        <p class="leadership__role">{page.leadership.role}</p>
-      </div>
+      <p class="leadership__name">{page.leadership.name}</p>
+      <p>{page.leadership.role}</p>
+      <span aria-hidden="true">{page.lang === 'pt-BR' ? 'observar antes de intervir' : 'observe before intervening'}</span>
     </div>
 
     <div class="leadership__copy">
@@ -25,39 +23,50 @@ const { page } = Astro.props;
 
 <style>
   .leadership {
-    background: var(--paper);
+    background: var(--paper-bright);
   }
 
   .leadership__grid {
     display: grid;
-    gap: clamp(3rem, 8vw, 8rem);
-    grid-template-columns: 0.72fr 1.28fr;
+    align-items: stretch;
+    gap: clamp(3rem, 8vw, 9rem);
+    grid-template-columns: minmax(15rem, 0.62fr) minmax(0, 1.38fr);
   }
 
   .leadership__identity {
-    display: flex;
-    min-height: 20rem;
-    justify-content: space-between;
-    padding: 1.5rem 0 1.5rem clamp(1.5rem, 4vw, 3rem);
-    border-left: 1px solid var(--brand-rose);
-    flex-direction: column;
+    display: grid;
+    min-height: 27rem;
+    align-content: space-between;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    background: var(--rose-soft);
   }
 
   .leadership__name {
-    color: var(--brand-plum);
+    color: var(--plum-display);
     font-family: var(--font-display);
-    font-size: var(--step-2);
-    line-height: 1.05;
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    line-height: 0.95;
   }
 
-  .leadership__role {
+  .leadership__identity > p:nth-child(2) {
     max-width: 18rem;
-    margin-top: 0.55rem;
+    align-self: start;
     color: var(--ink-soft);
     font-size: var(--step--1);
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+  }
+
+  .leadership__identity span {
+    color: var(--plum);
+    font-family: var(--font-note);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    transform: rotate(-3deg);
+  }
+
+  .leadership__copy {
+    align-self: center;
   }
 
   .leadership__copy h2 {
@@ -65,36 +74,30 @@ const { page } = Astro.props;
   }
 
   .leadership__copy > p {
-    max-width: 45rem;
+    max-width: 49rem;
     color: var(--ink-soft);
   }
 
   .leadership__copy > h2 + p {
     margin-top: 2rem;
+    color: var(--ink);
     font-size: var(--step-1);
-    line-height: 1.55;
+    line-height: 1.52;
   }
 
   .leadership__note {
+    margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--line);
-    margin-top: 2rem;
   }
 
-  @media (max-width: 54rem) {
+  @media (max-width: 52rem) {
     .leadership__grid {
       grid-template-columns: 1fr;
     }
 
     .leadership__identity {
-      min-height: 12rem;
-    }
-  }
-
-  @media (max-width: 34rem) {
-    .leadership__identity {
-      min-height: 10rem;
-      padding-left: 1rem;
+      min-height: 16rem;
     }
   }
 </style>

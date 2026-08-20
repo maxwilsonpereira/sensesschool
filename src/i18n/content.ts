@@ -55,14 +55,10 @@ export const content = {
       eyebrow: 'Montessori bilíngue · Brooklin, São Paulo',
       title: 'Toda criança nasce cientista.',
       body:
-        'Na Senses, Montessori e uma experiência bilíngue vivida todos os dias criam as condições para investigar, escolher e construir conhecimento com autonomia.',
+        'Uma escola Montessori bilíngue onde ciência, afeto e autonomia fazem parte de cada descoberta.',
       primaryCta: 'Conheça a Senses',
       secondaryCta: 'Agende uma visita',
-      scrollLabel: 'Role para montar',
-      canvasLabel:
-        'Animação de uma mesa infantil de madeira sendo montada peça por peça',
-      fallbackAlt:
-        'Mesa infantil de madeira montada, símbolo do aprendizado prático Montessori',
+      annotations: ['observar', 'tentar', 'descobrir'],
     },
     intro: {
       eyebrow: 'Educar para a liberdade',
@@ -229,14 +225,10 @@ export const content = {
       eyebrow: 'Bilingual Montessori · Brooklin, São Paulo',
       title: 'Every child is born a scientist.',
       body:
-        'At Senses, Montessori and a bilingual experience lived every day create the conditions to investigate, choose and build knowledge independently.',
+        'A bilingual Montessori school where science, affection and independence are part of every discovery.',
       primaryCta: 'Discover Senses',
       secondaryCta: 'Schedule a visit',
-      scrollLabel: 'Scroll to assemble',
-      canvasLabel:
-        'Animation of a child-sized wooden table being assembled piece by piece',
-      fallbackAlt:
-        'Assembled child-sized wooden table, a symbol of hands-on Montessori learning',
+      annotations: ['observe', 'try', 'discover'],
     },
     intro: {
       eyebrow: 'Education for freedom',

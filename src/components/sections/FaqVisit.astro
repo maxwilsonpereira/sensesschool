@@ -8,11 +8,10 @@ interface Props { page: PageContent }
 const { page } = Astro.props;
 ---
 
-<section class="faq section" id="questions">
+<section class="faq section" id="questions" aria-labelledby="faq-title">
   <div class="container faq__grid">
     <div class="faq__heading">
-      <p class="eyebrow">{page.faq.eyebrow}</p>
-      <h2>{page.faq.title}</h2>
+      <h2 id="faq-title">{page.faq.title}</h2>
       <ButtonLink href={withBase(page.lang === 'pt-BR' ? '/educacao/#duvidas' : '/en/education/#questions')} variant="text">
         {page.faq.cta}
       </ButtonLink>
@@ -21,7 +20,6 @@ const { page } = Astro.props;
       {page.faq.items.map((item, index) => (
         <details open={index === 0}>
           <summary>
-            <span>{String(index + 1).padStart(2, '0')}</span>
             <strong>{item.question}</strong>
             <i aria-hidden="true"></i>
           </summary>
@@ -32,35 +30,42 @@ const { page } = Astro.props;
   </div>
 </section>
 
-<section class="visit section" id="visit">
-  <div class="container visit__inner">
-    <p class="eyebrow">{page.visit.eyebrow}</p>
-    <h2>{page.visit.title}</h2>
-    <p>{page.visit.body}</p>
-    <div class="visit__actions">
-      <ButtonLink href={school.whatsappHref} variant="light" external>{page.visit.cta}</ButtonLink>
-      <ButtonLink href={`mailto:${school.email}`} variant="outline">{page.visit.contact}</ButtonLink>
+<section class="visit section" id="visit" aria-labelledby="visit-title">
+  <div class="container visit__grid" data-reveal="visit">
+    <div>
+      <h2 id="visit-title">{page.visit.title}</h2>
+      <p>{page.visit.body}</p>
     </div>
-    <div class="visit__address">
-      <span>{school.street}</span>
-      <span>{school.neighborhood} · {school.city}</span>
+    <div class="visit__action-panel">
+      <p>{page.visit.eyebrow}</p>
+      <ButtonLink href={school.whatsappHref} variant="light" external>{page.visit.cta}</ButtonLink>
+      <ButtonLink href={`mailto:${school.email}`} variant="text">{page.visit.contact}</ButtonLink>
+      <address>
+        <span>{school.street}</span>
+        <span>{school.neighborhood} · {school.city}</span>
+      </address>
     </div>
   </div>
 </section>
 
 <style>
   .faq {
-    background: var(--paper);
+    background: var(--paper-bright);
   }
 
   .faq__grid {
     display: grid;
     gap: clamp(3rem, 8vw, 8rem);
-    grid-template-columns: 0.75fr 1.25fr;
+    grid-template-columns: minmax(15rem, 0.65fr) minmax(0, 1.35fr);
   }
 
   .faq__heading h2 {
-    margin-block: 1.2rem 1rem;
+    max-width: 8ch;
+  }
+
+  .faq__heading :global(.button-link) {
+    margin-top: 1rem;
+    color: var(--plum);
   }
 
   details {
@@ -77,7 +82,7 @@ const { page } = Astro.props;
     align-items: center;
     gap: 1rem;
     cursor: pointer;
-    grid-template-columns: 2rem 1fr 1.5rem;
+    grid-template-columns: 1fr 1.5rem;
     list-style: none;
   }
 
@@ -85,14 +90,8 @@ const { page } = Astro.props;
     display: none;
   }
 
-  summary span {
-    color: var(--brand-plum);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-  }
-
   summary strong {
+    color: var(--plum-display);
     font-family: var(--font-display);
     font-size: var(--step-1);
     font-weight: 400;
@@ -102,7 +101,7 @@ const { page } = Astro.props;
   summary i,
   summary i::after {
     display: block;
-    width: 1.15rem;
+    width: 1.2rem;
     height: 1px;
     background: currentColor;
     content: '';
@@ -118,93 +117,81 @@ const { page } = Astro.props;
   }
 
   details > p {
-    max-width: 42rem;
-    padding: 0 2rem 2rem 3rem;
+    max-width: 46rem;
+    padding: 0 3rem 2rem 0;
     color: var(--ink-soft);
   }
 
   .visit {
-    background: var(--leaf);
-    color: var(--forest-ink);
+    background: var(--eucalyptus-deep);
+    color: var(--white);
   }
 
-  .visit :global(.eyebrow),
-  .visit :global(.button-link--outline) {
-    border-color: var(--forest-ink);
-    color: var(--forest-ink);
-  }
-
-  .visit__inner {
+  .visit__grid {
     display: grid;
-    text-align: center;
-    justify-items: center;
+    align-items: end;
+    gap: clamp(3rem, 8vw, 9rem);
+    grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.7fr);
   }
 
-  .visit__inner > h2 {
-    max-width: 15ch;
-    margin-block: 1.5rem;
-    font-size: clamp(2.7rem, 7vw, 6rem);
+  .visit h2 {
+    max-width: 13ch;
+    color: var(--white);
+    font-size: clamp(2.8rem, 6vw, 5.7rem);
   }
 
-  .visit__inner > p {
-    max-width: 43rem;
+  .visit h2 + p {
+    max-width: 45rem;
+    margin-top: 1.8rem;
+    color: color-mix(in srgb, var(--white) 84%, transparent);
     font-size: var(--step-1);
   }
 
-  .visit__actions {
-    display: flex;
-    gap: 0.8rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+  .visit__action-panel {
+    display: grid;
+    align-items: stretch;
   }
 
-  .visit__address {
-    display: flex;
-    gap: 1rem;
-    margin-top: 4rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .visit__action-panel > p {
+    margin-bottom: 1rem;
+    color: var(--coral-soft);
+    font-family: var(--font-note);
+    font-size: 1.1rem;
+    transform: rotate(-2deg);
   }
 
-  .visit__address span + span::before {
-    margin-right: 1rem;
-    content: '·';
+  .visit__action-panel :global(.button-link) {
+    width: 100%;
+  }
+
+  .visit__action-panel :global(.button-link--text) {
+    margin-top: 0.4rem;
+    color: var(--white);
+  }
+
+  address {
+    display: grid;
+    gap: 0.2rem;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid color-mix(in srgb, var(--white) 28%, transparent);
+    color: color-mix(in srgb, var(--white) 82%, transparent);
+    font-size: var(--step--1);
+    font-style: normal;
   }
 
   @media (max-width: 54rem) {
-    .faq__grid {
+    .faq__grid,
+    .visit__grid {
       grid-template-columns: 1fr;
     }
 
     .faq__heading {
-      max-width: 34rem;
-    }
-  }
-
-  @media (max-width: 34rem) {
-    summary {
-      min-height: 5rem;
-      grid-template-columns: 1fr 1.5rem;
+      max-width: 36rem;
     }
 
-    summary span {
-      display: none;
-    }
-
-    details > p {
-      padding-left: 0;
-    }
-
-    .visit__address {
-      align-items: center;
-      flex-direction: column;
-    }
-
-    .visit__address span + span::before {
-      content: none;
+    .visit__action-panel {
+      max-width: 28rem;
     }
   }
 </style>

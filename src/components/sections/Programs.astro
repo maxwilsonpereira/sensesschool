@@ -12,186 +12,168 @@ const { page } = Astro.props;
 const images = { nursery, toddler, prepared } as const;
 ---
 
-<section class="programs section" id="programs">
+<section class="programs section" id="programs" aria-labelledby="programs-title">
   <div class="container programs__heading">
+    <h2 id="programs-title">{page.programs.title}</h2>
     <div>
-      <p class="eyebrow">{page.programs.eyebrow}</p>
-      <h2>{page.programs.title}</h2>
+      <p>{page.programs.intro}</p>
+      <ButtonLink href={withBase(page.lang === 'pt-BR' ? '/programas/' : '/en/programs/')} variant="text">
+        {page.programs.cta}
+      </ButtonLink>
     </div>
-    <p>{page.programs.intro}</p>
   </div>
 
-  <div class="container program-grid">
-    {page.programs.cards.map((program, index) => (
-      <article class="program-card">
-        <div class="program-card__image">
-          <Picture
-            src={images[program.image]}
-            width={720}
-            alt={page.lang === 'pt-BR'
-              ? `Ambiente do programa ${program.title} na Senses`
-              : `${program.title} environment at Senses`}
-            widths={[480, 720, 960]}
-            sizes="(max-width: 760px) 100vw, 33vw"
-            formats={['avif']}
-            fallbackFormat="webp"
-            quality="mid"
-          />
-          <span aria-hidden="true">0{index + 1}</span>
-        </div>
-        <div class="program-card__content">
-          <p>{program.age}</p>
+  <div class="container program-grid" data-reveal="sequence">
+    {page.programs.cards.map((program) => (
+      <article class="program">
+        <Picture
+          src={images[program.image]}
+          width={720}
+          widths={[420, 540, 720, 900]}
+          sizes="(max-width: 700px) 100vw, 33vw"
+          formats={['avif']}
+          fallbackFormat="webp"
+          quality="mid"
+          alt={page.lang === 'pt-BR'
+            ? `Ambiente preparado para o programa ${program.title} na Senses`
+            : `Prepared environment for the ${program.title} program at Senses`}
+        />
+        <div class="program__content">
+          <p class="program__age">{program.age}</p>
           <h3>{program.title}</h3>
           <p>{program.body}</p>
         </div>
       </article>
     ))}
   </div>
-
-  <div class="container programs__cta">
-    <ButtonLink href={withBase(page.lang === 'pt-BR' ? '/programas/' : '/en/programs/')} variant="light">
-      {page.programs.cta}
-    </ButtonLink>
-  </div>
 </section>
 
 <style>
   .programs {
-    background: var(--forest);
-    color: var(--paper);
-  }
-
-  .programs :global(.eyebrow) {
-    color: var(--moss);
+    background: var(--rose-soft);
   }
 
   .programs__heading {
     display: grid;
     align-items: end;
-    gap: 2rem;
-    grid-template-columns: 1.4fr 0.6fr;
+    gap: clamp(2rem, 6vw, 7rem);
+    grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
   }
 
   .programs__heading h2 {
     max-width: 12ch;
-    margin-top: 1.2rem;
   }
 
-  .programs__heading > p {
-    color: color-mix(in srgb, var(--paper) 72%, transparent);
+  .programs__heading > div {
+    max-width: 38rem;
+    color: var(--ink-soft);
+  }
+
+  .programs__heading :global(.button-link) {
+    margin-top: 1.2rem;
+    color: var(--plum);
   }
 
   .program-grid {
     display: grid;
-    gap: 1.1rem;
-    margin-top: clamp(3rem, 7vw, 6rem);
-    grid-template-columns: repeat(3, 1fr);
+    margin-top: clamp(3.5rem, 7vw, 6rem);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .program-card {
-    overflow: hidden;
-    border: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
-    border-radius: var(--radius);
-    background: color-mix(in srgb, var(--white) 4%, transparent);
+  .program {
+    min-width: 0;
+    padding: clamp(1rem, 2vw, 1.6rem);
   }
 
-  .program-card:nth-child(2) {
-    transform: translateY(2.5rem);
+  .program + .program {
+    border-left: 1px solid var(--line);
   }
 
-  .program-card__image {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .program-card__image :global(img) {
+  .program :global(picture) {
     width: 100%;
-    aspect-ratio: 4 / 4.6;
+  }
+
+  .program :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
-    filter: saturate(0.78) contrast(0.96);
-    transition: transform 800ms var(--ease-out);
+    transition: filter 500ms var(--ease-out), transform 500ms var(--ease-out);
   }
 
-  .program-card:hover .program-card__image :global(img) {
-    transform: scale(1.025);
+  .program:hover :global(img) {
+    filter: saturate(1.06);
+    transform: scale(0.992);
   }
 
-  .program-card__image span {
-    position: absolute;
-    right: 0.8rem;
-    bottom: 0.8rem;
-    display: grid;
-    width: 2.6rem;
-    height: 2.6rem;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 0.7rem;
+  .program__content {
+    padding-block: 1.6rem 0.5rem;
+  }
+
+  .program__age {
+    color: var(--plum);
+    font-size: var(--step--1);
     font-weight: 700;
+    letter-spacing: 0.04em;
   }
 
-  .program-card__content {
-    padding: 1.5rem;
+  .program h3 {
+    margin-block: 0.6rem 1rem;
+    font-size: clamp(1.75rem, 2.8vw, 2.65rem);
   }
 
-  .program-card__content > p:first-child {
-    color: var(--moss);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .program__content > p:last-child {
+    color: var(--ink-soft);
   }
 
-  .program-card h3 {
-    margin-block: 0.85rem 1rem;
+  .program:nth-child(1) :global(img) {
+    object-position: center 62%;
   }
 
-  .program-card__content > p:last-child {
-    color: color-mix(in srgb, var(--paper) 70%, transparent);
+  .program:nth-child(2) :global(img) {
+    object-position: center;
   }
 
-  .programs__cta {
-    margin-top: 5.5rem;
-    text-align: center;
+  .program:nth-child(3) :global(img) {
+    object-position: 52% center;
   }
 
-  @media (max-width: 52rem) {
+  @media (max-width: 54rem) {
     .programs__heading {
       align-items: start;
       grid-template-columns: 1fr;
-    }
-
-    .programs__heading > p {
-      max-width: 38rem;
     }
 
     .program-grid {
       grid-template-columns: 1fr;
     }
 
-    .program-card {
+    .program {
       display: grid;
-      grid-template-columns: minmax(12rem, 0.9fr) 1.1fr;
+      align-items: center;
+      gap: 1.5rem;
+      grid-template-columns: minmax(13rem, 0.9fr) minmax(0, 1.1fr);
     }
 
-    .program-card:nth-child(2) {
-      transform: none;
+    .program + .program {
+      border-top: 1px solid var(--line);
+      border-left: 0;
     }
 
-    .program-card__image :global(img) {
-      height: 100%;
-      aspect-ratio: 1 / 1;
+    .program__content {
+      padding-block: 0;
     }
   }
 
-  @media (max-width: 34rem) {
-    .program-card {
+  @media (max-width: 38rem) {
+    .program {
       display: block;
+      padding-block: 1.25rem 2rem;
     }
 
-    .program-card__image :global(img) {
-      aspect-ratio: 4 / 3;
+    .program__content {
+      padding-top: 1.3rem;
     }
   }
 </style>

@@ -1,6 +1,6 @@
 ---
 import type { PageContent } from '../../i18n/content';
-import ScrollSequenceHero from './ScrollSequenceHero.astro';
+import Hero from './Hero.astro';
 import Philosophy from './Philosophy.astro';
 import Programs from './Programs.astro';
 import BilingualCampus from './BilingualCampus.astro';
@@ -11,9 +11,43 @@ interface Props { page: PageContent }
 const { page } = Astro.props;
 ---
 
-<ScrollSequenceHero page={page} />
+<Hero page={page} />
 <Philosophy page={page} />
 <Programs page={page} />
 <BilingualCampus page={page} />
 <Leadership page={page} />
 <FaqVisit page={page} />
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+    const revealItems = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+
+    if (revealItems.length > 0) {
+      document.documentElement.classList.add('motion-ready');
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.08,
+      });
+
+      requestAnimationFrame(() => {
+        revealItems.forEach((item) => {
+          const bounds = item.getBoundingClientRect();
+          if (bounds.top < window.innerHeight * 0.92) {
+            item.classList.add('is-revealed');
+          } else {
+            revealObserver.observe(item);
+          }
+        });
+      });
+    }
+  }
+</script>

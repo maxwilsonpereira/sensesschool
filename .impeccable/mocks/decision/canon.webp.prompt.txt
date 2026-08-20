@@ -1,0 +1,9 @@
+Use case: ui-mockup
+Asset type: internal visual-direction comp for a desktop school homepage
+Primary request: Create a high-fidelity first-viewport website mockup for Senses Montessori School in the conventional premium contemporary-school category standard, executed exceptionally well.
+Subject: bilingual Montessori school and nursery in Brooklin, São Paulo.
+Style/medium: realistic polished product UI mockup, not concept art.
+Composition/framing: landscape 16:10 desktop browser viewport; restrained header with the original Senses wordmark appearance; a clear photographic hero using a believable authentic Montessori classroom documentary-photo placeholder; clear text hierarchy and two actions.
+Color palette: white, plum #7C3E66, rose #D2B0B1, deep garden green #28473E.
+Text (verbatim): "Toda criança nasce cientista." "Uma escola Montessori bilíngue onde ciência, afeto e autonomia fazem parte de cada descoberta." "Conheça a Senses" "Agende uma visita".
+Constraints: render the four text strings exactly; no invented statistics, awards, testimonials, accreditation, or other claims; no unrelated logos; no watermark; professional responsive-feeling layout; no cartoon imagery; no glassmorphism; no excessive gradients.

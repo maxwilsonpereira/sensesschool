@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-20T18:53:50.2554027+02:00",
+  "title": "Design System: Senses Montessori School",
+  "extensions": {
+    "colorMeta": {
+      "brand-plum": { "role": "primary", "displayName": "Senses Plum", "canonical": "#7c3e66", "tonalRamp": ["oklch(from #7c3e66 15% c h)", "oklch(from #7c3e66 27% c h)", "oklch(from #7c3e66 39% c h)", "oklch(from #7c3e66 51% c h)", "oklch(from #7c3e66 63% c h)", "oklch(from #7c3e66 75% c h)", "oklch(from #7c3e66 87% c h)", "oklch(from #7c3e66 95% c h)"] },
+      "action-plum": { "role": "primary", "displayName": "Action Plum", "canonical": "#67294a", "tonalRamp": ["oklch(from #67294a 15% c h)", "oklch(from #67294a 27% c h)", "oklch(from #67294a 39% c h)", "oklch(from #67294a 51% c h)", "oklch(from #67294a 63% c h)", "oklch(from #67294a 75% c h)", "oklch(from #67294a 87% c h)", "oklch(from #67294a 95% c h)"] },
+      "display-plum": { "role": "primary", "displayName": "Thesis Plum", "canonical": "#4a0e2a", "tonalRamp": ["oklch(from #4a0e2a 15% c h)", "oklch(from #4a0e2a 27% c h)", "oklch(from #4a0e2a 39% c h)", "oklch(from #4a0e2a 51% c h)", "oklch(from #4a0e2a 63% c h)", "oklch(from #4a0e2a 75% c h)", "oklch(from #4a0e2a 87% c h)", "oklch(from #4a0e2a 95% c h)"] },
+      "soft-rose": { "role": "secondary", "displayName": "Soft Rose", "canonical": "#d2b0b1", "tonalRamp": ["oklch(from #d2b0b1 15% c h)", "oklch(from #d2b0b1 27% c h)", "oklch(from #d2b0b1 39% c h)", "oklch(from #d2b0b1 51% c h)", "oklch(from #d2b0b1 63% c h)", "oklch(from #d2b0b1 75% c h)", "oklch(from #d2b0b1 87% c h)", "oklch(from #d2b0b1 95% c h)"] },
+      "rose-field": { "role": "secondary", "displayName": "Atelier Rose", "canonical": "#f1d9d7", "tonalRamp": ["oklch(from #f1d9d7 15% c h)", "oklch(from #f1d9d7 27% c h)", "oklch(from #f1d9d7 39% c h)", "oklch(from #f1d9d7 51% c h)", "oklch(from #f1d9d7 63% c h)", "oklch(from #f1d9d7 75% c h)", "oklch(from #f1d9d7 87% c h)", "oklch(from #f1d9d7 95% c h)"] },
+      "coral": { "role": "secondary", "displayName": "Coral Mark", "canonical": "#e86e83", "tonalRamp": ["oklch(from #e86e83 15% c h)", "oklch(from #e86e83 27% c h)", "oklch(from #e86e83 39% c h)", "oklch(from #e86e83 51% c h)", "oklch(from #e86e83 63% c h)", "oklch(from #e86e83 75% c h)", "oklch(from #e86e83 87% c h)", "oklch(from #e86e83 95% c h)"] },
+      "pencil-coral": { "role": "secondary", "displayName": "Pencil Coral", "canonical": "#ffc5c1", "tonalRamp": ["oklch(from #ffc5c1 15% c h)", "oklch(from #ffc5c1 27% c h)", "oklch(from #ffc5c1 39% c h)", "oklch(from #ffc5c1 51% c h)", "oklch(from #ffc5c1 63% c h)", "oklch(from #ffc5c1 75% c h)", "oklch(from #ffc5c1 87% c h)", "oklch(from #ffc5c1 95% c h)"] },
+      "eucalyptus": { "role": "tertiary", "displayName": "Eucalyptus", "canonical": "#5d8f86", "tonalRamp": ["oklch(from #5d8f86 15% c h)", "oklch(from #5d8f86 27% c h)", "oklch(from #5d8f86 39% c h)", "oklch(from #5d8f86 51% c h)", "oklch(from #5d8f86 63% c h)", "oklch(from #5d8f86 75% c h)", "oklch(from #5d8f86 87% c h)", "oklch(from #5d8f86 95% c h)"] },
+      "eucalyptus-deep": { "role": "tertiary", "displayName": "Deep Eucalyptus", "canonical": "#315f57", "tonalRamp": ["oklch(from #315f57 15% c h)", "oklch(from #315f57 27% c h)", "oklch(from #315f57 39% c h)", "oklch(from #315f57 51% c h)", "oklch(from #315f57 63% c h)", "oklch(from #315f57 75% c h)", "oklch(from #315f57 87% c h)", "oklch(from #315f57 95% c h)"] },
+      "gold": { "role": "tertiary", "displayName": "Observation Gold", "canonical": "#e8b64a", "tonalRamp": ["oklch(from #e8b64a 15% c h)", "oklch(from #e8b64a 27% c h)", "oklch(from #e8b64a 39% c h)", "oklch(from #e8b64a 51% c h)", "oklch(from #e8b64a 63% c h)", "oklch(from #e8b64a 75% c h)", "oklch(from #e8b64a 87% c h)", "oklch(from #e8b64a 95% c h)"] },
+      "paper": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#faf5e9", "tonalRamp": ["oklch(from #faf5e9 15% c h)", "oklch(from #faf5e9 27% c h)", "oklch(from #faf5e9 39% c h)", "oklch(from #faf5e9 51% c h)", "oklch(from #faf5e9 63% c h)", "oklch(from #faf5e9 75% c h)", "oklch(from #faf5e9 87% c h)", "oklch(from #faf5e9 95% c h)"] },
+      "paper-bright": { "role": "neutral", "displayName": "Bright Paper", "canonical": "#fffaf1", "tonalRamp": ["oklch(from #fffaf1 15% c h)", "oklch(from #fffaf1 27% c h)", "oklch(from #fffaf1 39% c h)", "oklch(from #fffaf1 51% c h)", "oklch(from #fffaf1 63% c h)", "oklch(from #fffaf1 75% c h)", "oklch(from #fffaf1 87% c h)", "oklch(from #fffaf1 95% c h)"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#2d2430", "tonalRamp": ["oklch(from #2d2430 15% c h)", "oklch(from #2d2430 27% c h)", "oklch(from #2d2430 39% c h)", "oklch(from #2d2430 51% c h)", "oklch(from #2d2430 63% c h)", "oklch(from #2d2430 75% c h)", "oklch(from #2d2430 87% c h)", "oklch(from #2d2430 95% c h)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#655b63", "tonalRamp": ["oklch(from #655b63 15% c h)", "oklch(from #655b63 27% c h)", "oklch(from #655b63 39% c h)", "oklch(from #655b63 51% c h)", "oklch(from #655b63 63% c h)", "oklch(from #655b63 75% c h)", "oklch(from #655b63 87% c h)", "oklch(from #655b63 95% c h)"] },
+      "warm-white": { "role": "neutral", "displayName": "Warm White", "canonical": "#fffdf8", "tonalRamp": ["oklch(from #fffdf8 15% c h)", "oklch(from #fffdf8 27% c h)", "oklch(from #fffdf8 39% c h)", "oklch(from #fffdf8 51% c h)", "oklch(from #fffdf8 63% c h)", "oklch(from #fffdf8 75% c h)", "oklch(from #fffdf8 87% c h)", "oklch(from #fffdf8 95% c h)"] },
+      "graphite-line": { "role": "neutral", "displayName": "Graphite Line", "canonical": "color-mix(in srgb, #4a0e2a 18%, transparent)", "tonalRamp": ["oklch(from #4a0e2a 15% c h / 0.18)", "oklch(from #4a0e2a 27% c h / 0.18)", "oklch(from #4a0e2a 39% c h / 0.18)", "oklch(from #4a0e2a 51% c h / 0.18)", "oklch(from #4a0e2a 63% c h / 0.18)", "oklch(from #4a0e2a 75% c h / 0.18)", "oklch(from #4a0e2a 87% c h / 0.18)", "oklch(from #4a0e2a 95% c h / 0.18)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The single homepage thesis and similarly decisive statements." },
+      "headline": { "displayName": "Headline", "purpose": "Section theses and major chapter openings." },
+      "title": { "displayName": "Title", "purpose": "Program names, FAQ questions, and supporting editorial headings." },
+      "body-large": { "displayName": "Body Large", "purpose": "Leads and pivotal explanatory paragraphs." },
+      "body": { "displayName": "Body", "purpose": "Main reading text and descriptions." },
+      "label": { "displayName": "Label", "purpose": "Ages, context, navigation metadata, and footer headings." },
+      "action": { "displayName": "Action", "purpose": "Buttons and text actions." },
+      "annotation": { "displayName": "Annotation", "purpose": "Short, non-essential observational notes only." }
+    },
+    "shadows": [
+      { "name": "photo-offset", "value": "0 1.5rem 3.5rem color-mix(in srgb, var(--plum-display) 13%, transparent)", "purpose": "Soft physical separation for documentary photographs on bright paper." },
+      { "name": "hero-cutout", "value": "drop-shadow(0 1.4rem 2rem color-mix(in srgb, var(--plum-display) 13%, transparent))", "purpose": "Follows the irregular masked edge of the hero photograph." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default state response for controls, navigation, and disclosures." },
+      { "name": "duration", "value": "240ms", "purpose": "Default transition duration; reduced motion compresses it to effectively immediate." },
+      { "name": "program-photo", "value": "500ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Subtle saturation and scale response on program photography." },
+      { "name": "hero-entrance", "value": "460-850ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "One authored entrance that uncovers the thesis, coral mark, authentic photograph, and observation notes." },
+      { "name": "editorial-reveal", "value": "620-760ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "One-time paper, collage, sequence, quote, and paired reveals for selected evidence groups only." }
+    ],
+    "breakpoints": [
+      { "name": "navigation-and-wide-tablet", "value": "64rem" },
+      { "name": "bilingual-and-campus-stack", "value": "58rem" },
+      { "name": "philosophy-and-method-stack", "value": "56rem" },
+      { "name": "programs-and-visit-stack", "value": "54rem" },
+      { "name": "leadership-stack", "value": "52rem" },
+      { "name": "hero-stack", "value": "50rem" },
+      { "name": "footer-tablet", "value": "48rem" },
+      { "name": "evidence-stack", "value": "42rem" },
+      { "name": "compact-container", "value": "40rem" },
+      { "name": "program-mobile", "value": "38rem" },
+      { "name": "campus-photo-mobile", "value": "36rem" },
+      { "name": "compact-hero", "value": "34rem" },
+      { "name": "footer-mobile", "value": "32rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid Button Link",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "Principal invitational action on light fields.",
+      "html": "<a class=\"ds-btn ds-btn-solid\" href=\"#\"><span>Conheça a Senses</span><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h11M10.5 5.5 15 10l-4.5 4.5\" /></svg></a>",
+      "css": ".ds-btn{display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.9rem;padding:.82rem 1.1rem .82rem 1.35rem;border:1px solid transparent;border-radius:var(--radius-control);font:700 .88rem/1 var(--font-sans);letter-spacing:.01em;text-decoration:none;transition:background-color var(--duration) var(--ease-out),color var(--duration) var(--ease-out),transform var(--duration) var(--ease-out)}.ds-btn svg{width:1.25rem;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5;transition:transform var(--duration) var(--ease-out)}.ds-btn-solid{background:var(--plum);color:var(--white)}.ds-btn-solid:hover{background:var(--plum-display);transform:translateY(-2px)}.ds-btn:hover svg{transform:translateX(.22rem)}.ds-btn:focus-visible{outline:3px solid var(--coral);outline-offset:4px}"
+    },
+    {
+      "name": "Outline Button Link",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Visible secondary action beside a solid button.",
+      "html": "<a class=\"ds-btn ds-btn-outline\" href=\"#\"><span>Agende uma visita</span><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h11M10.5 5.5 15 10l-4.5 4.5\" /></svg></a>",
+      "css": ".ds-btn{display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.9rem;padding:.82rem 1.1rem .82rem 1.35rem;border:1px solid transparent;border-radius:var(--radius-control);font:700 .88rem/1 var(--font-sans);letter-spacing:.01em;text-decoration:none;transition:background-color var(--duration) var(--ease-out),border-color var(--duration) var(--ease-out),transform var(--duration) var(--ease-out)}.ds-btn svg{width:1.25rem;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5;transition:transform var(--duration) var(--ease-out)}.ds-btn-outline{border-color:color-mix(in srgb,currentColor 55%,transparent);color:var(--plum)}.ds-btn-outline:hover{border-color:currentColor;background:color-mix(in srgb,var(--rose-soft) 48%,transparent);transform:translateY(-2px)}.ds-btn:hover svg{transform:translateX(.22rem)}.ds-btn:focus-visible{outline:3px solid var(--coral);outline-offset:4px}"
+    },
+    {
+      "name": "Light Button Link",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "Principal action on the deep eucalyptus visit field.",
+      "html": "<a class=\"ds-btn ds-btn-light\" href=\"#\"><span>Agende uma visita</span><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h11M10.5 5.5 15 10l-4.5 4.5\" /></svg></a>",
+      "css": ".ds-btn{display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.9rem;padding:.82rem 1.1rem .82rem 1.35rem;border:1px solid transparent;border-radius:var(--radius-control);font:700 .88rem/1 var(--font-sans);letter-spacing:.01em;text-decoration:none;transition:background-color var(--duration) var(--ease-out),transform var(--duration) var(--ease-out)}.ds-btn svg{width:1.25rem;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5;transition:transform var(--duration) var(--ease-out)}.ds-btn-light{background:var(--paper-bright);color:var(--plum-display)}.ds-btn-light:hover{background:var(--white);transform:translateY(-2px)}.ds-btn:hover svg{transform:translateX(.22rem)}.ds-btn:focus-visible{outline:3px solid var(--coral);outline-offset:4px}"
+    },
+    {
+      "name": "Text Action",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Unboxed secondary exploration action inside editorial content.",
+      "html": "<a class=\"ds-text-action\" href=\"#\"><span>Conheça os programas</span><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M4 10h11M10.5 5.5 15 10l-4.5 4.5\" /></svg></a>",
+      "css": ".ds-text-action{display:inline-flex;min-height:2.75rem;align-items:center;gap:.9rem;color:var(--plum);font:700 .88rem/1 var(--font-sans);letter-spacing:.01em;text-decoration:none}.ds-text-action svg{width:1.25rem;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5;transition:transform var(--duration) var(--ease-out)}.ds-text-action:hover svg{transform:translateX(.22rem)}.ds-text-action:focus-visible{outline:3px solid var(--coral);outline-offset:4px}"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "navigation-link",
+      "description": "Small confident desktop navigation with a drawn coral response.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Método</a>",
+      "css": ".ds-nav-link{position:relative;color:var(--ink);font:700 .8rem/1 var(--font-sans);letter-spacing:.025em;text-decoration:none}.ds-nav-link::after{position:absolute;right:0;bottom:-.38rem;left:0;height:2px;background:var(--coral);content:'';transform:scaleX(0);transform-origin:right;transition:transform var(--duration) var(--ease-out)}.ds-nav-link:hover::after{transform:scaleX(1);transform-origin:left}.ds-nav-link:focus-visible{outline:3px solid var(--coral);outline-offset:4px}"
+    },
+    {
+      "name": "FAQ Disclosure",
+      "kind": "custom",
+      "refersTo": "faq-disclosure",
+      "description": "Native disclosure row separated by graphite rules.",
+      "html": "<details class=\"ds-faq\" open><summary><strong>Montessori significa que a criança faz o que quer?</strong><i aria-hidden=\"true\"></i></summary><p>A criança escolhe e participa dentro de limites claros.</p></details>",
+      "css": ".ds-faq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--ink)}.ds-faq summary{display:grid;min-height:6rem;align-items:center;gap:1rem;cursor:pointer;grid-template-columns:1fr 1.5rem;list-style:none}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq strong{color:var(--plum-display);font:400 var(--step-1)/1.2 var(--font-display)}.ds-faq i,.ds-faq i::after{display:block;width:1.2rem;height:1px;background:currentColor;content:'';transition:transform var(--duration) var(--ease-out)}.ds-faq i::after{transform:rotate(90deg)}.ds-faq[open] i::after{transform:rotate(0)}.ds-faq p{max-width:46rem;padding:0 3rem 2rem 0;color:var(--ink-soft)}.ds-faq summary:focus-visible{outline:3px solid var(--coral);outline-offset:4px}"
+    },
+    {
+      "name": "Observation Annotation",
+      "kind": "custom",
+      "refersTo": "observation-annotation",
+      "description": "Sparse pencil-like label for a non-essential process observation.",
+      "html": "<span class=\"ds-annotation\">observar<svg viewBox=\"0 0 86 34\" aria-hidden=\"true\"><path d=\"M4 10c18 2 34 4 53 1 8-1 15-3 24-7\"/><path d=\"m71 3 10 1-6 8\"/></svg></span>",
+      "css": ".ds-annotation{display:inline-flex;align-items:center;gap:.25rem;padding:.2rem .45rem;background:var(--paper);color:var(--plum-display);font:400 clamp(.82rem,1.2vw,1rem)/1 var(--font-note);transform:rotate(-2deg)}.ds-annotation svg{width:3.4rem;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.1}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ateliê de Descobertas",
+    "overview": "The system translates a prepared Montessori atelier into a warm editorial webpage. Cream paper, thesis-led plum typography, authentic documentary photography, graphite-fine rules, and sparse pencil-like notes make the experience feel observed and authored without becoming nostalgic craft theatre. The child is shown as capable, active, curious, and respected.\n\nThe atmosphere is calm, intelligent, affectionate, and ordered. Asymmetric compositions and large type create distinction, while generous negative space and normal document flow protect comprehension. Rose, eucalyptus, coral, and gold behave as purposeful fields or marks rather than decoration. Calls to action remain invitational and human.\n\nThe system rejects generic preschool cards, cartoon or rainbow styling, glossy luxury, clutter, aggressive marketing, fabricated evidence, excessive rounding, and motion without a functional purpose.",
+    "keyCharacteristics": [
+      "Warm tactile paper and flat editorial color fields.",
+      "High-contrast plum serif theses paired with a quiet humanist sans.",
+      "Authentic school photography used as proof, never as generic mood imagery.",
+      "Sparse handwritten observation marks that remain subordinate to content.",
+      "Asymmetric but ordered grids with long, calm vertical rhythm.",
+      "Invitational actions, visible focus, and restrained state feedback."
+    ],
+    "rules": [
+      { "name": "The Paper First Rule", "body": "Warm paper remains the dominant visual field; accent colors clarify chapters rather than compete for attention.", "section": "colors" },
+      { "name": "The Plum Authority Rule", "body": "Plum carries identity, theses, and actions. Do not introduce an unrelated saturated primary.", "section": "colors" },
+      { "name": "The Accent Rarity Rule", "body": "Coral and gold behave like editorial marks: brief, local, and purposeful.", "section": "colors" },
+      { "name": "The Thesis Leads Rule", "body": "Serif type states the educational idea; sans-serif text explains it. Do not use display type as body decoration.", "section": "typography" },
+      { "name": "The Handwriting Is Evidence Rule", "body": "Annotations label a process or observation in a few words. They never carry essential instructions, facts, or long copy.", "section": "typography" },
+      { "name": "The Self-Hosted Fraunces Rule", "body": "The accepted tradeoff is two locally hosted WOFF2 subsets—Latin and Latin Extended—with `font-display: swap`. This removes an external font request and improves privacy and delivery control, at the cost of maintaining the files, license, caching, and character coverage in the repository. Keep the SIL OFL license beside the assets, retain Georgia fallback behavior, and add or regenerate subsets only when verified localized copy requires more glyphs.", "section": "typography" },
+      { "name": "The Prepared Space Rule", "body": "Whitespace is active structure. Add a line, field, or alignment only when it clarifies a relationship.", "section": "layout" },
+      { "name": "The Flat Atelier Rule", "body": "Text and controls sit on the page; only photographic evidence may receive a soft physical offset.", "section": "elevation" },
+      { "name": "The Controlled Edge Rule", "body": "Organic clipping belongs to the signature hero image. Elsewhere, use clean photographic rectangles and let composition provide character.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do begin with the child as a capable protagonist and use real school evidence to support the claim.",
+      "Do preserve the original Senses logo exactly and let Plum and Soft Rose maintain brand continuity.",
+      "Do keep Portuguese canonical at `/` and English at `/en/`, with shared structure and copy sourced from `src/i18n/content.ts`.",
+      "Do use semantic headings, landmarks, native disclosures, visible focus, useful alt text, and motion-independent meaning.",
+      "Do keep photography natural, documentary, correctly cropped, and traceable through the asset manifest.",
+      "Do make calls to action invitational: learn, visit, speak, and discover."
+    ],
+    "donts": [
+      "Don't use generic preschool cards, cartoon characters, rainbow palettes, noisy doodles, or stock-school imagery.",
+      "Don't redraw the logo or present generated people, classrooms, portraits, or campus scenes as Senses evidence.",
+      "Don't invent facts, credentials, testimonials, outcomes, ages, admissions promises, or educational claims.",
+      "Don't add glass effects, glossy shadows, excessive rounding, pills, floating card walls, or gratuitous gradients.",
+      "Don't add scroll-jacking, parallax, an animated hero sequence, or motion required to understand or operate the page.",
+      "Don't duplicate localized page components, introduce external fonts, or add a client framework for presentational behavior."
+    ]
+  }
+}

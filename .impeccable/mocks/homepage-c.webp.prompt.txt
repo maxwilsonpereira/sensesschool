@@ -1,0 +1,9 @@
+Use case: ui-mockup
+Asset type: internal high-fidelity desktop homepage composition option for Senses Montessori School
+Input images: Image 1 is the committed "Ateliê de Descobertas" visual-world reference. Preserve its warm paper, plum/rose anchors, refined editorial serif with clean humanist sans, authentic documentary school-photo stance, atelier captions, pencil marks, and sophisticated playfulness. Do not copy its left-copy/right-photo split composition.
+Primary request: Create composition option C in the same visual world. Use a vertical studio-board topology: a compact logo/nav bar; a large headline spanning nearly the full width in the top half with ample breathing room; below it, one wide authentic Montessori environment photo and two smaller observational detail crops aligned as an intentional contact sheet, each with a tiny handwritten label. Place the short body and two CTAs in a calm horizontal information rail between the headline and photo contact sheet. Keep everything in normal grid flow with no fragile overlap.
+Subject: Senses is a bilingual Montessori school and nursery in Brooklin, São Paulo.
+Text (verbatim): "Toda criança nasce cientista." "Uma escola Montessori bilíngue onde ciência, afeto e autonomia fazem parte de cada descoberta." "Conheça a Senses" "Agende uma visita".
+Composition/framing: landscape 3:2 desktop website viewport; clearly a production-grade web homepage, not a poster; show a hint of the next section at the bottom.
+Color palette: #7C3E66, #F1D9D7, #FFF9ED, #E86E83, #5D8F86, #E8B64A.
+Constraints: exact required text; no invented facts, statistics, testimonials, awards, accreditation, or additional marketing copy; no unrelated logos; no watermark; no cartoon; no excessive cards; no glassmorphism; no gradients; no forest-dominant palette; no on-scroll animation concept.

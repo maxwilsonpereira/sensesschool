@@ -1,0 +1,45 @@
+{
+  "title": "Aprove a composição da homepage",
+  "question": "As três opções mantêm o Ateliê de Descobertas. Escolha a estrutura que deve orientar a implementação.",
+  "options": [
+    {
+      "id": "composition-a",
+      "label": "Diálogo de Ateliê",
+      "kicker": "DIREÇÃO ESCOLHIDA",
+      "lineage": "composição original aprovada na rodada de direção",
+      "thesis": "A tese e a vida da escola ocupam dois campos complementares, unidos por marcas de observação.",
+      "palette": ["#7C3E66", "#F1D9D7", "#FFF9ED", "#E86E83", "#5D8F86", "#E8B64A"],
+      "materials": ["papel de desenho", "fotografia documental", "lápis", "tinta ameixa"],
+      "viewport": "Texto amplo à esquerda, fotografia protagonista à direita e duas ações visíveis no primeiro quadro.",
+      "risk": "A implementação precisa evitar que a relação entre texto e foto vire um hero dividido genérico.",
+      "comp": ".impeccable/mocks/decision/model-pick.webp"
+    },
+    {
+      "id": "composition-b",
+      "label": "Parede de Descobertas",
+      "kicker": "VARIAÇÃO",
+      "lineage": "faixa fotográfica e legendas de exposição",
+      "thesis": "A vida real da escola chega primeiro; a proposta e o processo aparecem como uma parede curada de descobertas.",
+      "palette": ["#7C3E66", "#F1D9D7", "#FFF9ED", "#E86E83", "#5D8F86", "#E8B64A"],
+      "materials": ["papel de desenho", "faixa fotográfica", "selos desenhados", "legendas de ateliê"],
+      "viewport": "Foto panorâmica sob a navegação; tese, ações e observar–tentar–descobrir formam a segunda faixa do primeiro quadro.",
+      "risk": "As legendas precisam ser reduzidas no mobile para preservar o foco na tese.",
+      "comp": ".impeccable/mocks/homepage-b.webp"
+    },
+    {
+      "id": "composition-c",
+      "label": "Caderno Aberto",
+      "kicker": "VARIAÇÃO",
+      "lineage": "folha de contato e prancha de observação",
+      "thesis": "Uma declaração tipográfica forte abre a página e as imagens documentam, em seguida, o que a escola prepara para acontecer.",
+      "palette": ["#7C3E66", "#F1D9D7", "#FFF9ED", "#E86E83", "#5D8F86", "#E8B64A"],
+      "materials": ["papel de desenho", "folha de contato", "anotações manuscritas", "recortes fotográficos"],
+      "viewport": "Headline quase em largura total, trilho horizontal de texto e ações, seguido por uma fotografia ampla e dois detalhes.",
+      "risk": "O título domina mais; exige escala fluida cuidadosa para não comprimir o restante em telas baixas.",
+      "comp": ".impeccable/mocks/homepage-c.webp"
+    }
+  ],
+  "reroll": false,
+  "canon": false,
+  "steer": true
+}

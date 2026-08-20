@@ -1,0 +1,30 @@
+Use case: ui-mockup
+Asset type: one high-fidelity desktop homepage first-viewport decision comp, landscape 16:10
+
+Primary request: Design the first viewport of the Senses Montessori School homepage in the direction “A Casa que Ensina” (“The House That Teaches”), drawing lineage from Brazilian modernist residential architecture and a lush São Paulo garden. The UI should feel bright, warm, playful, sophisticated, calm, intelligent, and highly resolved—as if a family is walking through a light-filled house prepared for children.
+
+Input images: Image 1 is the original Senses logo. Preserve this logo faithfully and visibly in the header; do not redraw, simplify, restyle, recolor, or reinterpret it.
+
+Scene/backdrop: A polished desktop website interface that uses architectural color planes, warm-paper fields, strong modernist grid lines, slim structural dividers, window-like apertures, natural wood and garden cues, and a large real-school documentary-photography placeholder area. The photography area should look candid and authentic: a light-filled Montessori learning environment with child-scale furniture, tactile wooden materials, greenery, and natural daylight; no staged advertising look and no identifiable school claims.
+
+Composition/framing: Single straight-on browser-free webpage canvas, landscape 16:10. Show only the first viewport. Create an editorial yet spatial composition, not a generic left-copy/right-image split hero. Use asymmetry and overlapping architectural planes while keeping the hierarchy crisp and usable. Restrained horizontal navigation in the header, original Senses logo clearly visible, generous but purposeful whitespace. The hero headline is dominant. Both CTAs are easy to find. A subtle hint of the next section may appear at the bottom edge. Child-scale proportions and playful spatial rhythm, but no childish cartoon treatment.
+
+Style/medium: Photorealistic high-fidelity web UI mockup with excellent typography, exact spacing, credible interactions, and shippable product-design polish; contemporary Brazilian modernism rather than international luxury editorial minimalism.
+
+Lighting/mood: Bright natural daylight, warm São Paulo residential atmosphere, affectionate and human, purposeful discovery, optimistic without visual noise.
+
+Color palette: plum #7C3E66, rose #D2B0B1, warm paper #FFF7E8, turquoise #78B7B1, coral #D9667D, garden green #6D8B55. Use these as confident architectural color planes and small graphic accents with accessible contrast.
+
+Typography: Sophisticated, friendly, highly legible typography; a characterful large display face for the headline paired with restrained sans-serif navigation and body copy. Portuguese diacritics must be correct.
+
+Text (verbatim, render exactly once with no spelling changes):
+Headline: “Toda criança nasce cientista.”
+Body: “Uma escola Montessori bilíngue onde ciência, afeto e autonomia fazem parte de cada descoberta.”
+Primary CTA: “Conheça a Senses”
+Secondary CTA: “Agende uma visita”
+
+Header: Use the supplied original Senses logo. Add a restrained Portuguese navigation with only short, believable labels, keeping it visually secondary to the required hero copy. Do not invent statistics, accreditations, programs, age ranges, awards, addresses, testimonials, or factual claims.
+
+Constraints: The four required text strings must appear exactly and remain fully legible. Preserve the supplied logo faithfully. Use a real-photo-style documentary placeholder within the UI, clearly integrated as website photography. Practical responsive-looking desktop layout, strong grid, accessible contrast, generous click targets, crisp edges, realistic website proportions. No browser chrome, no device frame, no presentation board, no annotations, no watermark.
+
+Avoid: generic split hero; muted forest-green editorial aesthetic; luxury hotel mood; excessive rounded cards; pill overload; gradients; glassmorphism; rainbow overload; cartoon preschool styling; stock-photo smiles; clutter; floating 3D objects; fake awards; fake statistics; invented school claims; duplicate text; illegible microcopy; logo alteration.

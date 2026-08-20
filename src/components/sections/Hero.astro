@@ -1,0 +1,384 @@
+---
+import { Picture } from 'astro:assets';
+import ButtonLink from '../ui/ButtonLink.astro';
+import type { PageContent } from '../../i18n/content';
+import { school } from '../../i18n/content';
+import heroPhoto from '../../assets/school/historic-house.jpg';
+import photoMask from '../../assets/design/atelier-photo-mask.png';
+
+interface Props { page: PageContent }
+const { page } = Astro.props;
+const titleWords = page.hero.title.trim().split(' ');
+const accentWord = titleWords.pop() ?? '';
+const titleLead = titleWords.join(' ');
+---
+
+<section class="hero" aria-labelledby="hero-title" data-hero>
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <h1 id="hero-title">
+        {titleLead}{' '}
+        <span class="hero__accent">{accentWord}</span>
+      </h1>
+      <p class="hero__body">{page.hero.body}</p>
+      <div class="hero__actions">
+        <ButtonLink href="#philosophy" variant="solid">{page.hero.primaryCta}</ButtonLink>
+        <ButtonLink href={school.whatsappHref} variant="outline" external>
+          {page.hero.secondaryCta}
+        </ButtonLink>
+      </div>
+      <p class="hero__context">{page.hero.eyebrow}</p>
+    </div>
+
+    <figure class="hero__visual" style={`--photo-mask: url(${photoMask.src})`}>
+      <div class="hero__photo">
+        <Picture
+          src={heroPhoto}
+          width={960}
+          widths={[540, 720, 960, 1200]}
+          sizes="(max-width: 800px) 100vw, 52vw"
+          formats={['avif']}
+          fallbackFormat="webp"
+          quality="mid"
+          alt={page.campus.imageAlt}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <figcaption>
+        {page.hero.annotations.map((annotation, index) => (
+          <span class:list={[`annotation annotation--${index + 1}`]}>
+            {annotation}
+            <svg viewBox="0 0 86 34" aria-hidden="true">
+              <path d="M4 10c18 2 34 4 53 1 8-1 15-3 24-7" />
+              <path d="m71 3 10 1-6 8" />
+            </svg>
+          </span>
+        ))}
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    min-height: calc(100svh - 6rem);
+    align-items: center;
+    padding-block: clamp(3rem, 7vw, 6.5rem);
+    background: color-mix(in srgb, var(--paper) 91%, transparent);
+  }
+
+  .hero__grid {
+    display: grid;
+    align-items: center;
+    gap: clamp(2rem, 4vw, 5rem);
+    grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.07fr);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    justify-items: start;
+  }
+
+  h1 {
+    max-width: 10ch;
+  }
+
+  .hero__accent {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .hero__accent::after {
+    position: absolute;
+    right: -0.02em;
+    bottom: -0.08em;
+    left: 0.03em;
+    height: 0.11em;
+    border-radius: 50%;
+    background: var(--coral);
+    content: '';
+    transform: rotate(-1.2deg) scaleX(1.02);
+  }
+
+  .hero__body {
+    max-width: 38rem;
+    margin-top: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--ink);
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__context {
+    margin-top: 2.1rem;
+    color: var(--plum);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero__visual {
+    position: relative;
+    min-width: 0;
+  }
+
+  .hero__photo {
+    aspect-ratio: 0.9;
+    filter: drop-shadow(0 1.4rem 2rem color-mix(in srgb, var(--plum-display) 13%, transparent));
+    mask-image: var(--photo-mask);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+  }
+
+  .hero__photo :global(picture),
+  .hero__photo :global(img) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__photo :global(img) {
+    object-fit: cover;
+    object-position: 37% center;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__content h1,
+    .hero__body,
+    .hero__actions,
+    .hero__context {
+      animation: hero-ink-arrive 680ms var(--ease-out) both;
+    }
+
+    .hero__content h1 {
+      animation-delay: 60ms;
+    }
+
+    .hero__body {
+      animation-delay: 150ms;
+    }
+
+    .hero__actions {
+      animation-delay: 230ms;
+    }
+
+    .hero__context {
+      animation-delay: 300ms;
+    }
+
+    .hero__accent::after {
+      transform-origin: left center;
+      animation: hero-underline-draw 620ms 560ms var(--ease-out) both;
+    }
+
+    .hero__visual {
+      animation: hero-photo-uncover 780ms 110ms var(--ease-out) both;
+      transform-origin: left center;
+    }
+
+    .annotation {
+      animation: hero-note-arrive 460ms var(--ease-out) both;
+    }
+
+    .annotation--1 {
+      animation-delay: 690ms;
+    }
+
+    .annotation--2 {
+      animation-delay: 770ms;
+    }
+
+    .annotation--3 {
+      animation-delay: 850ms;
+    }
+  }
+
+  @keyframes hero-ink-arrive {
+    from {
+      opacity: 0;
+      transform: translateY(0.85rem);
+    }
+  }
+
+  @keyframes hero-underline-draw {
+    from {
+      opacity: 0;
+      transform: rotate(-1.2deg) scaleX(0);
+    }
+  }
+
+  @keyframes hero-photo-uncover {
+    from {
+      opacity: 0;
+      clip-path: inset(0 0 0 8%);
+      transform: translateX(1rem) scale(1.012);
+    }
+  }
+
+  @keyframes hero-note-arrive {
+    from {
+      opacity: 0;
+      transform: translateY(0.45rem) rotate(-2deg);
+    }
+  }
+
+  figcaption {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .annotation {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.45rem;
+    background: var(--paper);
+    color: var(--plum-display);
+    font-family: var(--font-note);
+    font-size: clamp(0.82rem, 1.2vw, 1rem);
+    line-height: 1;
+    transform: rotate(-2deg);
+  }
+
+  .annotation svg {
+    width: 3.4rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.1;
+  }
+
+  .annotation--1 {
+    top: 13%;
+    right: 2%;
+  }
+
+  .annotation--2 {
+    bottom: 15%;
+    left: -1%;
+  }
+
+  .annotation--3 {
+    right: 4%;
+    bottom: 4%;
+  }
+
+  .annotation--2 svg {
+    order: -1;
+    transform: scaleX(-1);
+  }
+
+  @media (max-width: 64rem) {
+    .hero {
+      min-height: auto;
+    }
+
+    .hero__grid {
+      align-items: center;
+      gap: 2.5rem;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    .hero__body {
+      font-size: var(--step-0);
+    }
+  }
+
+  @media (max-width: 50rem) {
+    .hero {
+      padding-top: 3.4rem;
+    }
+
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__content {
+      max-width: 42rem;
+    }
+
+    h1 {
+      max-width: 11ch;
+    }
+
+    .hero__visual {
+      width: min(100%, 42rem);
+      margin-inline: auto;
+    }
+
+    .hero__photo {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .hero__actions {
+      width: 100%;
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .hero__actions :global(.button-link) {
+      width: 100%;
+    }
+
+    .hero__context {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+    }
+
+    .hero__photo {
+      aspect-ratio: 4 / 3.4;
+      mask-image: none;
+    }
+
+    figcaption {
+      position: static;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-top: 0.8rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .annotation {
+      position: static;
+      padding: 0 0 0.55rem;
+      background: transparent;
+      font-size: 0.8rem;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .annotation {
+        animation-name: hero-note-arrive-mobile;
+      }
+    }
+
+    .annotation svg {
+      display: none;
+    }
+  }
+
+  @keyframes hero-note-arrive-mobile {
+    from {
+      opacity: 0;
+      transform: translateY(0.35rem);
+    }
+  }
+</style>

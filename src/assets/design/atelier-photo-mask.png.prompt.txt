@@ -1,0 +1,37 @@
+Generator: OpenAI built-in imagegen
+Mode: generation followed by one corrective edit
+Generated source: PNG, 1254 x 1254
+Delivered derivative: atelier-photo-mask.png, 1024 x 1024 RGBA
+Post-processing: the generated correction baked its transparency preview into RGB. FFmpeg normalized it into a pure-white RGBA mask, using the generated left-edge silhouette as the art-direction reference while enforcing genuine transparency, exact dimensions, and straight top/right/bottom edges.
+
+Exact initial generation prompt:
+
+Use case: stylized-concept
+Asset type: reusable transparent CSS photographic edge mask for the Senses Montessori School homepage
+Primary request: create a 1024 x 1024 alpha mask consisting of one solid opaque white rectangular field whose LEFT edge alone has a restrained irregular dry-brush and lightly torn-paper contour; transparent outside that left contour.
+Scene/backdrop: genuine transparent background outside the mask; no scene.
+Subject: a single flat opaque white mask shape occupying nearly the full square canvas.
+Style/medium: precise production-ready monochrome alpha mask, combining a subtle dry-brush edge with a refined torn-paper silhouette.
+Composition/framing: square 1:1 canvas; top, right, and bottom edges must remain perfectly straight, flush to the canvas boundaries, and fully opaque; only the left edge may vary, with shallow organic notches and fibres extending no farther than about 8% of the canvas width; the central 90% of the canvas must be uninterrupted opaque white.
+Lighting/mood: none; flat graphic mask with no shading.
+Color palette: opaque pure white #FFFFFF for the mask; fully transparent RGBA outside the left contour; no gray, black, or other colors.
+Materials/textures: edge silhouette only; any dry-brush or torn-paper character must be expressed through alpha transparency at the left contour, never through surface shading inside the mask.
+Constraints: exact 1024 x 1024 PNG with genuine transparency; one contiguous opaque field; top, right, and bottom edges fully straight and opaque to the canvas boundary; irregularity only on the left edge; no holes or transparency inside the white field; no drawing, text, marks, symbols, logo, color, watermark, border, frame, shadow, gradient, or photographic content.
+Avoid: irregular top edge, irregular right edge, irregular bottom edge, rounded corners, vignettes, gray pixels inside the field, internal texture, paper color, canvas texture, brush strokes within the field, isolated flecks, disconnected pieces, people, classrooms, school photos, icons, logos, lettering, watermark.
+
+Exact corrective edit prompt:
+
+Use case: precise-object-edit
+Asset type: reusable transparent CSS photographic edge mask
+Input images: Image 1 is the edit target.
+Primary request: correct only the mask polarity and outer-edge geometry. Make the entire central and right portion a single solid opaque pure-white field. Transparency must exist only outside the restrained irregular contour along the LEFT edge.
+Composition/framing: preserve the 1024 x 1024 square. The top edge, right edge, and bottom edge must be perfectly straight, pure opaque white, and flush to the canvas boundaries. The central 90% of the canvas must be uninterrupted opaque white. Keep shallow dry-brush/torn-paper variation only along the left edge, no farther than about 8% into the width.
+Color/alpha: pure opaque white #FFFFFF mask; genuinely transparent pixels only to the left of the irregular contour. Remove the black/transparent central field. Remove all gray shading, glow, blur, feathering, vignette, and brush texture around the top, right, and bottom.
+Constraints: one contiguous opaque field; no holes or transparency inside; no irregularity on top, right, or bottom; no drawing, text, marks, symbols, logo, color, watermark, border, shadow, gradient, or photographic content.
+Avoid: black center, transparent center, white outer frame, rounded or brushed top/right/bottom edges, internal texture, paper surface, disconnected flecks, objects, people, classrooms, icons, logos, lettering, watermark.
+
+Final normalization recipe:
+
+- RGB: pure white (#FFFFFF) throughout.
+- Alpha: opaque to the right of a restrained multi-frequency contour confined to the leftmost ~8%; transparent to its left; approximately 2.4 px antialiased transition.
+- Geometry: 1024 x 1024; top/right/bottom canvas boundaries straight; no internal holes.

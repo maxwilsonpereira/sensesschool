@@ -1,0 +1,4 @@
+{
+  "prompt": "Asset: public/images/brand/senses-logo.webp. Origin: Repository-derived WebP copy of the pre-existing original Senses wordmark at public/images/brand/senses-logo.png. Repository evidence: scripts/optimize-social-card.mjs records the conversion to 225 x 90 WebP at quality 82; PRODUCT.md requires preserving the original Senses logo. No designer, creation date, or upstream source URL is recorded in the repository.",
+  "createdAt": "2026-08-20T16:44:22.562Z"
+}

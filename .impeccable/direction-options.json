@@ -1,0 +1,119 @@
+{
+  "title": "Escolha o novo mundo visual da Senses",
+  "question": "Qual direção deve orientar o novo design system e a homepage?",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "A Casa que Ensina",
+      "kicker": "THE ROLL",
+      "lineage": "arquitetura residencial modernista brasileira e seus jardins",
+      "thesis": "A homepage se percorre como a casa da Senses: luz, aberturas, escala infantil e descobertas em cada ambiente.",
+      "palette": ["#7C3E66", "#D2B0B1", "#FFF7E8", "#78B7B1", "#D9667D", "#6D8B55"],
+      "materials": ["papel mineral claro", "madeira natural", "fotografia solar", "planos de cor arquitetônicos"],
+      "viewport": "Um primeiro quadro luminoso une uma afirmação grande em ameixa a uma fotografia autêntica em escala generosa, com a visita visível sem competir com a mensagem.",
+      "risk": "Exige recortes fotográficos rigorosos para não parecer apenas uma revista de arquitetura.",
+      "raised": [
+        {"from": "Jacquard", "raise": "Cada seção passa a ter uma lógica de encaixe visível, como partes de um ambiente preparado."},
+        {"from": "Suminagashi", "raise": "A paleta recebe movimento suave por campos de cor, sem efeitos de rolagem ou ruído decorativo."},
+        {"from": "Forja", "raise": "A narrativa mostra transformação concreta: observar, tentar, ajustar e conquistar."}
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.webp"
+    },
+    {
+      "id": "model-pick",
+      "label": "Ateliê de Descobertas",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "ateliês pedagógicos e cadernos de observação brasileiros",
+      "thesis": "O trabalho da criança é tratado como cultura: fotografias, gestos, materiais e pequenas observações compõem um ateliê vivo.",
+      "palette": ["#7C3E66", "#F1D9D7", "#FFF9ED", "#E86E83", "#5D8F86", "#E8B64A"],
+      "materials": ["papel de desenho", "marcas de lápis", "fotografia documental", "etiquetas de ateliê"],
+      "viewport": "Uma composição assimétrica apresenta a tese, uma imagem de concentração infantil e pequenas legendas que revelam o que está se desenvolvendo.",
+      "risk": "É a direção mais familiar ao universo Montessori e pode perder surpresa se executada com timidez.",
+      "comp": ".impeccable/mocks/decision/model-pick.webp"
+    },
+    {
+      "id": "challenger-ink",
+      "label": "Correntes de Curiosidade",
+      "verdict": "competitive",
+      "lineage": "suminagashi e desenho fluido sobre papel",
+      "thesis": "A curiosidade aparece como uma corrente que conecta ciência, afeto, autonomia e uma segunda língua.",
+      "palette": ["#FFF9F0", "#7C3E66", "#D2B0B1", "#263F55"],
+      "materials": ["tinta diluída", "papel de fibra", "linhas fluidas", "fotografia recortada"],
+      "viewport": "Uma faixa de tinta ameixa e rosa atravessa um campo claro, liga a tese a uma fotografia real e conduz à ação principal.",
+      "case": "Mantém a calma e torna descoberta e causa-e-efeito visíveis; perde um pouco de clareza institucional para a direção arquitetônica.",
+      "risk": "Pode parecer uma marca cultural abstrata se a fotografia e a informação factual não liderarem.",
+      "comp": ".impeccable/mocks/decision/challenger-ink.webp",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-fluid-ink-basin-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/medium-native-fluid-ink-basin.webp"
+    },
+    {
+      "id": "challenger-jacquard",
+      "label": "Trama Intencional",
+      "verdict": "declined",
+      "lineage": "brocado jacquard e instruções de tear",
+      "thesis": "Cada decisão diária forma um ambiente coerente para a criança.",
+      "palette": ["#17263D", "#D4A84D", "#F6EBD7", "#7C3E66"],
+      "materials": ["fio dourado", "seda escura", "cartões perfurados"],
+      "viewport": "Uma trama visual transforma princípios Montessori em linhas conectadas.",
+      "case": "É sofisticada, mas escura e cerebral demais para a luz, a infância e a hospitalidade da Senses.",
+      "kept": "Disciplina de sistema: cada elemento deve revelar como se conecta ao todo.",
+      "risk": "Pode comunicar luxo adulto antes de acolhimento e desenvolvimento infantil.",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-jacquard-punched-brocade-hero.webp"
+    },
+    {
+      "id": "challenger-loteria",
+      "label": "Jogo de Descobertas",
+      "verdict": "declined",
+      "lineage": "cartas populares ilustradas",
+      "thesis": "Cada princípio aparece como uma peça reconhecível em um mapa de descobertas.",
+      "palette": ["#F4C94C", "#D9667D", "#58AAA8", "#7C3E66"],
+      "materials": ["tinta plana", "cartas numeradas", "contorno impresso"],
+      "viewport": "Uma carta principal e um mapa colorido organizam a proposta da escola.",
+      "case": "Tem clareza lúdica, mas a referência cultural é mexicana e infantiliza a sofisticação buscada.",
+      "kept": "Correspondência imediata entre imagem, nome e ideia.",
+      "risk": "Pode parecer um jogo para crianças em vez de uma escola dirigida a famílias.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-loteria-tabla-night-hero.webp"
+    },
+    {
+      "id": "challenger-forge",
+      "label": "Forma pelo Fazer",
+      "verdict": "declined",
+      "lineage": "metal em transformação sob uma sequência de golpes",
+      "thesis": "O processo de tentar, ajustar e conquistar se torna visível.",
+      "palette": ["#201C1B", "#F06A3B", "#EFE8DB", "#7C3E66"],
+      "materials": ["metal aquecido", "marcas de medida", "escala industrial"],
+      "viewport": "Uma sequência de antes e depois mostra desenvolvimento como transformação.",
+      "case": "A transformação é clara, mas a materialidade é dura, adulta e incompatível com o afeto da marca.",
+      "kept": "Toda promessa importante deve mostrar um resultado ou mecanismo concreto.",
+      "risk": "Comunica força e produção onde a escola precisa comunicar observação e cuidado.",
+      "hero": "https://impeccable.style/worlds/cards/metal-forging-patina-blacksmith-scale-shower-hero.webp"
+    },
+    {
+      "id": "challenger-moire",
+      "label": "Galeria Óptica",
+      "verdict": "declined",
+      "lineage": "campos ópticos em preto e branco",
+      "thesis": "A atenção muda o que se percebe.",
+      "palette": ["#FFFFFF", "#111111", "#7C3E66"],
+      "materials": ["tinta plana", "linhas de frequência", "margens de galeria"],
+      "viewport": "Um campo óptico conduz o olhar até a tese principal.",
+      "case": "Expressa percepção, mas a alta estimulação contradiz a calma defendida pela escola.",
+      "kept": "Atenção rigorosa: uma única hierarquia forte por viewport.",
+      "risk": "Fadiga visual e acessibilidade fraca para uma experiência que deve proteger a concentração.",
+      "hero": "https://impeccable.style/worlds/cards/design-canon-riley-moire-gallery-hero.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "comp", "toggle": true},
+  "canon": true,
+  "canonCard": {
+    "label": "Escola premium contemporânea",
+    "thesis": "Uma homepage escolar convencional, executada com excelente fotografia, tipografia e clareza.",
+    "palette": ["#FFFFFF", "#7C3E66", "#D2B0B1", "#28473E"],
+    "materials": ["grid limpo", "fotografia de campus", "cartões discretos"],
+    "viewport": "Cabeçalho claro, hero fotográfico dividido, promessa, texto curto e botão de visita.",
+    "risk": "É imediatamente compreensível, mas por definição se parece com outras escolas premium.",
+    "comp": ".impeccable/mocks/decision/canon.webp"
+  },
+  "steer": true
+}

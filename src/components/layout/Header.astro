@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navigation';
 ---
 
 <header class="site-header" data-header>
@@ -16,7 +17,7 @@ const { page } = Astro.props;
     <a class="brand" href={withBase(page.path)} aria-label={`${school.name} — home`}>
       <img
         src={withBase('/images/brand/senses-logo.webp')}
-        alt="Senses"
+        alt=""
         width="225"
         height="90"
       />
@@ -30,10 +31,12 @@ const { page } = Astro.props;
       data-menu-toggle
     >
       <span data-menu-label>{page.nav.menu}</span>
-      <span class="menu-toggle__lines" aria-hidden="true"><i></i><i></i></span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 8h16M4 16h16" />
+      </svg>
     </button>
 
-    <nav class="primary-nav" id="primary-navigation" aria-label="Primary" data-nav>
+    <nav class="primary-nav" id="primary-navigation" aria-label={navLabel} data-nav>
       <ul>
         {page.nav.items.map((item) => (
           <li><a href={withBase(item.href)}>{item.label}</a></li>
@@ -63,7 +66,7 @@ const { page } = Astro.props;
     const toggle = header.querySelector('[data-menu-toggle]');
     const nav = header.querySelector('[data-nav]');
     const label = header.querySelector('[data-menu-label]');
-    const openLabel = toggle?.textContent?.trim() || 'Menu';
+    const openLabel = label?.textContent?.trim() || 'Menu';
     const closeLabel = document.documentElement.lang === 'pt-BR' ? 'Fechar' : 'Close';
 
     const setOpen = (open) => {
@@ -84,89 +87,87 @@ const { page } = Astro.props;
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') setOpen(false);
     });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) setOpen(false);
+    });
   })();
 </script>
 
 <style>
   .site-header {
-    position: absolute;
+    position: sticky;
     z-index: 50;
     top: 0;
-    right: 0;
-    left: 0;
-    color: var(--ink);
-    border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-    background: color-mix(in srgb, var(--paper) 88%, transparent);
-    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
   }
 
   .site-header__inner {
     display: grid;
     width: var(--container);
-    min-height: 5.5rem;
+    min-height: 6rem;
     align-items: center;
     margin-inline: auto;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto minmax(0, 1fr);
   }
 
   .brand {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     display: flex;
-    width: 7.25rem;
-    height: 3.2rem;
+    width: clamp(8.4rem, 11vw, 10.5rem);
     align-items: center;
   }
 
   .brand img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
     mix-blend-mode: multiply;
   }
 
   .primary-nav {
     display: flex;
+    min-width: 0;
     align-items: center;
     justify-content: flex-end;
-    gap: clamp(1rem, 2vw, 2.5rem);
+    gap: clamp(1.2rem, 2.5vw, 3rem);
   }
 
   .primary-nav ul {
     display: flex;
     align-items: center;
-    gap: clamp(0.9rem, 1.7vw, 2rem);
+    gap: clamp(1rem, 1.8vw, 2rem);
     padding: 0;
-    margin: 0;
     list-style: none;
   }
 
   .primary-nav li a,
   .language {
-    font-size: 0.78rem;
+    position: relative;
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.035em;
+    letter-spacing: 0.025em;
     text-decoration: none;
   }
 
-  .primary-nav li a {
-    position: relative;
-  }
-
-  .primary-nav li a::after {
+  .primary-nav li a::after,
+  .language::after {
     position: absolute;
     right: 0;
-    bottom: -0.35rem;
+    bottom: -0.38rem;
     left: 0;
-    height: 1px;
-    background: currentColor;
+    height: 2px;
+    background: var(--coral);
     content: '';
     transform: scaleX(0);
     transform-origin: right;
     transition: transform var(--duration) var(--ease-out);
   }
 
-  .primary-nav li a:hover::after {
+  .primary-nav li a:hover::after,
+  .language:hover::after {
     transform: scaleX(1);
     transform-origin: left;
   }
@@ -174,82 +175,67 @@ const { page } = Astro.props;
   .primary-nav__actions {
     display: flex;
     align-items: center;
-    gap: 1.1rem;
-  }
-
-  .language {
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
-    text-underline-offset: 0.35rem;
+    gap: 1rem;
   }
 
   .menu-toggle {
     display: none;
   }
 
-  @media (max-width: 70rem) {
+  @media (max-width: 64rem) {
     .site-header__inner {
-      min-height: 5.25rem;
-    }
-
-    .brand {
-      width: 7rem;
-      height: 3rem;
+      min-height: 5.4rem;
     }
 
     .menu-toggle {
       position: relative;
       z-index: 3;
       display: inline-flex;
-      cursor: pointer;
-      min-width: 5.6rem;
-      min-height: 2.8rem;
+      min-width: 5.8rem;
+      min-height: 2.9rem;
       align-items: center;
       justify-content: center;
       justify-self: end;
-      gap: 0.7rem;
+      gap: 0.65rem;
       padding: 0.55rem 0.8rem;
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      background: color-mix(in srgb, var(--paper) 80%, transparent);
-      color: var(--ink);
-      font-size: 0.76rem;
+      border-radius: var(--radius-control);
+      background: var(--paper-bright);
+      color: var(--plum-display);
+      cursor: pointer;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
     }
 
-    .menu-toggle__lines {
-      display: grid;
-      width: 0.9rem;
-      gap: 0.25rem;
+    .menu-toggle svg {
+      width: 1.15rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-width: 1.7;
     }
 
-    .menu-toggle__lines i {
-      display: block;
-      height: 1px;
-      background: currentColor;
-      transition: transform var(--duration) var(--ease-out);
+    [data-open] .menu-toggle svg path:first-child {
+      transform: translateY(4px) rotate(45deg);
+      transform-origin: center;
     }
 
-    [data-open] .menu-toggle__lines i:first-child {
-      transform: translateY(2.5px) rotate(45deg);
-    }
-
-    [data-open] .menu-toggle__lines i:last-child {
-      transform: translateY(-2.5px) rotate(-45deg);
+    [data-open] .menu-toggle svg path:last-child {
+      transform: translateY(-4px) rotate(-45deg);
+      transform-origin: center;
     }
 
     .primary-nav {
       position: fixed;
-      z-index: 1;
+      z-index: 2;
       inset: 0;
       display: grid;
       visibility: hidden;
+      width: 100%;
       align-content: center;
       justify-content: stretch;
-      grid-template-columns: minmax(0, 1fr);
-      padding: 7rem 1.5rem 2rem;
-      background: var(--paper);
+      padding: 7rem clamp(1.25rem, 7vw, 4rem) 2rem;
+      background: var(--rose-soft);
       opacity: 0;
       transition:
         opacity var(--duration) var(--ease-out),
@@ -269,12 +255,13 @@ const { page } = Astro.props;
 
     .primary-nav li a {
       display: block;
-      padding-block: 0.7rem;
+      padding-block: 0.55rem;
       border-bottom: 1px solid var(--line);
       font-family: var(--font-display);
-      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-size: clamp(2.3rem, 8vw, 4.4rem);
       font-weight: 400;
       letter-spacing: -0.03em;
+      line-height: 1;
     }
 
     .primary-nav__actions {
