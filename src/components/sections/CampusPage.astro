@@ -306,7 +306,7 @@ const chapterKinds = ['history', 'rooms', 'garden'] as const;
     font-family: var(--font-display);
     line-height: 1.05;
     text-align: center;
-    transition: background-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out);
+    transition: background-color 760ms var(--ease-out), color 760ms var(--ease-out);
   }
 
   .campus-chapter__number {
@@ -315,6 +315,7 @@ const chapterKinds = ['history', 'rooms', 'garden'] as const;
     font-size: var(--step--1);
     font-weight: 700;
     letter-spacing: 0.08em;
+    transition: color 760ms var(--ease-out);
   }
 
   .campus-chapter__label strong {
