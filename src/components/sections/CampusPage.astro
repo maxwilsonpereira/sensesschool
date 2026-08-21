@@ -168,6 +168,8 @@ const chapterKinds = ['history', 'rooms', 'garden'] as const;
 
   if (!campusMotion.matches && 'IntersectionObserver' in window) {
     const items = Array.from(document.querySelectorAll<HTMLElement>('[data-campus-reveal]'));
+    const blockScenes = Array.from(document.querySelectorAll<HTMLElement>('.campus-block-scene'));
+    const mobileBlockMotion = window.matchMedia('(max-width: 64rem) and (hover: none)');
     document.documentElement.classList.add('campus-motion-ready');
 
     const observer = new IntersectionObserver((entries, currentObserver) => {
@@ -186,6 +188,20 @@ const chapterKinds = ['history', 'rooms', 'garden'] as const;
           observer.observe(item);
         }
       });
+
+      if (mobileBlockMotion.matches) {
+        const blockObserver = new IntersectionObserver((entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-settled');
+            currentObserver.unobserve(entry.target);
+          });
+        }, { rootMargin: '-49% 0px -49% 0px', threshold: 0 });
+
+        blockScenes.forEach((scene) => {
+          blockObserver.observe(scene);
+        });
+      }
     });
   }
 </script>
@@ -403,6 +419,25 @@ const chapterKinds = ['history', 'rooms', 'garden'] as const;
     .campus-chapter a:focus-visible .campus-block--6 { transform: translateY(-0.38rem) rotate(1deg); }
     .campus-chapter a:hover .campus-block--7,
     .campus-chapter a:focus-visible .campus-block--7 { transform: translateY(-0.58rem) rotate(-2deg); }
+  }
+
+  @media (max-width: 64rem) and (hover: none) and (prefers-reduced-motion: no-preference) {
+    .campus-block--1 { --settle-transform: translateY(-0.2rem); --settle-delay: 0ms; }
+    .campus-block--2 { --settle-transform: translateY(-0.5rem) rotate(-1.5deg); --settle-delay: 45ms; }
+    .campus-block--3 { --settle-transform: translateY(-0.75rem) rotate(1.5deg); --settle-delay: 90ms; }
+    .campus-block--4 { --settle-transform: translate(0.18rem, -0.45rem) rotate(2deg); --settle-delay: 135ms; }
+    .campus-block--5 { --settle-transform: translate(-0.16rem, -0.32rem) rotate(-1deg); --settle-delay: 180ms; }
+    .campus-block--6 { --settle-transform: translateY(-0.38rem) rotate(1deg); --settle-delay: 225ms; }
+    .campus-block--7 { --settle-transform: translateY(-0.58rem) rotate(-2deg); --settle-delay: 270ms; }
+
+    .campus-block-scene.is-settled .campus-block {
+      animation: campus-block-settle 1000ms var(--ease-out) var(--settle-delay) both;
+    }
+  }
+
+  @keyframes campus-block-settle {
+    from { transform: var(--settle-transform); }
+    to { transform: none; }
   }
 
   .campus-history {
