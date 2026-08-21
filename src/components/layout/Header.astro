@@ -4,67 +4,56 @@ import type { PageContent } from '../../i18n/content';
 import { school } from '../../i18n/content';
 import { withBase } from '../../utils/paths';
 
-interface Props {
-  page: PageContent;
-}
-
+interface Props { page: PageContent; }
 const { page } = Astro.props;
 const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navigation';
+const socialLabel = page.lang === 'pt-BR' ? 'Redes sociais' : 'Social media';
+const languageLabel = page.lang === 'pt-BR' ? 'Idioma' : 'Language';
+const isPortuguese = page.lang === 'pt-BR';
+const socialLinks = [
+  { label: 'Instagram', href: 'https://www.instagram.com/sensesschool/', icon: 'instagram' },
+  { label: 'Facebook', href: 'https://www.facebook.com/sensesschool', icon: 'facebook' },
+] as const;
 ---
 
 <header class="site-header" data-header>
   <div class="site-header__inner">
     <a class="brand" href={withBase(page.path)} aria-label={`${school.name} — home`}>
       <span class="brand__logos" aria-hidden="true">
-        <img
-          class="brand__logo brand__logo--full"
-          src={withBase('/images/brand/senses-logo-full.png')}
-          alt=""
-          width="300"
-          height="189"
-        />
-        <img
-          class="brand__logo brand__logo--compact"
-          src={withBase('/images/brand/senses-logo.webp')}
-          alt=""
-          width="225"
-          height="90"
-        />
+        <img class="brand__logo brand__logo--full" src={withBase('/images/brand/senses-logo-full.png')} alt="" width="300" height="189" />
+        <img class="brand__logo brand__logo--compact" src={withBase('/images/brand/senses-logo.webp')} alt="" width="225" height="90" />
       </span>
     </a>
 
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="primary-navigation"
-      data-menu-toggle
-    >
-      <span data-menu-label>{page.nav.menu}</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 8h16" />
-        <path d="M4 16h16" />
-      </svg>
-    </button>
+    <div class="header-controls">
+      <nav class="header-socials" aria-label={socialLabel}>
+        {socialLinks.map((social) => (
+          <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+            {social.icon === 'instagram' ? (
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle class="social-icon__dot" cx="17.35" cy="6.65" r=".85" /></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.8 21v-8h2.8l.42-3.12H13.8V7.9c0-.9.26-1.52 1.58-1.52h1.78V3.62c-.3-.04-1.36-.12-2.58-.12-2.55 0-4.3 1.5-4.3 4.28v2.1H7.4V13h2.88v8h3.52Z" /></svg>
+            )}
+          </a>
+        ))}
+      </nav>
+      <div class="language-switcher" aria-label={languageLabel}>
+        <a class:list={['language-switcher__link', { 'is-active': isPortuguese }]} href={withBase('/')} hreflang="pt-BR" lang="pt-BR" aria-current={isPortuguese ? 'page' : undefined}>PT</a>
+        <a class:list={['language-switcher__link', { 'is-active': !isPortuguese }]} href={withBase('/en/')} hreflang="en" lang="en" aria-current={!isPortuguese ? 'page' : undefined}>EN</a>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label={page.nav.menu} data-menu-toggle data-open-label={page.nav.menu} data-close-label={page.nav.close}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16" /><path d="M4 12h16" /><path d="M4 18h16" /></svg>
+      </button>
+    </div>
 
     <nav class="primary-nav" id="primary-navigation" aria-label={navLabel} data-nav>
-      <ul>
-        {page.nav.items.map((item) => (
-          <li><a href={withBase(item.href)}>{item.label}</a></li>
-        ))}
-      </ul>
+      <ul>{page.nav.items.map((item) => (
+        <li>
+          <a class:list={{ 'is-current': item.href === page.path }} href={withBase(item.href)} aria-current={item.href === page.path ? 'page' : undefined}>{item.label}</a>
+        </li>
+      ))}</ul>
       <div class="primary-nav__actions">
-        <a
-          class="language"
-          href={withBase(page.alternatePath)}
-          hreflang={page.lang === 'pt-BR' ? 'en' : 'pt-BR'}
-          lang={page.lang === 'pt-BR' ? 'en' : 'pt-BR'}
-        >
-          {page.nav.language}
-        </a>
-        <ButtonLink href={school.whatsappHref} variant="solid" external>
-          {page.nav.visit}
-        </ButtonLink>
+        <ButtonLink href={school.whatsappHref} variant="solid" external>{page.nav.visit}</ButtonLink>
       </div>
     </nav>
   </div>
@@ -76,303 +65,72 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
     if (!header) return;
     const toggle = header.querySelector('[data-menu-toggle]');
     const nav = header.querySelector('[data-nav]');
-    const label = header.querySelector('[data-menu-label]');
-    const openLabel = label?.textContent?.trim() || 'Menu';
-    const closeLabel = document.documentElement.lang === 'pt-BR' ? 'Fechar' : 'Close';
+    const openLabel = toggle?.dataset.openLabel || 'Menu';
+    const closeLabel = toggle?.dataset.closeLabel || 'Close';
     let compact = window.scrollY > 32;
     let scrollFrame;
-
-    const syncCompact = () => {
-      const nextCompact = compact ? window.scrollY > 10 : window.scrollY > 32;
-      if (nextCompact !== compact) compact = nextCompact;
-      header.toggleAttribute('data-compact', compact);
-      scrollFrame = undefined;
-    };
-
-    const queueCompactSync = () => {
-      if (scrollFrame) return;
-      scrollFrame = window.requestAnimationFrame(syncCompact);
-    };
-
+    const syncCompact = () => { const nextCompact = compact ? window.scrollY > 10 : window.scrollY > 32; if (nextCompact !== compact) compact = nextCompact; header.toggleAttribute('data-compact', compact); scrollFrame = undefined; };
+    const queueCompactSync = () => { if (!scrollFrame) scrollFrame = window.requestAnimationFrame(syncCompact); };
     const setOpen = (open) => {
       header.toggleAttribute('data-open', open);
       toggle?.setAttribute('aria-expanded', String(open));
-      if (label) label.textContent = open ? closeLabel : openLabel;
-      document.body.style.overflow = open ? 'hidden' : '';
+      toggle?.setAttribute('aria-label', open ? closeLabel : openLabel);
+      document.body.classList.toggle('menu-is-open', open);
+      document.documentElement.classList.toggle('menu-is-open', open);
     };
-
-    toggle?.addEventListener('click', () => {
-      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-    });
-
-    nav?.addEventListener('click', (event) => {
-      if (event.target instanceof HTMLAnchorElement) setOpen(false);
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setOpen(false);
-    });
-
+    toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    nav?.addEventListener('click', (event) => { if (event.target instanceof HTMLAnchorElement) setOpen(false); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setOpen(false); });
     syncCompact();
     window.addEventListener('scroll', queueCompactSync, { passive: true });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 1024) setOpen(false);
-    });
+    window.addEventListener('resize', () => { if (window.innerWidth > 1200) setOpen(false); });
   })();
 </script>
 
 <style>
-  .site-header {
-    position: sticky;
-    z-index: 50;
-    top: 0;
-    border-bottom: 1px solid var(--line);
-    background: var(--paper);
-    transition:
-      background-color 365ms var(--ease-out),
-      box-shadow 365ms var(--ease-out);
+  .site-header { position: sticky; z-index: 50; top: 0; border-bottom: 1px solid var(--line); background: var(--paper); transition: background-color 365ms var(--ease-out), box-shadow 365ms var(--ease-out); }
+  .site-header[data-compact] { background-color: color-mix(in srgb, var(--paper) 97%, var(--paper-bright)); box-shadow: 0 0.7rem 2rem color-mix(in srgb, var(--plum-display) 8%, transparent); }
+  .site-header__inner { display: grid; width: var(--container); align-items: center; margin-inline: auto; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-rows: 6rem; transition: grid-template-rows 415ms var(--ease-out); }
+  [data-compact] .site-header__inner { grid-template-rows: 4.35rem; }
+  .brand { position: relative; z-index: 3; width: clamp(8.4rem, 11vw, 10.5rem); height: 5.4rem; }
+  .brand__logos { position: relative; display: block; width: 100%; height: 100%; }
+  .brand__logo { position: absolute; top: 50%; left: 0; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; transform-origin: left center; transition: opacity 285ms ease-out, clip-path 495ms var(--ease-out), transform 495ms var(--ease-out); }
+  .brand__logo--full { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(-50%) scale(1); }
+  .brand__logo--compact { opacity: 0; transform: translateY(-36%) scale(0.82); }
+  [data-compact] .brand__logo--full { clip-path: inset(0 0 62% 0); opacity: 0; transform: translateY(-66%) scale(0.92); }
+  [data-compact] .brand__logo--compact { opacity: 1; transform: translateY(-50%) scale(0.84); }
+  .header-controls, .primary-nav, .primary-nav ul, .primary-nav__actions, .header-socials, .language-switcher { display: flex; align-items: center; }
+  .header-controls { position: relative; z-index: 3; grid-column: 3; grid-row: 1; justify-self: end; gap: clamp(0.7rem, 1.2vw, 1.25rem); margin-inline-start: clamp(1rem, 2vw, 2rem); }
+  .header-socials { gap: 0.55rem; }
+  .header-socials a { display: grid; width: 1.8rem; height: 1.8rem; place-items: center; border: 1px solid transparent; border-radius: var(--radius-control); color: var(--plum-display); transition: color var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out), background-color var(--duration) var(--ease-out); }
+  .header-socials a:hover { border-color: var(--line); background: var(--paper-bright); color: var(--plum); }
+  .header-socials svg { width: 1rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.65; }
+  .header-socials a:last-child svg { fill: currentColor; stroke: none; }
+  .social-icon__dot { fill: currentColor; stroke: none; }
+  .language-switcher { gap: 0.18rem; padding: 0.18rem; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--paper-bright); }
+  .language-switcher__link { min-width: 2.2rem; padding: 0.48rem 0.42rem; border-radius: var(--radius-control); color: var(--plum-display); font-size: var(--step--1); font-weight: 700; letter-spacing: 0.08em; line-height: 1; text-align: center; text-decoration: none; transition: background-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out); }
+  .language-switcher__link:hover { background: var(--rose-soft); }
+  .language-switcher__link.is-active { background: var(--plum); color: var(--white); }
+  .primary-nav { grid-column: 2; grid-row: 1; min-width: 0; justify-content: flex-end; gap: clamp(1.2rem, 2.5vw, 3rem); }
+  .primary-nav ul { gap: clamp(1rem, 1.8vw, 2rem); padding: 0; list-style: none; }
+  .primary-nav li a, .primary-nav__socials a { position: relative; font-size: 1.04rem; font-weight: 700; letter-spacing: 0.025em; text-decoration: none; }
+  .primary-nav li a::after { position: absolute; right: 0; bottom: -0.38rem; left: 0; height: 2px; background: var(--coral); content: ''; transform: scaleX(0); transform-origin: right; transition: transform var(--duration) var(--ease-out); }
+  .primary-nav li a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .primary-nav__actions { gap: 1rem; }
+  .menu-toggle { display: none; }
+  @media (max-width: 75rem) {
+    .site-header__inner { grid-template-rows: 5.4rem; } .brand { width: 7.2rem; height: 4.9rem; } [data-compact] .site-header__inner { grid-template-rows: 4.25rem; } .site-header[data-open] { position: fixed; z-index: 60; top: 0; right: 0; left: 0; }
+    .header-controls { gap: 0.45rem; margin-inline-start: 0; }.header-socials { display: flex; gap: 0.2rem; }.header-socials a { width: 2rem; height: 2rem; }.header-socials svg { width: 0.92rem; }.language-switcher { gap: 0.1rem; padding: 0.12rem; }.language-switcher__link { min-width: 1.95rem; padding: 0.45rem 0.28rem; }
+    .menu-toggle { position: relative; display: inline-grid; width: 2.9rem; height: 2.9rem; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--paper-bright); color: var(--plum-display); cursor: pointer; transform-origin: right center; transition: border-color var(--duration) var(--ease-out), background-color var(--duration) var(--ease-out), transform 415ms var(--ease-out); }
+    [data-compact] .menu-toggle { transform: scale(0.96); } .menu-toggle svg { width: 1.2rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-width: 1.7; } .menu-toggle svg path { transform-box: fill-box; transform-origin: center; transition: opacity 220ms var(--ease-out), transform 360ms var(--ease-out); }
+    [data-open] .menu-toggle svg path:first-child { transform: translateY(6px) rotate(45deg); } [data-open] .menu-toggle svg path:nth-child(2) { opacity: 0; transform: scaleX(0.25); } [data-open] .menu-toggle svg path:last-child { transform: translateY(-6px) rotate(-45deg); }
+    .primary-nav { position: fixed; z-index: 2; inset: 0; grid-column: auto; display: grid; width: 100%; align-content: start; justify-content: stretch; overflow-y: auto; overscroll-behavior: contain; padding: clamp(5.9rem, 11vh, 8rem) clamp(1.25rem, 7vw, 4rem) 2rem; background: var(--rose-soft); opacity: 1; clip-path: inset(0); transition: clip-path 620ms var(--ease-out), opacity 430ms ease-out; }
+    html[data-nav-ready] .primary-nav { visibility: hidden; opacity: 0; clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path 460ms var(--ease-out), opacity 280ms ease-out, visibility 0s linear 460ms; }
+    html[data-nav-ready] [data-open] .primary-nav { visibility: visible; opacity: 1; clip-path: inset(0); pointer-events: auto; transition: clip-path 650ms var(--ease-out), opacity 500ms var(--ease-out); }
+    .primary-nav ul { display: grid; width: 100%; gap: 0; } .primary-nav li { opacity: 1; transform: none; } .primary-nav li a { display: block; padding-block: 0.64rem; border-bottom: 1px solid var(--line); font-family: var(--font-display); font-size: calc(var(--step-3) * 1.2); font-weight: 400; letter-spacing: -0.03em; line-height: 1; transition: color var(--duration) var(--ease-out); } .primary-nav li a::after { display: none; } .primary-nav li a:hover, .primary-nav li a:focus-visible, .primary-nav li a.is-current { color: var(--plum); }
+    html[data-nav-ready] .primary-nav li { opacity: 0; transform: translateY(1rem); transition: opacity 360ms var(--ease-out), transform 520ms var(--ease-out); } html[data-nav-ready] [data-open] .primary-nav li { opacity: 1; transform: translateY(0); } html[data-nav-ready] [data-open] .primary-nav li:nth-child(1) { transition-delay: 110ms; } html[data-nav-ready] [data-open] .primary-nav li:nth-child(2) { transition-delay: 165ms; } html[data-nav-ready] [data-open] .primary-nav li:nth-child(3) { transition-delay: 220ms; } html[data-nav-ready] [data-open] .primary-nav li:nth-child(4) { transition-delay: 275ms; } html[data-nav-ready] [data-open] .primary-nav li:nth-child(5) { transition-delay: 330ms; }
+    .primary-nav__actions { align-items: flex-start; margin-top: 2.1rem; flex-direction: column; }
   }
-
-  .site-header[data-compact] {
-    background-color: color-mix(in srgb, var(--paper) 97%, var(--paper-bright));
-    box-shadow: 0 0.7rem 2rem color-mix(in srgb, var(--plum-display) 8%, transparent);
-  }
-
-  .site-header__inner {
-    display: grid;
-    width: var(--container);
-    align-items: center;
-    margin-inline: auto;
-    grid-template-columns: auto minmax(0, 1fr);
-    grid-template-rows: 6rem;
-    transition: grid-template-rows 415ms var(--ease-out);
-  }
-
-  [data-compact] .site-header__inner {
-    grid-template-rows: 4.35rem;
-  }
-
-  .brand {
-    position: relative;
-    z-index: 3;
-    width: clamp(8.4rem, 11vw, 10.5rem);
-    height: 5.4rem;
-  }
-
-  .brand__logos {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .brand__logo {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    mix-blend-mode: multiply;
-    transform-origin: left center;
-    transition:
-      opacity 285ms ease-out,
-      clip-path 495ms var(--ease-out),
-      transform 495ms var(--ease-out);
-  }
-
-  .brand__logo--full {
-    clip-path: inset(0 0 0 0);
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
-  }
-
-  .brand__logo--compact {
-    opacity: 0;
-    transform: translateY(-36%) scale(0.82);
-  }
-
-  [data-compact] .brand__logo--full {
-    clip-path: inset(0 0 62% 0);
-    opacity: 0;
-    transform: translateY(-66%) scale(0.92);
-  }
-
-  [data-compact] .brand__logo--compact {
-    opacity: 1;
-    transform: translateY(-50%) scale(0.84);
-  }
-
-  .primary-nav {
-    display: flex;
-    min-width: 0;
-    align-items: center;
-    justify-content: flex-end;
-    gap: clamp(1.2rem, 2.5vw, 3rem);
-  }
-
-  .primary-nav ul {
-    display: flex;
-    align-items: center;
-    gap: clamp(1rem, 1.8vw, 2rem);
-    padding: 0;
-    list-style: none;
-  }
-
-  .primary-nav li a,
-  .language {
-    position: relative;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.025em;
-    text-decoration: none;
-  }
-
-  .primary-nav li a::after,
-  .language::after {
-    position: absolute;
-    right: 0;
-    bottom: -0.38rem;
-    left: 0;
-    height: 2px;
-    background: var(--coral);
-    content: '';
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform var(--duration) var(--ease-out);
-  }
-
-  .primary-nav li a:hover::after,
-  .language:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  .primary-nav__actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .menu-toggle {
-    display: none;
-  }
-
-  @media (max-width: 64rem) {
-    .site-header__inner {
-      grid-template-rows: 5.4rem;
-    }
-
-    .brand {
-      height: 4.9rem;
-    }
-
-    [data-compact] .site-header__inner {
-      grid-template-rows: 4.25rem;
-    }
-
-    .menu-toggle {
-      position: relative;
-      z-index: 3;
-      display: inline-flex;
-      min-width: 5.8rem;
-      min-height: 2.9rem;
-      align-items: center;
-      justify-content: center;
-      justify-self: end;
-      gap: 0.65rem;
-      padding: 0.55rem 0.8rem;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-control);
-      background: var(--paper-bright);
-      color: var(--plum-display);
-      cursor: pointer;
-      font-size: 0.78rem;
-      font-weight: 700;
-      transform-origin: right center;
-      transition:
-        border-color var(--duration) var(--ease-out),
-        background-color var(--duration) var(--ease-out),
-        transform 415ms var(--ease-out);
-    }
-
-    [data-compact] .menu-toggle {
-      transform: scale(0.96);
-    }
-
-    .menu-toggle svg {
-      width: 1.15rem;
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-width: 1.7;
-    }
-
-    .menu-toggle svg path {
-      transition: transform 315ms var(--ease-out);
-    }
-
-    [data-open] .menu-toggle svg path:first-child {
-      transform: translateY(4px) rotate(45deg);
-      transform-origin: center;
-    }
-
-    [data-open] .menu-toggle svg path:last-child {
-      transform: translateY(-4px) rotate(-45deg);
-      transform-origin: center;
-    }
-
-    .primary-nav {
-      position: fixed;
-      z-index: 2;
-      inset: 0;
-      display: grid;
-      visibility: hidden;
-      width: 100%;
-      align-content: center;
-      justify-content: stretch;
-      padding: 7rem clamp(1.25rem, 7vw, 4rem) 2rem;
-      background: var(--rose-soft);
-      opacity: 0;
-      transition:
-        opacity 315ms var(--ease-out),
-        visibility 0s linear 315ms;
-    }
-
-    [data-open] .primary-nav {
-      visibility: visible;
-      opacity: 1;
-      transition-delay: 0s;
-    }
-
-    .primary-nav ul {
-      display: grid;
-      width: 100%;
-      gap: 0;
-    }
-
-    .primary-nav li a {
-      display: block;
-      padding-block: 0.55rem;
-      border-bottom: 1px solid var(--line);
-      font-family: var(--font-display);
-      font-size: clamp(2.3rem, 8vw, 4.4rem);
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-
-    .primary-nav__actions {
-      align-items: stretch;
-      margin-top: 2rem;
-      flex-direction: column;
-    }
-
-    .language {
-      min-height: 2.75rem;
-      align-content: center;
-      text-align: center;
-    }
-  }
+  @media (max-width: 23rem) { .brand { width: 6.45rem; }.header-controls { gap: 0.3rem; }.header-socials a { width: 1.8rem; height: 1.8rem; }.language-switcher__link { min-width: 1.8rem; }.menu-toggle { width: 2.65rem; height: 2.65rem; } }
+  @media (prefers-reduced-motion: reduce) { .primary-nav, html[data-nav-ready] .primary-nav, html[data-nav-ready] [data-open] .primary-nav, .primary-nav li, html[data-nav-ready] .primary-nav li, .menu-toggle svg path { transition-duration: 0.01ms; } }
 </style>

@@ -109,8 +109,14 @@
 @layer base {
   html {
     overflow-x: clip;
+    scrollbar-gutter: stable;
     color-scheme: light;
     background: var(--paper);
+  }
+
+  html.menu-is-open {
+    overflow: hidden;
+    overscroll-behavior: none;
   }
 
   body {
@@ -126,6 +132,11 @@
     line-height: 1.65;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+  }
+
+  body.menu-is-open {
+    overflow: hidden;
+    overscroll-behavior: none;
   }
 
   ::selection {
@@ -286,12 +297,6 @@
   [data-reveal='sequence'] > :nth-child(3),
   [data-reveal='collage'] > :nth-child(3) {
     transition-delay: 210ms;
-  }
-
-  html.motion-ready [data-reveal='quote']:not(.is-revealed) {
-    opacity: 0;
-    clip-path: inset(0 10% 0 10%);
-    transform: scale(0.985);
   }
 
   [data-reveal='pair'] > *,

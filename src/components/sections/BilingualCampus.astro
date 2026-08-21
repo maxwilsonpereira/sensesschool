@@ -9,6 +9,12 @@ import toddlerClassroom from '../../assets/school/toddler-classroom.jpg';
 
 interface Props { page: PageContent }
 const { page } = Astro.props;
+const manifestoQuote = `“${page.quote.text}”`;
+let manifestoCharacterIndex = 0;
+const manifestoWords = manifestoQuote.split(' ').map((word) => (
+  Array.from(word).map((character) => ({ character, index: manifestoCharacterIndex++ }))
+));
+const manifestoDuration = manifestoCharacterIndex * 26;
 ---
 
 <section class="bilingual section" aria-labelledby="bilingual-title">
@@ -81,8 +87,26 @@ const { page } = Astro.props;
 </section>
 
 <section class="manifesto section" aria-label={page.quote.attribution}>
-  <div class="container--narrow" data-reveal="quote">
-    <blockquote>“{page.quote.text}”</blockquote>
+  <div
+    class="container--narrow"
+    data-reveal="typewriter"
+    style={`--quote-duration: ${manifestoDuration}ms`}
+  >
+    <blockquote>
+      <span class="sr-only">{manifestoQuote}</span>
+      <span class="manifesto__writing" aria-hidden="true">
+        {manifestoWords.map((word, wordIndex) => (
+          <>
+            <span class="manifesto__word">
+              {word.map(({ character, index }) => (
+                <span class="manifesto__char" style={`--char-index: ${index}`}>{character}</span>
+              ))}
+            </span>
+            {wordIndex < manifestoWords.length - 1 && ' '}
+          </>
+        ))}
+      </span>
+    </blockquote>
     <cite>{page.quote.attribution}</cite>
   </div>
 </section>
@@ -235,6 +259,11 @@ const { page } = Astro.props;
     text-wrap: balance;
   }
 
+  .manifesto__word,
+  .manifesto__char {
+    display: inline-block;
+  }
+
   .manifesto cite {
     display: block;
     margin-top: 2rem;
@@ -244,6 +273,55 @@ const { page } = Astro.props;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.motion-ready) [data-reveal='typewriter']:not(.is-revealed) .manifesto__char {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transform: translateY(0.04em);
+    }
+
+    [data-reveal='typewriter'].is-revealed .manifesto__char {
+      animation: manifesto-write 420ms var(--ease-out) both;
+      animation-delay: calc(var(--char-index) * 26ms);
+    }
+
+    [data-reveal='typewriter'].is-revealed cite {
+      animation: manifesto-attribution 600ms var(--ease-out) both;
+      animation-delay: calc(var(--quote-duration) + 120ms);
+    }
+
+    :global(html.motion-ready) [data-reveal='typewriter']:not(.is-revealed) cite {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+  }
+
+  @keyframes manifesto-write {
+    from {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transform: translateY(0.04em);
+    }
+
+    to {
+      opacity: 1;
+      clip-path: inset(0);
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes manifesto-attribution {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (max-width: 58rem) {

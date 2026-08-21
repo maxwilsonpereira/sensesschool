@@ -2,143 +2,30 @@
 import type { PageContent } from '../../i18n/content';
 import { school } from '../../i18n/content';
 import { withBase } from '../../utils/paths';
-
-interface Props {
-  page: PageContent;
-}
-
+interface Props { page: PageContent; }
 const { page } = Astro.props;
 const year = new Date().getFullYear();
+const socialLabel = page.lang === 'pt-BR' ? 'Redes sociais' : 'Social media';
 ---
-
 <footer class="footer" id="site-footer">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <img
-        src={withBase('/images/brand/senses-logo.webp')}
-        alt="Senses Montessori School"
-        width="225"
-        height="90"
-        loading="lazy"
-      />
+      <img src={withBase('/images/brand/senses-logo.webp')} alt="Senses Montessori School" width="225" height="90" loading="lazy" />
       <p>{page.footer.descriptor}</p>
+      <nav class="footer__socials" aria-label={socialLabel}>
+        <a href="https://www.instagram.com/sensesschool/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle class="footer__dot" cx="17.35" cy="6.65" r=".85" /></svg></a>
+        <a href="https://www.facebook.com/sensesschool" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.8 21v-8h2.8l.42-3.12H13.8V7.9c0-.9.26-1.52 1.58-1.52h1.78V3.62c-.3-.04-1.36-.12-2.58-.12-2.55 0-4.3 1.5-4.3 4.28v2.1H7.4V13h2.88v8h3.52Z" /></svg></a>
+      </nav>
     </div>
-
-    <nav class="footer__explore" aria-label={page.footer.explore}>
-      <h2>{page.footer.explore}</h2>
-      <ul>
-        {page.nav.items.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
-        <li><a href={withBase('/eventos/')}>{page.footer.events}</a></li>
-      </ul>
-    </nav>
-
-    <div class="footer__contact">
-      <h2>{page.footer.contact}</h2>
-      <address>
-        <a href={`mailto:${school.email}`}>{school.email}</a>
-        <a href={school.phoneHref}>{school.phoneDisplay}</a>
-        <a href={school.whatsappHref} target="_blank" rel="noopener noreferrer">
-          {school.whatsappDisplay}
-        </a>
-        <span>{school.street}<br />{school.neighborhood}, {school.city} — {school.region}</span>
-        <a href={school.mapHref} target="_blank" rel="noopener noreferrer">{page.footer.map}</a>
-      </address>
-    </div>
+    <nav class="footer__explore" aria-label={page.footer.explore}><h2>{page.footer.explore}</h2><ul>{page.nav.items.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}<li><a href={withBase('/eventos/')}>{page.footer.events}</a></li></ul></nav>
+    <div class="footer__contact"><h2>{page.footer.contact}</h2><address><a href={`mailto:${school.email}`}>{school.email}</a><a href={school.phoneHref}>{school.phoneDisplay}</a><a href={school.whatsappHref} target="_blank" rel="noopener noreferrer">{school.whatsappDisplay}</a><span>{school.street}<br />{school.neighborhood}, {school.city} — {school.region}</span><a href={school.mapHref} target="_blank" rel="noopener noreferrer">{page.footer.map}</a></address></div>
   </div>
-
-  <div class="container footer__legal">
-    <span>© {year} Senses Montessori School. {page.footer.legal}</span>
-    <a href={school.whatsappHref}>{page.footer.admission}</a>
-  </div>
+  <div class="container footer__legal"><span>© {year} Senses Montessori School. {page.footer.legal}</span><a href={school.whatsappHref}>{page.footer.admission}</a></div>
 </footer>
-
 <style>
-  .footer {
-    padding-block: clamp(4rem, 8vw, 7rem) 1.25rem;
-    background: var(--rose);
-    color: var(--plum-display);
-  }
-
-  .footer__grid {
-    display: grid;
-    align-items: start;
-    gap: clamp(3rem, 7vw, 8rem);
-    grid-template-columns: minmax(14rem, 1.3fr) minmax(10rem, 0.7fr) minmax(15rem, 1fr);
-  }
-
-  .footer__brand img {
-    width: clamp(11rem, 16vw, 15rem);
-    height: auto;
-    mix-blend-mode: multiply;
-  }
-
-  .footer__brand p {
-    max-width: 25rem;
-    margin-top: 1rem;
-    font-family: var(--font-display);
-    font-size: var(--step-1);
-    line-height: 1.35;
-  }
-
-  .footer h2 {
-    margin-bottom: 1.25rem;
-    color: var(--plum);
-    font-family: var(--font-sans);
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .footer ul,
-  address {
-    display: grid;
-    padding: 0;
-    gap: 0.7rem;
-    list-style: none;
-  }
-
-  address {
-    font-style: normal;
-  }
-
-  .footer a {
-    color: inherit;
-    text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
-  }
-
-  .footer__legal {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-top: clamp(4rem, 7vw, 6rem);
-    padding-top: 1.2rem;
-    border-top: 1px solid color-mix(in srgb, var(--plum-display) 22%, transparent);
-    font-size: 0.76rem;
-  }
-
-  @media (max-width: 48rem) {
-    .footer__grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .footer__brand {
-      grid-column: 1 / -1;
-    }
-  }
-
-  @media (max-width: 32rem) {
-    .footer__grid {
-      grid-template-columns: 1fr;
-    }
-
-    .footer__brand {
-      grid-column: auto;
-    }
-
-    .footer__legal {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-  }
+  .footer { padding-block: clamp(4rem, 8vw, 7rem) 1.25rem; background: var(--rose); color: var(--plum-display); }
+  .footer__grid { display: grid; align-items: start; gap: clamp(3rem, 7vw, 8rem); grid-template-columns: minmax(14rem, 1.3fr) minmax(10rem, 0.7fr) minmax(15rem, 1fr); }
+  .footer__brand img { width: clamp(11rem, 16vw, 15rem); height: auto; mix-blend-mode: multiply; }.footer__brand p { max-width: 25rem; margin-top: 1rem; font-family: var(--font-display); font-size: var(--step-1); line-height: 1.35; }.footer__socials { display: flex; gap: 0.55rem; margin-top: 1.35rem; }.footer__socials a { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid color-mix(in srgb, var(--plum-display) 24%, transparent); border-radius: var(--radius-control); }.footer__socials svg { width: 1rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.65; }.footer__socials a:last-child svg, .footer__dot { fill: currentColor; stroke: none; }
+  .footer h2 { margin-bottom: 1.25rem; color: var(--plum); font-family: var(--font-sans); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }.footer ul, address { display: grid; padding: 0; gap: 0.7rem; list-style: none; }address { font-style: normal; }.footer a { color: inherit; text-decoration-color: color-mix(in srgb, currentColor 30%, transparent); }.footer__legal { display: flex; justify-content: space-between; gap: 2rem; margin-top: clamp(4rem, 7vw, 6rem); padding-top: 1.2rem; border-top: 1px solid color-mix(in srgb, var(--plum-display) 22%, transparent); font-size: 0.76rem; }
+  @media (max-width: 48rem) { .footer__grid { grid-template-columns: 1fr 1fr; }.footer__brand { grid-column: 1 / -1; } } @media (max-width: 32rem) { .footer__grid { grid-template-columns: 1fr; }.footer__brand { grid-column: auto; }.footer__legal { align-items: flex-start; flex-direction: column; } }
 </style>

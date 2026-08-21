@@ -1,7 +1,8 @@
 ---
 import { Picture } from 'astro:assets';
 import type { PageContent } from '../../i18n/content';
-import preparedEnvironment from '../../assets/school/prepared-environment.jpg';
+import preparedEnvironment from '../../assets/school/prepared-environment-crop.jpg';
+import whiteBrushStroke from '../../assets/design/white-brush-stroke-paint.png';
 
 interface Props { page: PageContent }
 const { page } = Astro.props;
@@ -19,23 +20,26 @@ const photoAlt = page.lang === 'pt-BR'
     </div>
   </div>
 
-  <div class="container philosophy__evidence" data-reveal="paper">
+  <div class="philosophy__evidence" data-reveal="paper">
     <figure>
-      <Picture
-        src={preparedEnvironment}
-        width={1200}
-        widths={[540, 720, 960, 1200]}
-        sizes="(max-width: 800px) 100vw, 68vw"
-        formats={['avif']}
-        fallbackFormat="webp"
-        quality="mid"
-        alt={photoAlt}
-      />
+      <div class="philosophy__media">
+        <Picture
+          src={preparedEnvironment}
+          width={1440}
+          widths={[720, 960, 1200, 1440]}
+          sizes="100vw"
+          formats={['avif']}
+          fallbackFormat="webp"
+          quality="mid"
+          alt={photoAlt}
+        />
+        <p class="philosophy__note" aria-hidden="true">
+          <img class="philosophy__note-brush" src={whiteBrushStroke.src} alt="" />
+          <span>{page.lang === 'pt-BR' ? 'o ambiente também educa' : 'the environment teaches too'}</span>
+        </p>
+      </div>
       <figcaption>{page.method.body}</figcaption>
     </figure>
-    <p class="philosophy__note" aria-hidden="true">
-      {page.lang === 'pt-BR' ? 'o ambiente também educa' : 'the environment teaches too'}
-    </p>
   </div>
 
   <div class="method container" aria-labelledby="method-title">
@@ -89,31 +93,33 @@ const photoAlt = page.lang === 'pt-BR'
   }
 
   .philosophy__evidence {
-    display: grid;
-    align-items: end;
-    gap: clamp(1.5rem, 4vw, 4rem);
     margin-top: clamp(4rem, 9vw, 8rem);
-    grid-template-columns: minmax(0, 1.55fr) minmax(11rem, 0.45fr);
   }
 
   figure {
     display: grid;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
-  figure :global(picture) {
+  .philosophy__media {
+    position: relative;
+  }
+
+  .philosophy__media :global(picture) {
     width: 100%;
   }
 
-  figure :global(img) {
+  .philosophy__media :global(img) {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    box-shadow: var(--shadow-photo);
+    object-position: center bottom;
   }
 
   figcaption {
+    width: var(--container);
     max-width: 55rem;
+    margin-inline: auto;
     color: var(--plum-display);
     font-family: var(--font-display);
     font-size: var(--step-1);
@@ -121,24 +127,51 @@ const photoAlt = page.lang === 'pt-BR'
   }
 
   .philosophy__note {
-    max-width: 13ch;
-    margin-bottom: 1.5rem;
+    position: absolute;
+    z-index: 1;
+    right: calc(clamp(1.25rem, 7vw, 8rem) + 35px);
+    bottom: calc(clamp(1.15rem, 3vw, 2.75rem) + 50px);
+    width: min(15rem, 28vw);
+    padding: 0.5rem 0.85rem 0.65rem;
     color: var(--plum);
     font-family: var(--font-note);
     font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    isolation: isolate;
     line-height: 1.2;
-    transform: rotate(-4deg);
+    text-align: center;
+    transform: rotate(2deg);
+  }
+
+  .philosophy__media .philosophy__note-brush {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    width: 185%;
+    height: 250%;
+    max-width: none;
+    aspect-ratio: auto;
+    object-fit: fill;
+    object-position: center;
+    transform: translate(-50%, -50%) rotate(-2deg);
+  }
+
+  .philosophy__note span {
+    position: relative;
+    z-index: 1;
+    -webkit-text-stroke: 0.012em var(--plum);
   }
 
   .philosophy__note::after {
     display: block;
-    width: 5rem;
-    height: 0.2rem;
-    margin-top: 0.7rem;
+    width: 8rem;
+    height: 0.4rem;
+    margin: 0.55rem auto 0;
     border-radius: 50%;
     background: var(--gold);
     content: '';
-    transform: rotate(2deg);
+    transform: translateX(-30px);
   }
 
   .method {
@@ -197,16 +230,12 @@ const photoAlt = page.lang === 'pt-BR'
   }
 
   @media (max-width: 42rem) {
-    .philosophy__evidence {
-      grid-template-columns: 1fr;
-    }
-
     .philosophy__note {
-      margin: 0;
-    }
-
-    figure :global(img) {
-      aspect-ratio: 4 / 3;
+      right: calc(6.5rem - 30px);
+      bottom: calc(1.1rem + 50px);
+      width: min(13rem, 54vw);
+      padding: 0.45rem 0.65rem 0.55rem;
+      font-size: clamp(1rem, 4.5vw, 1.25rem);
     }
 
     .method__list li {
