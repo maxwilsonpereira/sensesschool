@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CampusPage from '../../components/sections/CampusPage.astro';
+import { getContent, type PageContent } from '../../i18n/content';
+
+const base = getContent('pt');
+const page: PageContent = {
+  ...base,
+  path: '/nossa-casa/',
+  alternatePath: '/en/campus/',
+  meta: base.campusPage.meta,
+};
+const designContract = 'THESIS: Nossa Casa is a living educational home whose history, rooms, and garden teach; it refuses the stacked campus brochure. OWN-WORLD: warm paper and plum editorial type frame authentic photographs as an open doorway, with eucalyptus garden fields and graphite chapter rules. STORY: families understand the Mindlin legacy, see how prepared environments support each stage, experience the garden as daily learning, then schedule a visit. FIRST VIEWPORT: a 5/7 split places the title, lead, and visit action left; two authentic photographs form an open doorway right, joined by a slim História / Salas / Jardim seam. FORM: A casa que ensina, grounded position 6, seed 81266bde. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance';
+---
+
+<BaseLayout page={page} ogImageAlt={page.campusPage.hero.title} designContract={designContract}>
+  <CampusPage page={page} />
+</BaseLayout>

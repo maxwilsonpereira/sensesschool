@@ -10,6 +10,9 @@ const navLabel = page.lang === 'pt-BR' ? 'Navegação principal' : 'Primary navi
 const socialLabel = page.lang === 'pt-BR' ? 'Redes sociais' : 'Social media';
 const languageLabel = page.lang === 'pt-BR' ? 'Idioma' : 'Language';
 const isPortuguese = page.lang === 'pt-BR';
+const homePath = isPortuguese ? '/' : '/en/';
+const portuguesePath = isPortuguese ? page.path : page.alternatePath;
+const englishPath = isPortuguese ? page.alternatePath : page.path;
 const socialLinks = [
   { label: 'Instagram', href: 'https://www.instagram.com/sensesschool/', icon: 'instagram' },
   { label: 'Facebook', href: 'https://www.facebook.com/sensesschool', icon: 'facebook' },
@@ -18,7 +21,7 @@ const socialLinks = [
 
 <header class="site-header" data-header>
   <div class="site-header__inner">
-    <a class="brand" href={withBase(page.path)} aria-label={`${school.name} — home`}>
+    <a class="brand" href={withBase(homePath)} aria-label={`${school.name} — home`}>
       <span class="brand__logos" aria-hidden="true">
         <img class="brand__logo brand__logo--full" src={withBase('/images/brand/senses-logo-full.png')} alt="" width="300" height="189" />
         <img class="brand__logo brand__logo--compact" src={withBase('/images/brand/senses-logo.webp')} alt="" width="225" height="90" />
@@ -38,8 +41,8 @@ const socialLinks = [
         ))}
       </nav>
       <div class="language-switcher" aria-label={languageLabel}>
-        <a class:list={['language-switcher__link', { 'is-active': isPortuguese }]} href={withBase('/')} hreflang="pt-BR" lang="pt-BR" aria-current={isPortuguese ? 'page' : undefined}>PT</a>
-        <a class:list={['language-switcher__link', { 'is-active': !isPortuguese }]} href={withBase('/en/')} hreflang="en" lang="en" aria-current={!isPortuguese ? 'page' : undefined}>EN</a>
+        <a class:list={['language-switcher__link', { 'is-active': isPortuguese }]} href={withBase(portuguesePath)} hreflang="pt-BR" lang="pt-BR" aria-current={isPortuguese ? 'page' : undefined}>PT</a>
+        <a class:list={['language-switcher__link', { 'is-active': !isPortuguese }]} href={withBase(englishPath)} hreflang="en" lang="en" aria-current={!isPortuguese ? 'page' : undefined}>EN</a>
       </div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label={page.nav.menu} data-menu-toggle data-open-label={page.nav.menu} data-close-label={page.nav.close}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16" /><path d="M4 12h16" /><path d="M4 18h16" /></svg>
@@ -122,7 +125,7 @@ const socialLinks = [
   .menu-toggle { display: none; }
   @media (max-width: 75rem) {
     .site-header__inner { grid-template-rows: 5.4rem; } .brand { width: 7.2rem; height: 4.9rem; } [data-compact] .site-header__inner { grid-template-rows: 4.25rem; } .site-header[data-open]::before { position: fixed; z-index: 1; top: 0; right: 0; left: 0; height: 5.4rem; border-bottom: 1px solid var(--line); background: var(--paper); content: ''; pointer-events: none; } .site-header[data-open][data-compact]::before { height: 4.25rem; } .site-header[data-open] .brand { position: fixed; z-index: 3; top: 0.25rem; left: calc((100vw - var(--container)) / 2 - var(--menu-fixed-gutter, 0px)); } .site-header[data-open] .header-controls { position: fixed; z-index: 3; top: 1.25rem; right: calc((100vw - var(--container)) / 2 - var(--menu-fixed-gutter, 0px)); } .site-header[data-open][data-compact] .brand { top: -0.32rem; } .site-header[data-open][data-compact] .header-controls { top: 0.68rem; }
-    .header-controls { gap: 0.45rem; margin-inline-start: 0; }.header-socials { display: flex; gap: 0.2rem; }.header-socials a { width: 2rem; height: 2rem; }.header-socials svg { width: 0.92rem; }.language-switcher { gap: 0.1rem; padding: 0.12rem; }.language-switcher__link { min-width: 1.95rem; padding: 0.45rem 0.28rem; }
+    .header-controls { gap: 0.45rem; margin-inline-start: 0; }.header-socials { display: flex; gap: 0.2rem; }.header-socials a { width: 2.75rem; height: 2.75rem; }.header-socials svg { width: 0.92rem; }.language-switcher { gap: 0.1rem; padding: 0.12rem; }.language-switcher__link { display: grid; min-width: 2.75rem; min-height: 2.75rem; place-items: center; padding: 0.25rem; }
     .menu-toggle { position: relative; display: inline-grid; width: 2.9rem; height: 2.9rem; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--paper-bright); color: var(--plum-display); cursor: pointer; transform-origin: right center; transition: border-color var(--duration) var(--ease-out), background-color var(--duration) var(--ease-out), transform 415ms var(--ease-out); }
     [data-compact] .menu-toggle { transform: scale(0.96); } .menu-toggle svg { width: 1.2rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-width: 1.7; } .menu-toggle svg path { transform-box: fill-box; transform-origin: center; transition: opacity 220ms var(--ease-out), transform 360ms var(--ease-out); }
     [data-open] .menu-toggle svg path:first-child { transform: translateY(6px) rotate(45deg); } [data-open] .menu-toggle svg path:nth-child(2) { opacity: 0; transform: scaleX(0.25); } [data-open] .menu-toggle svg path:last-child { transform: translateY(-6px) rotate(-45deg); }
@@ -133,6 +136,6 @@ const socialLinks = [
     html[data-nav-ready] .primary-nav li { opacity: 0; transform: translateY(1rem); transition: opacity 360ms var(--ease-out), transform 520ms var(--ease-out); } html[data-nav-ready] [data-open] .primary-nav li { opacity: 1; transform: translateY(0); } html[data-nav-ready] [data-open] .primary-nav li:nth-child(1) { transition-delay: 110ms; } html[data-nav-ready] [data-open] .primary-nav li:nth-child(2) { transition-delay: 165ms; } html[data-nav-ready] [data-open] .primary-nav li:nth-child(3) { transition-delay: 220ms; } html[data-nav-ready] [data-open] .primary-nav li:nth-child(4) { transition-delay: 275ms; } html[data-nav-ready] [data-open] .primary-nav li:nth-child(5) { transition-delay: 330ms; }
     .primary-nav__actions { align-items: flex-start; margin-top: 2.1rem; flex-direction: column; }
   }
-  @media (max-width: 23rem) { .brand { width: 6.45rem; }.header-controls { gap: 0.3rem; }.header-socials a { width: 1.8rem; height: 1.8rem; }.language-switcher__link { min-width: 1.8rem; }.menu-toggle { width: 2.65rem; height: 2.65rem; } }
+  @media (max-width: 23rem) { .brand { width: 6.1rem; }.header-controls { gap: 0.18rem; }.header-socials { gap: 0; }.header-socials a { width: 2.5rem; height: 2.5rem; }.language-switcher { gap: 0; }.language-switcher__link { min-width: 2.75rem; min-height: 2.75rem; }.menu-toggle { width: 2.65rem; height: 2.65rem; } }
   @media (prefers-reduced-motion: reduce) { .primary-nav, html[data-nav-ready] .primary-nav, html[data-nav-ready] [data-open] .primary-nav, .primary-nav li, html[data-nav-ready] .primary-nav li, .menu-toggle svg path { transition-duration: 0.01ms; } }
 </style>

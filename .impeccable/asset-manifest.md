@@ -19,6 +19,17 @@ All content photography remains in `src/assets/school/` and should be rendered t
 
 Do not generate substitute children, educators, classrooms, campus scenes, portraits, logos, icons, or program imagery. Do not present the synthetic people visible in the approved comp as Senses photography.
 
+## Nossa Casa / Campus authentic assets
+
+These four photographs live in `src/assets/school/`. They were downloaded from the current official Senses campus pages for the approved **A casa que ensina** direction, then optimized once to a maximum 1920 px long edge as progressive JPEG sources. Each file carries its exact official source URL and optimization note in embedded provenance metadata; the optimized repository files are the shipping sources and must not be recompressed again without a demonstrated need.
+
+| Asset | Official source and page role |
+| --- | --- |
+| `src/assets/school/campus-baby.jpg` | `https://sensesschool.com.br/wp-content/uploads/2018/04/IMG_5671.jpg`; Bebê Cientista prepared environment. |
+| `src/assets/school/campus-junior.jpg` | `https://sensesschool.com.br/wp-content/uploads/2018/05/IMG_1781.jpg`; Cientista Júnior room and the interior half of the opening hero doorway. |
+| `src/assets/school/campus-senior.jpg` | `https://sensesschool.com.br/wp-content/uploads/2018/02/DSC04189.jpg`; Cientista Sênior prepared environment. |
+| `src/assets/school/campus-garden.jpg` | `https://sensesschool.com.br/wp-content/uploads/2018/03/IMG_5623.jpg`; garden evidence and the exterior half of the opening hero doorway. |
+
 ## Pre-existing raster provenance
 
 Verified repository origin records travel with every pre-existing shipping raster in this inventory:

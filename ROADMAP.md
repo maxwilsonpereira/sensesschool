@@ -1,6 +1,6 @@
 # Senses Montessori School — Website Roadmap
 
-Last updated: 20 August 2026
+Last updated: 21 August 2026
 
 This file tracks delivery order and completion status. It does not replace the project rules in `AGENTS.md`, product direction in `PRODUCT.md`, visual system in `DESIGN.md`, or verified research in `docs/DISCOVERY-AUDIT.md`.
 
@@ -64,12 +64,16 @@ Priority: high. Families need clear age ranges, daily experiences, developmental
 
 Priority: high. The historic house and garden are distinctive trust and local-search assets.
 
-- [ ] Build `/nossa-casa/` in Portuguese.
-- [ ] Build `/en/campus/` in English.
-- [ ] Present the verified José Mindlin house history, prepared classrooms, natural light, garden, outdoor experiences, and Brooklin location.
-- [ ] Verify the 600 m² garden claim and all historical wording before publication.
-- [ ] Use authentic campus photography with accurate captions and alt text.
-- [ ] Include clear local contact information and an invitational visit action.
+- [x] Build `/nossa-casa/` in Portuguese.
+- [x] Build `/en/campus/` in English.
+- [x] Present the verified José Mindlin house history, prepared classrooms, natural light, garden, outdoor experiences, and Brooklin location.
+- [x] Verify the 600 m² garden claim and all historical wording before publication; keep the route copy limited to claims supported by the current official campus pages.
+- [x] Use authentic campus photography with accurate captions and alt text.
+- [x] Include clear local contact information and an invitational visit action.
+
+Validated on 21 August 2026: shared localized implementation, unique metadata, reciprocal language alternates in HTML and sitemap, AVIF/WebP image output, reduced-motion fallback, keyboard-safe mobile navigation, clean browser console, and no horizontal overflow at 375, 430, 768, 1024, 1440, or 1728 pixels.
+
+Hero refinement validated on 21 August 2026: the opening now pairs three equal chapter controls with distinct Montessori block scenes on desktop and stacks each control with its scene on mobile. The rejected color-cover image reveal and dividing rails were removed; hero motion is limited to restrained hover/focus responses.
 
 ## Phase 5 — Educational journal
 

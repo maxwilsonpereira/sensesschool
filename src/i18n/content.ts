@@ -142,6 +142,92 @@ export const content = {
         'Criança da Senses cuidando de uma muda em atividade prática',
       gardenAlt: 'Crianças brincando ao ar livre no jardim da Senses',
     },
+    campusPage: {
+      meta: {
+        title: 'Nossa Casa: Escola Montessori no Brooklin | Senses',
+        description:
+          'Conheça a casa histórica da Senses no Brooklin, seus ambientes Montessori preparados, salas com luz natural e o jardim onde as crianças brincam ao ar livre.',
+      },
+      hero: {
+        eyebrow: 'Nossa casa · Brooklin',
+        title: 'Uma casa com história. Um jardim para novas descobertas.',
+        lead:
+          'A antiga casa do escritor e bibliófilo José Mindlin segue acolhendo educação — agora como um ambiente Montessori cheio de luz, ar fresco e vida.',
+        cta: 'Agende uma visita',
+        chaptersLabel: 'Capítulos da visita',
+        chapters: [
+          { number: '01', label: 'História', href: '#historia' },
+          { number: '02', label: 'Salas', href: '#salas' },
+          { number: '03', label: 'Jardim', href: '#jardim' },
+        ],
+        roomAlt:
+          'Duas crianças trabalhando com materiais Montessori em uma sala da Senses',
+        gardenAlt:
+          'Crianças brincando sob uma grande árvore no jardim da Senses',
+      },
+      history: {
+        title: 'Uma tradição que continua.',
+        paragraphs: [
+          'Nossa escola tem muita história! Estamos na casa que pertenceu ao renomado escritor e bibliófilo José Mindlin, e abrigava a maior biblioteca privada do Brasil, a “Biblioteca Brasiliana Guita e José Mindlin” que está hoje alocada na Universidade de São Paulo. Esta casa tem sua própria tradição em educação e pretendemos continuar seu legado.',
+          'Nossas salas de aula possuem grandes portas e janelas para o jardim, para que toda a escola seja repleta de luz natural e ar fresco, gerando um ambiente calmo e acolhedor.',
+        ],
+        note: 'Uma casa preparada para acolher conhecimento — ontem e hoje.',
+      },
+      rooms: {
+        title: 'Ambientes preparados para cada etapa.',
+        intro:
+          'Cada sala respeita o momento de desenvolvimento da criança e transforma escala, ordem, materiais e luz em possibilidades reais de autonomia.',
+        items: [
+          {
+            id: 'bebe-cientista',
+            title: 'Bebê Cientista',
+            age: 'Primeiros meses',
+            paragraphs: [
+              'Nos primeiros meses de vida, as transformações e descobertas dos bebês são imensuráveis. É por isso que, aqui na Senses, o ambiente para esta faixa etária foi projetado para suprir não apenas suas necessidades biológicas, mas também as motoras, cognitivas, afetivas e socioemocionais.',
+              'Mais do que passar o tempo em segurança, aqui o atendimento a cada criança é feito de maneira individual, para que os estímulos aconteçam na medida certa e no momento ideal, sempre baseados nos marcos padrões de desenvolvimento. Das paredes claras aos materiais que são manipulados, do ambiente arejado à luz natural que entra pelas janelas, tudo tem como propósito cultivar na criança o prazer pelas descobertas do mundo.',
+            ],
+            alt: 'Bebês da Senses sentados em mobiliário de madeira na escala da criança',
+          },
+          {
+            id: 'cientista-junior',
+            title: 'Cientista Júnior',
+            age: 'Até 3 anos',
+            paragraphs: [
+              'Até os 3 anos, período chamado por Maria Montessori de “mente absorvente inconsciente”, a acessibilidade de todo o ambiente torna-se ainda mais essencial para o despertar da consciência e da autonomia das crianças – é neste momento que se potencializam características como a consciência corporal, o desenvolvimento da fala e o interesse em suprir algumas de suas próprias necessidades.',
+              'Aqui na Senses, a sala para essa faixa etária é completamente preparada para estimular o cientista que há em cada um e promover aspectos importantes como o respeito pelo ser humano e senso de comunidade. Os móveis foram projetados especialmente para seus tamanhos, assim como a disposição dos materiais, respeitando o ritmo individual dos alunos e sempre tendo a segurança como elemento indispensável.',
+            ],
+            alt: 'Duas crianças da turma Júnior concentradas em materiais Montessori',
+          },
+          {
+            id: 'cientista-senior',
+            title: 'Cientista Sênior',
+            age: 'Dos 3 aos 6 anos',
+            paragraphs: [
+              'Dos 3 aos 6 anos, período chamado por Maria Montessori de “mente absorvente consciente”, o desenvolvimento da linguagem oral e escrita, da descoberta da matemática e das relações espaciais atingem seu ápice. Nesta sala, os ambientes visam ao máximo potencializar o aperfeiçoamento de habilidades como a coordenação, concentração, organização e precisão. Nesta fase a criança participa ativamente no conceito de cuidar de si, de qualquer outro ser vivo e do ambiente.',
+            ],
+            alt: 'Criança da turma Sênior cuidando de uma muda em atividade prática',
+          },
+        ],
+      },
+      garden: {
+        title: 'O jardim também é sala de aula.',
+        paragraphs: [
+          'A Senses Montessori School fica em uma bela casa no Brooklin Paulista. Temos uma área verde extensa para playground, onde crianças e bebês brincam na grama entre árvores frutíferas e flores. Em nosso jardim temos dezenas de espécies catalogadas e o som gostoso do canto dos pássaros. Nossa filosofia de ensino valoriza o contato e respeito com a natureza em sua essência. Todos os dias as crianças têm o momento de brincar no gramado, ao ar livre.',
+          'Neste momento elas são livres para criar a própria brincadeira ou participar de atividades planejadas pelos professores, como práticas esportivas, experiências sensoriais ou de coordenação motora, observação de plantas e seres vivos.',
+        ],
+        note: 'Natureza como experiência cotidiana, não apenas cenário.',
+        imageAlt:
+          'Crianças correndo e brincando ao ar livre no jardim da Senses',
+      },
+      visit: {
+        title: 'Toda casa muda quando é vivida.',
+        body:
+          'Venha percorrer as salas, sentir a luz, conhecer o jardim e conversar com nossa equipe sobre a experiência Montessori da Senses.',
+        cta: 'Agende uma visita',
+        map: 'Como chegar',
+        contactLabel: 'Fale com a escola',
+      },
+    },
     quote: {
       text: 'Nosso trabalho é abrir horizontes e despertar o brilho que há em cada criança.',
       attribution: 'Manifesto Senses',
@@ -311,6 +397,93 @@ export const content = {
       imageAlt: 'A Senses child caring for a seedling during practical work',
       gardenAlt: 'Children playing outdoors in the Senses garden',
     },
+    campusPage: {
+      meta: {
+        title: 'Our Campus: Montessori School in Brooklin | Senses',
+        description:
+          'Explore Senses’ historic Brooklin home, prepared Montessori environments, naturally lit classrooms and the garden where children spend time outdoors every day.',
+      },
+      hero: {
+        eyebrow: 'Our campus · Brooklin',
+        title: 'A house with history. A garden for new discoveries.',
+        lead:
+          'The former home of writer and bibliophile José Mindlin continues to welcome education — now as a light-filled Montessori environment open to fresh air and nature.',
+        cta: 'Schedule a visit',
+        chaptersLabel: 'Chapters of the visit',
+        chapters: [
+          { number: '01', label: 'History', href: '#history' },
+          { number: '02', label: 'Rooms', href: '#rooms' },
+          { number: '03', label: 'Garden', href: '#garden' },
+        ],
+        roomAlt:
+          'Two children working with Montessori materials in a Senses classroom',
+        gardenAlt:
+          'Children playing beneath a large tree in the Senses garden',
+      },
+      history: {
+        title: 'A tradition that continues.',
+        paragraphs: [
+          'Our campus is also filled with history! It belonged to the renowned writer José Mindlin and was home to his famous library, the largest private library in the country, now the “Biblioteca Brasiliana Guita e José Mindlin” at the University of São Paulo (USP). Our house has its own unique tradition in education, and it inspires us to live up to it.',
+          'Our classrooms have wide windows and doors facing the gardens, so every room is filled with natural sunlight and fresh air. The sight of the trees and songbirds also brings a unique feeling of comfort to day-to-day activities.',
+        ],
+        note: 'A house prepared to welcome knowledge — then and now.',
+      },
+      rooms: {
+        title: 'Prepared environments for every stage.',
+        intro:
+          'Each room responds to the child’s stage of development, turning scale, order, materials and light into real opportunities for independence.',
+        items: [
+          {
+            id: 'baby-scientist',
+            title: 'Baby Scientist',
+            age: 'The earliest months',
+            paragraphs: [
+              'In the first months of life, the transformations and discoveries made by babies are immeasurable. This is why, here at Senses, the environment for this age group is designed to meet not only their biological needs, but also their motor, cognitive, affective and socioemotional needs.',
+              'More than spending time safely, we care for each child individually, so that stimulation happens in the right measure and at the ideal moment, based on standard and individual development benchmarks. From the clear walls to the materials that are handled, from the airy environment to the natural light that enters through the windows, everything is meant to cultivate in the child the pleasure of discovering the world.',
+            ],
+            alt: 'Senses babies seated in child-scale wooden furniture',
+          },
+          {
+            id: 'junior-scientist',
+            title: 'Junior Scientist',
+            age: 'Up to age 3',
+            paragraphs: [
+              'Up to the age of three, a period called by Maria Montessori the “unconscious absorbent mind”, the accessibility of the whole environment becomes even more essential for the awakening of children’s consciousness and autonomy. At this moment, features such as body awareness, speech development and the interest in providing for some of their own needs are strengthened.',
+              'Here at Senses, the room for this age group is fully prepared to stimulate the scientist in each child and promote important aspects such as respect for the human being and a sense of community. The furniture was specially designed for their sizes, as was the layout of the materials, respecting the individual pace of the students and always treating safety as an essential element.',
+            ],
+            alt: 'Two children in the Junior group concentrating on Montessori materials',
+          },
+          {
+            id: 'senior-scientist',
+            title: 'Senior Scientist',
+            age: 'Ages 3 to 6',
+            paragraphs: [
+              'From three to six years of age, a period called by Maria Montessori the “conscious absorbent mind”, the development of oral and written language, the discovery of mathematics and spatial relations reach their peak.',
+              'In this room, the environment aims to improve skills such as coordination, concentration, organization and accuracy. At this stage, the child actively participates in caring for oneself, other living beings and the environment.',
+            ],
+            alt: 'A child in the Senior group caring for a seedling during practical work',
+          },
+        ],
+      },
+      garden: {
+        title: 'The garden is a classroom, too.',
+        paragraphs: [
+          'Senses Montessori School is located in a beautiful house in Brooklin Paulista. We have an extensive green playground where children and babies play on the grass among fruit trees and flowers. In our garden, we have dozens of catalogued species and the warm sound of birds singing. Our teaching philosophy values contact with and respect for nature in its essence.',
+          'Every day children have time to play on the grass, outdoors. At this time they are free to create their own game or participate in activities planned by teachers, such as sports, sensorial or motor-skill challenges, or the observation of plants and living beings.',
+        ],
+        note: 'Nature as an everyday experience, not simply scenery.',
+        imageAlt:
+          'Children running and playing outdoors in the Senses garden',
+      },
+      visit: {
+        title: 'Every house changes when it is lived in.',
+        body:
+          'Walk through the rooms, experience the light, explore the garden and speak with our team about Montessori life at Senses.',
+        cta: 'Schedule a visit',
+        map: 'Get directions',
+        contactLabel: 'Contact the school',
+      },
+    },
     quote: {
       text: 'Our work is to widen horizons and awaken the brightness within every child.',
       attribution: 'Senses Manifesto',
@@ -368,7 +541,16 @@ export const content = {
   },
 } as const;
 
-export type PageContent = (typeof content)[Locale];
+type LocalizedContent = (typeof content)[Locale];
+
+export type PageContent = Omit<LocalizedContent, 'path' | 'alternatePath' | 'meta'> & {
+  readonly path: string;
+  readonly alternatePath: string;
+  readonly meta: {
+    readonly title: string;
+    readonly description: string;
+  };
+};
 
 export function getContent(locale: Locale): PageContent {
   return content[locale];

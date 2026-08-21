@@ -23,6 +23,21 @@ export default defineConfig({
           en: 'en',
         },
       },
+      serialize(item) {
+        const campusRoutes = {
+          pt: 'https://maxwilsonpereira.github.io/sensesschool/nossa-casa/',
+          en: 'https://maxwilsonpereira.github.io/sensesschool/en/campus/',
+        };
+
+        if (item.url === campusRoutes.pt || item.url === campusRoutes.en) {
+          item.links = [
+            { lang: 'pt-BR', url: campusRoutes.pt },
+            { lang: 'en', url: campusRoutes.en },
+          ];
+        }
+
+        return item;
+      },
     }),
   ],
 });

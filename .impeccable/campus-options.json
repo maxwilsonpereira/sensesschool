@@ -1,0 +1,43 @@
+{
+  "title": "Como entramos na Nossa Casa?",
+  "question": "Três percursos para transformar a visita ao campus em uma experiência memorável — escolha um, combine ideias ou peça uma nova rodada.",
+  "options": [
+    {
+      "id": "living-library",
+      "label": "A casa que ensina",
+      "kicker": "THE ROLL",
+      "lineage": "a antiga biblioteca como percurso vivo",
+      "thesis": "A casa de José Mindlin abre como um livro habitável: história, salas e jardim tornam-se capítulos de uma mesma visita.",
+      "palette": ["#faf5e9", "#4a0e2a", "#d2b0b1", "#315f57"],
+      "materials": ["papel quente", "fotografia documental", "marcadores de capítulo"],
+      "viewport": "Um título monumental ocupa a esquerda; à direita, duas fotografias autênticas formam uma porta aberta, com um índice de capítulos rente à dobra.",
+      "risk": "A metáfora editorial precisa permanecer espacial e leve para não parecer uma página de revista sobre a escola.",
+      "comp": ".impeccable/mocks/decision/campus-living-library.webp"
+    },
+    {
+      "id": "prepared-atlas",
+      "label": "Atlas do ambiente preparado",
+      "lineage": "prancha de observação arquitetônica",
+      "thesis": "Cada ambiente é lido pela escala da criança, com fotografias, medidas humanas e notas que explicam por que o espaço funciona.",
+      "palette": ["#fffaf1", "#67294a", "#f1d9d7", "#5d8f86"],
+      "materials": ["prancha de estudo", "réguas finas", "notas de observação"],
+      "viewport": "Uma grande fotografia de sala cruza a dobra; título e ação ficam em uma margem vertical, enquanto três observações apontam luz, mobiliário e acesso ao jardim.",
+      "risk": "A precisão das anotações não pode fazer a página parecer técnica ou fria para famílias.",
+      "comp": ".impeccable/mocks/decision/campus-prepared-atlas.webp"
+    },
+    {
+      "id": "day-in-house",
+      "label": "Um dia dentro da casa",
+      "lineage": "sequência do amanhecer ao jardim",
+      "thesis": "A visita acompanha a luz pela casa: entrar, escolher, concentrar, cuidar e terminar no jardim.",
+      "palette": ["#faf5e9", "#4a0e2a", "#ffc5c1", "#315f57"],
+      "materials": ["faixas de luz", "fotografia em sequência", "linha do dia"],
+      "viewport": "Uma faixa panorâmica de jardim atravessa a abertura; abaixo, o título e a visita aparecem antes de uma linha horária com quatro momentos reais.",
+      "risk": "A narrativa temporal precisa deixar claro que mostra qualidades do ambiente, não uma rotina ou horário prometido.",
+      "comp": ".impeccable/mocks/decision/campus-day-in-house.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "comp", "toggle": true},
+  "steer": true
+}
