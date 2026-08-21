@@ -24,11 +24,20 @@ const chapterKinds = ['history', 'rooms', 'garden'] as const;
     <div class="campus-hero__copy">
       <p class="campus-hero__eyebrow">{campus.hero.eyebrow}</p>
       <h1 id="campus-title">
-        {campus.hero.title.split('. ').map((sentence, index, parts) => (
-          <span class:list={{ 'campus-hero__marked': index === 0 }}>
-            {sentence}{index < parts.length - 1 ? '.' : ''}
-          </span>
-        ))}
+        {campus.hero.title.split('. ').map((sentence, index, parts) => {
+          const words = sentence.split(' ');
+          const accentWord = words.pop() ?? '';
+
+          return (
+            <span>
+              {words.join(' ')}{' '}
+              {index === 0
+                ? <span class="hero__accent">{accentWord}</span>
+                : accentWord}
+              {index < parts.length - 1 ? '.' : ''}
+            </span>
+          );
+        })}
       </h1>
       <p class="campus-hero__lead">{campus.hero.lead}</p>
       <ButtonLink href={school.whatsappHref} external>{campus.hero.cta}</ButtonLink>
@@ -216,25 +225,8 @@ const chapterKinds = ['history', 'rooms', 'garden'] as const;
     font-size: clamp(3.2rem, 3.7vw, 5.45rem);
   }
 
-  .campus-hero h1 span {
+  .campus-hero h1 > span {
     display: block;
-  }
-
-  .campus-hero__marked {
-    position: relative;
-    width: fit-content;
-  }
-
-  .campus-hero__marked::after {
-    position: absolute;
-    right: -0.06em;
-    bottom: -0.01em;
-    left: 35%;
-    height: 0.075em;
-    border-radius: 50%;
-    background: var(--coral);
-    content: '';
-    transform: rotate(-1.2deg);
   }
 
   .campus-hero__lead {

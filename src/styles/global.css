@@ -260,7 +260,30 @@
   }
 }
 
+.hero__accent {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero__accent::after {
+  position: absolute;
+  right: var(--underline-right, -0.02em);
+  bottom: var(--underline-bottom, -0.08em);
+  left: var(--underline-left, 0.03em);
+  height: var(--underline-height, 0.11em);
+  border-radius: 50%;
+  background: var(--coral);
+  content: '';
+  transform: rotate(-1.2deg) scaleX(1.02);
+  transform-origin: left center;
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .hero__accent::after {
+    animation: hero-underline-draw 805ms 730ms var(--ease-out) both;
+  }
+
   [data-reveal] {
     transition:
       opacity 885ms var(--ease-out),
@@ -315,6 +338,13 @@
   [data-reveal='pair'] > :nth-child(2),
   [data-reveal='visit'] > :nth-child(2) {
     transition-delay: 130ms;
+  }
+}
+
+@keyframes hero-underline-draw {
+  from {
+    opacity: 0;
+    transform: rotate(-1.2deg) scaleX(0);
   }
 }
 
