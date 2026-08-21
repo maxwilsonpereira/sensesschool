@@ -106,14 +106,18 @@ const photoAlt = page.lang === 'pt-BR'
   }
 
   .philosophy__media :global(picture) {
+    display: block;
     width: 100%;
+    overflow: hidden;
+    aspect-ratio: 160 / 63;
   }
 
   .philosophy__media :global(img) {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 100%;
+    aspect-ratio: auto;
     object-fit: cover;
-    object-position: center bottom;
+    object-position: center;
   }
 
   figcaption {
@@ -129,8 +133,9 @@ const photoAlt = page.lang === 'pt-BR'
   .philosophy__note {
     position: absolute;
     z-index: 1;
-    right: calc(clamp(1.25rem, 7vw, 8rem) + 35px);
+    right: auto;
     bottom: calc(clamp(1.15rem, 3vw, 2.75rem) + 50px);
+    left: 50%;
     width: min(15rem, 28vw);
     padding: 0.5rem 0.85rem 0.65rem;
     color: var(--plum);
@@ -140,7 +145,7 @@ const photoAlt = page.lang === 'pt-BR'
     isolation: isolate;
     line-height: 1.2;
     text-align: center;
-    transform: rotate(2deg);
+    transform: translateX(-50%) rotate(2deg);
   }
 
   .philosophy__media .philosophy__note-brush {
@@ -230,26 +235,11 @@ const photoAlt = page.lang === 'pt-BR'
   }
 
   @media (max-width: 42rem) {
-    .philosophy__media :global(picture) {
-      display: block;
-      overflow: hidden;
-      aspect-ratio: 160 / 63;
-    }
-
-    .philosophy__media :global(picture img) {
-      height: 100%;
-      aspect-ratio: auto;
-      object-position: center;
-    }
-
     .philosophy__note {
-      right: auto;
       bottom: calc(1.1rem + 50px);
-      left: 50%;
       width: min(13rem, 54vw);
       padding: 0.45rem 0.65rem 0.55rem;
       font-size: clamp(1rem, 4.5vw, 1.25rem);
-      transform: translateX(-50%) rotate(2deg);
     }
 
     .method__list li {
