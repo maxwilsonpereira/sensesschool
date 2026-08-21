@@ -230,6 +230,18 @@ const photoAlt = page.lang === 'pt-BR'
   }
 
   @media (max-width: 42rem) {
+    .philosophy__media :global(picture) {
+      display: block;
+      overflow: hidden;
+      aspect-ratio: 160 / 63;
+    }
+
+    .philosophy__media :global(picture img) {
+      height: 100%;
+      aspect-ratio: auto;
+      object-position: center;
+    }
+
     .philosophy__note {
       right: auto;
       bottom: calc(1.1rem + 50px);
