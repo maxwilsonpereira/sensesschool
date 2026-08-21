@@ -36,9 +36,10 @@ Verified repository origin records travel with every pre-existing shipping raste
 
 - The six JPEGs in `src/assets/school/` carry JPEG comment metadata identifying them as authentic Senses photography retained from the audited live site, citing `PRODUCT.md` and `docs/DISCOVERY-AUDIT.md`. The repository records no photographer, capture date, or upstream source URL.
 - `public/images/brand/senses-logo.png` carries PNG text metadata identifying it as the preserved original wordmark, citing the brand commitments and homepage surface inventory. The repository records no designer, creation date, or upstream source URL.
-- `public/images/brand/senses-logo.webp` uses the permitted sibling `senses-logo.webp.json` provenance fallback because the Impeccable utility does not embed into WebP. It records the PNG source and the conversion parameters documented in `scripts/optimize-social-card.mjs`.
+- `public/images/brand/senses-logo.webp` uses the permitted sibling `senses-logo.webp.json` provenance fallback because the Impeccable utility does not embed into WebP. It records the PNG source and its original 225 × 90, WebP quality 82 conversion parameters.
 - `public/images/brand/senses-logo-full.png` carries PNG text metadata recording the exact official source URL, retrieval date, original dimensions, and expanded-header use. Its decoded-frame hash was checked before and after metadata embedding and remained `62019db07672b1f00f75f4fc6d3e5811`.
-- `public/og.jpg` carries JPEG comment metadata identifying it as the pre-existing repository social card and cites the size/optimization contract in `AGENTS.md` and `scripts/optimize-social-card.mjs`. The repository records no image author, creation date, or upstream source URL.
+- `src/assets/design/social-card-base.jpg` preserves the pre-existing repository social card as the stable composition source. The repository records no image author, creation date, or upstream source URL.
+- `public/og.jpg` is generated from that stable source by `scripts/optimize-social-card.mjs`, with the exact preserved Senses PNG wordmark composited at the upper left. It remains a 1200 × 630 progressive MozJPEG at quality 88 for social-link previews.
 
 The Impeccable metadata mechanism inserts JPEG comments or PNG text chunks without decoding or recompressing pixels. Decoded-frame hashes were checked before and after embedding.
 

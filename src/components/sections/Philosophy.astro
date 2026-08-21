@@ -136,7 +136,7 @@ const photoAlt = page.lang === 'pt-BR'
     color: var(--plum);
     font-family: var(--font-note);
     font-size: clamp(1.1rem, 2vw, 1.5rem);
-    font-weight: 700;
+    font-weight: 900;
     isolation: isolate;
     line-height: 1.2;
     text-align: center;
@@ -160,7 +160,7 @@ const photoAlt = page.lang === 'pt-BR'
   .philosophy__note span {
     position: relative;
     z-index: 1;
-    -webkit-text-stroke: 0.012em var(--plum);
+    -webkit-text-stroke: 0.018em var(--plum);
   }
 
   .philosophy__note::after {
@@ -171,7 +171,7 @@ const photoAlt = page.lang === 'pt-BR'
     border-radius: 50%;
     background: var(--gold);
     content: '';
-    transform: translateX(-30px);
+    transform: translateX(-10px);
   }
 
   .method {
@@ -231,11 +231,13 @@ const photoAlt = page.lang === 'pt-BR'
 
   @media (max-width: 42rem) {
     .philosophy__note {
-      right: calc(6.5rem - 30px);
+      right: auto;
       bottom: calc(1.1rem + 50px);
+      left: 50%;
       width: min(13rem, 54vw);
       padding: 0.45rem 0.65rem 0.55rem;
       font-size: clamp(1rem, 4.5vw, 1.25rem);
+      transform: translateX(-50%) rotate(2deg);
     }
 
     .method__list li {
