@@ -286,9 +286,9 @@
 
   [data-reveal] {
     transition:
-      opacity 885ms var(--ease-out),
-      transform 885ms var(--ease-out),
-      clip-path 990ms var(--ease-out);
+      opacity 1151ms var(--ease-out),
+      transform 1151ms var(--ease-out),
+      clip-path 1287ms var(--ease-out);
   }
 
   html.motion-ready [data-reveal='paper']:not(.is-revealed) {
@@ -300,9 +300,9 @@
   [data-reveal='sequence'] > *,
   [data-reveal='collage'] > * {
     transition:
-      opacity 805ms var(--ease-out),
-      transform 805ms var(--ease-out),
-      clip-path 910ms var(--ease-out);
+      opacity 1047ms var(--ease-out),
+      transform 1047ms var(--ease-out),
+      clip-path 1183ms var(--ease-out);
   }
 
   html.motion-ready [data-reveal='sequence']:not(.is-revealed) > *,
